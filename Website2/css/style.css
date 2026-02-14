@@ -615,7 +615,7 @@ img {
     }
 
     .nav-links {
-        display: none;
+        /* display: none; Removed to fix mobile menu toggle */
     }
 
     /* Simplified for MVP */
