@@ -660,6 +660,7 @@ img {
     /* Below the nav item */
     left: -20px;
     width: 900px;
+    max-width: 85vw;
     /* Mega menu width */
     background-color: #1a1a1a;
 
@@ -680,11 +681,7 @@ img {
     transform: translateY(0);
 }
 
-/* Fix for last dropdown going off-screen */
-.nav-item:last-of-type .dropdown-menu {
-    right: 0;
-    left: auto;
-}
+/* Fix regarding last dropdown revert */
 
 .dropdown-grid {
     display: grid;
