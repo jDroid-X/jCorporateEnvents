@@ -1,0 +1,67 @@
+# Corporate Event Website - Website2
+
+- [/] Project Setup
+    - [x] Create directory structure (css, js, assets, index.html) <!-- id: 0 -->
+    - [x] Setup base CSS (variables, typography, reset) <!-- id: 1 -->
+- [ ] Implement Sections
+    - [x] Hero Section <!-- id: 2 -->
+    - [x] Narrative Statement <!-- id: 3 -->
+    - [x] Featured Speakers <!-- id: 4 -->
+    - [x] Thematic Tracks <!-- id: 5 -->
+    - [x] Agenda Overview <!-- id: 6 -->
+    - [x] Venue & Experience <!-- id: 7 -->
+    - [x] Invitation / Registration <!-- id: 8 -->
+    - [x] Closing Authority Statement <!-- id: 9 -->
+- [ ] New Features
+    - [x] Implement Event Solutions Dropdown (Mega Menu) <!-- id: 12 -->
+    - [x] Implement Our Work Dropdown (Mega Menu) <!-- id: 13 -->
+    - [x] Implement Resources Dropdown (Mega Menu) <!-- id: 14 -->
+- [ ] Content Pages
+    - [x] Create Event Type Layout Template <!-- id: 15 -->
+    - [x] Generate 5 Event Type Pages <!-- id: 16 -->
+    - [x] Generate 5 Industry Pages <!-- id: 17 -->
+    - [x] Update Navigation Links <!-- id: 18 -->
+    - [x] Add explicit 'Home' link to all pages <!-- id: 19 -->
+    - [x] Fix navbar alignment (Request Access button) <!-- id: 20 -->
+    - [x] Create Event Solutions Overview Page (4 Tiles) <!-- id: 21 -->
+    - [x] Link 'See all event solutions' to Overview Page <!-- id: 22 -->
+    - [x] Add all 10 tiles to Event Solutions Overview Page <!-- id: 23 -->
+    - [x] Source and Implement Images for Tiles <!-- id: 24 -->
+- [/] Implement "Our Work" Section
+    - [x] Design & Generate "Our Work" Overview Page <!-- id: 25 -->
+    - [x] Create 6 Service Pages (Strategy, Logistics, etc.) <!-- id: 26 -->
+    - [x] Create 5 Success Story Pages <!-- id: 27 -->
+    - [x] Source & Implement Images for Services & Stories <!-- id: 28 -->
+    - [x] Update Navigation Links for "Our Work" <!-- id: 29 -->
+- [/] Implement "Resources" Section
+    - [x] Design & Generate "Resources" Overview Page <!-- id: 30 -->
+    - [x] Create 5 Industry Insight Pages <!-- id: 31 -->
+    - [x] Create 6 Guide Pages <!-- id: 32 -->
+    - [x] Source & Implement Images for Resources <!-- id: 33 -->
+    - [x] Update Navigation Links for "Resources" <!-- id: 34 -->
+- [x] Refactor Site Structure
+  - [x] Create new subdirectories (`solutions/types`, `solutions/industries`, `work/services`, etc.) <!-- id: 10 -->
+  - [x] Update `generate_pages.py` to handle relative paths and new structure <!-- id: 11 -->
+  - [x] Run `generate_pages.py` to regenerate all content pages in new locations <!-- id: 12 -->
+  - [x] Move and rename overview pages (`solutions/index.html`, etc.) <!-- id: 13 -->
+  - [x] Update navigation links in overview pages <!-- id: 14 -->
+  - [x] Update navigation links in root `index.html` <!-- id: 15 -->
+  - [x] Cleanup old HTML files from root <!-- id: 16 -->
+- [x] Final Review & Polish
+    - [x] Verify Mobile Responsiveness <!-- id: 10 -->
+    - [x] Check accessibility & SEO <!-- id: 11 -->
+    - [x] Verify Navigation Links <!-- id: 12 -->
+- [x] Rename Directories
+    - [x] Rename `solutions` to `event-solutions` <!-- id: 50 -->
+    - [x] Rename `work` to `our-work` <!-- id: 51 -->
+    - [x] Update `generate_pages.py` with new paths <!-- id: 52 -->
+    - [x] Regenerate content pages <!-- id: 53 -->
+    - [x] Update `index.html` and overview pages navigation <!-- id: 54 -->
+    - [x] Verify links <!-- id: 55 -->
+- [x] User Feedback & Refinements
+    - [x] Fix Resource Dropdown alignment (overflowing page) <!-- id: 60 -->
+    - [x] Fix Tile Grid layout shift (haywire on refresh) <!-- id: 61 -->
+    - [x] Fix Request Button hover contrast (Gold text on Black -> Black text on Gold) <!-- id: 62 -->
+    - [x] Add Scrolling Disclaimer Footer to all pages <!-- id: 63 -->
+    - [x] Update `generate_pages.py` template with disclaimer <!-- id: 64 -->
+    - [x] Update static HTML files (`index.html`, overviews) with disclaimer <!-- id: 65 -->
