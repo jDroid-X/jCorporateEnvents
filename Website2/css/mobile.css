@@ -8,9 +8,7 @@
     background: var(--bg-color);
 }
 
-.nav-links {
-    /* display: none; Removed to fix mobile menu toggle */
-}
+/* .nav-links rule removed (was empty) */
 
 /* Simplified for MVP */
 .hero {
@@ -19,7 +17,25 @@
 }
 
 .tile-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    /* Significantly reduced for mobile */
+    line-height: 1.2;
+}
+
+.section-title {
+    font-size: 1.8rem;
+}
+
+.lead-text {
+    font-size: 1rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
 }
 
 /* Mobile Crash Fixes (Android 10 & below) */
@@ -46,6 +62,11 @@
 
 .venue-bg {
     background-attachment: scroll;
+}
+
+.venue {
+    height: auto;
+    min-height: 300px;
 }
 
 .solutions-overview-grid {

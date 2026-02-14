@@ -4,8 +4,25 @@
 */
 
 /* General Tablet Adjustments */
+.hero {
+    height: auto;
+    padding: 120px 0;
+    min-height: 500px;
+    /* Ensure reasonable height */
+}
+
+.venue {
+    height: auto;
+    min-height: 400px;
+}
+
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
+    /* Reduced from 3.5rem */
+}
+
+.section-title {
+    font-size: 2.2rem;
 }
 
 .tracks-grid {
@@ -61,6 +78,8 @@
     transform: translateY(-150%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
+    overflow-y: auto;
+    max-height: 80vh;
 }
 
 .nav-links.active {
@@ -70,8 +89,66 @@
 .nav-links a {
     margin: 15px 0;
     font-size: 1.1rem;
+    display: block;
+    /* Ensure hit area */
+    text-align: center;
 }
 
 .nav-item.dropdown {
-    margin: 15px 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.dropdown-trigger {
+    display: block;
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+/* Transform Mega Menu into Accordion */
+.dropdown-menu {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: none !important;
+    background-color: rgba(255, 255, 255, 0.02);
+    padding: 0;
+    display: none;
+    /* Hidden by default, toggled via JS */
+    border: none;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.dropdown-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.dropdown-col {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: left;
+}
+
+.dropdown-header {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: var(--accent-gold);
+}
+
+.dropdown-list a {
+    padding: 8px 0;
+    font-size: 0.9rem;
+}
+
+.featured-col {
+    background: none;
+    padding: 20px;
 }
