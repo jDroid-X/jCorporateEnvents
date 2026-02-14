@@ -117,3 +117,27 @@ Create a premium, high-end corporate event website for "Curated Leadership Concl
 - Hover over "Request Access" button to verify text becomes dark/readable.
 - Check footer scrolling text on Home, Overview phases, and a Generated Page.
 
+
+## CSS Refactoring (Mobile Crash & Layout Fixes)
+### Goal
+Separate the monolithic `style.css` into device-specific stylesheets to improve maintainability and prevent media query nesting errors.
+
+### Proposed Changes
+#### CSS Architecture
+*   **Split `style.css` into:**
+    *   `css/desktop.css`: Contains all base styles, variables, and desktop-specific layouts.
+    *   `css/tablet.css`: Contains overrides for screens `max-width: 992px` (formerly `@media (max-width: 992px)`).
+    *   `css/mobile.css`: Contains overrides for screens `max-width: 768px` (formerly `@media (max-width: 768px)`).
+
+#### HTML Updates
+*   Update `<head>` in `index.html` and all sub-pages to link these files:
+    ```html
+    <link rel="stylesheet" href="css/desktop.css">
+    <link rel="stylesheet" href="css/tablet.css" media="(max-width: 992px)">
+    <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+    ```
+
+### Verification
+*   **Desktop**: Ensure layout is stable (navigation, grid).
+*   **Tablet**: Verify grid collapse (2 columns).
+*   **Mobile**: Verify stack layout, simplified shadows, and no hardware acceleration (crash fix persistence).

@@ -1,0 +1,77 @@
+/* 
+   File: tablet.css 
+   Media Query: max-width: 992px
+*/
+
+/* General Tablet Adjustments */
+.hero-title {
+    font-size: 3.5rem;
+}
+
+.tracks-grid {
+    grid-template-columns: 1fr 1fr;
+}
+
+.narrative-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.narrative-left .section-title {
+    border-left: none;
+    padding-left: 0;
+    border-top: 3px solid var(--accent-gold);
+    padding-top: 20px;
+}
+
+/* Split Layout */
+.split-layout {
+    flex-direction: column;
+    padding-top: 60px;
+}
+
+.split-image {
+    height: 40vh;
+    flex: none;
+}
+
+.split-content {
+    padding: 60px 30px;
+}
+
+.page-title {
+    font-size: 3rem;
+}
+
+/* Mobile Navigation (Tablet & Mobile overlap) */
+.menu-toggle {
+    display: flex;
+}
+
+.nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-secondary);
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 2px solid var(--border-color);
+    transform: translateY(-150%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.nav-links.active {
+    transform: translateY(0);
+}
+
+.nav-links a {
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.nav-item.dropdown {
+    margin: 15px 0;
+}
