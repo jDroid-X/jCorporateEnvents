@@ -243,7 +243,7 @@ pages = [
         "sub_text_1": "Clear communication of company vision and goals to ensure everyone is on the same page.",
         "sub_head_2": "Team Building",
         "sub_text_2": "Interactive sessions and activities that foster collaboration and team spirit.",
-        "image_path": "images/event-solutions/sales_kickoff.jpg",
+        "image_path": "images/event-solutions/kickoff.jpg",
         "image_text": "Cheering Sales Team"
     },
     {
@@ -470,7 +470,7 @@ pages = [
         "sub_text_1": "Building the event program around user contribution and networking.",
         "sub_head_2": "Tech Showcase",
         "sub_text_2": "A futuristic environment demonstrating the latest capabilities of the software.",
-        "image_path": "images/our-work/ai_conf.jpg",
+        "image_path": "images/our-work/ai-conf.jpg",
         "image_text": "Abstract Tech Background"
     },
 

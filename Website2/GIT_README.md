@@ -45,7 +45,9 @@ To get a public URL (like `https://yourname.github.io/website2`) that works on *
 3.  Go to the repository **Settings**.
 4.  Scroll down to the **Pages** section.
 5.  Under "Source", select **`main` branch** (or `master`) and click **Save**.
-6.  Wait 1-2 minutes. GitHub will give you a link. **Share that link**, and it will work everywhere!
+6.  Wait 1-2 minutes. GitHub will deploy it.
+7.  **Your Website URL will be:**  
+    👉 **`https://jdroid-x.github.io/jCorporateEnvents/Website2/`**
 
 ---
 
