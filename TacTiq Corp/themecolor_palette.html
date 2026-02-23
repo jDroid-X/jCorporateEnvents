@@ -530,8 +530,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - STABILITY ADVANCE
-                V9.8</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - TACTICAL ARCHITECT
+                EDITION V10.0</span>
         </div>
     </footer>
 
@@ -838,8 +838,14 @@
                 "Main Body BG", "Sidebar / UI BG", "Header and Footer",
                 "Action Buttons", "Primary Accent", "Secondary Accent",
                 "Primary Font", "Highlighted Font", "UI Border / Divider",
-                "Card & Tile BG", "Scrollbar & Track", "Success / Alert"
+                "Card & Tile BG", "Scrollbar & Track", "Success / Alert",
+                "Input & Form BG", "Modal & Overlay", "Dynamic Glow", "Interactive Shadow"
             ];
+
+            const mappingCounts = {};
+            elements.forEach(el => {
+                if (el.mapping) mappingCounts[el.mapping] = (mappingCounts[el.mapping] || 0) + 1;
+            });
 
             elements.forEach((el, elIdx) => {
                 const tr = document.createElement('tr');
@@ -860,8 +866,12 @@
                 // Cell 2: Element Name
                 const nameTd = document.createElement('td');
                 nameTd.className = 'theme-name';
+                const discoveryBadge = el.role === "Discovered Layer" ? `<span style="font-size:0.5rem; color:#666; font-style:italic;">(Discovered)</span>` : '';
                 nameTd.innerHTML = `
-                    <span>${el.name}</span>
+                    <div style="display:flex; flex-direction:column;">
+                        <span style="${el.role === 'Discovered Layer' ? 'opacity:0.7; font-style:italic;' : ''}">${el.name}</span>
+                        ${discoveryBadge}
+                    </div>
                     <div class="row-options">
                         <span class="edit-row" onclick="editElement(${elIdx})" title="Rename Layer">✎</span>
                         <span class="del-row" onclick="deleteElement(${elIdx})" title="Delete Layer">×</span>
@@ -870,10 +880,16 @@
                 tr.appendChild(nameTd);
 
                 // Cell 3: Website Protocol (Mapping)
+                const isDuplicate = mappingCounts[el.mapping] > 1;
                 const protoTd = document.createElement('td');
                 protoTd.className = 'proto-col';
+                if (isDuplicate) {
+                    protoTd.style.background = "rgba(255, 68, 68, 0.15)";
+                    protoTd.style.borderColor = "#ff4444";
+                }
                 const siteMarker = activeWebsite !== "Standalone Mode" ? `<div style="font-size:0.5rem; color:#666; font-family:sans-serif; margin-bottom:2px;">[${activeWebsite}]</div>` : '';
-                protoTd.innerHTML = `${siteMarker}<code>--${el.mapping}</code>`;
+                const duplicateFlag = isDuplicate ? `<span style="font-size:0.45rem; color:#ff4444; float:right; font-weight:900;">DUPLICATE MAP</span>` : '';
+                protoTd.innerHTML = `${siteMarker}${duplicateFlag}<code>--${el.mapping}</code>`;
                 protoTd.onclick = () => {
                     const newMap = prompt(`Enter Website CSS Variable name for "${el.name}":\n(Example: main-body-bg)`, el.mapping);
                     if (newMap) {
@@ -1035,7 +1051,7 @@
 
                 // Show the AI Bridge with a custom prompt
                 document.getElementById('ai-bridge').style.display = 'block';
-                document.getElementById('ai-prompt-text').innerText = `I'm trying to sync my theme. Please scan the website at "${path}" for its 12-Layer UI structure and give me the CSS variable block to paste.`;
+                document.getElementById('ai-prompt-text').innerText = `I'm trying to sync my theme. Please scan the website at "${path}" for its 16-Layer UI structure and give me the CSS variable block to paste.`;
 
                 document.getElementById('fallback-area').style.display = 'block';
             }
@@ -1284,7 +1300,7 @@
 
             let h = baseH, s = isGrey ? 5 : 70, l = 50;
 
-            // 2. Structural Role Logic & Bracketing (Comprehensive 12-Layer)
+            // 2. Structural Role Logic & Bracketing (Comprehensive 16-Layer Suite)
             if (elName.includes("Main Body")) { h = (baseH + 5) % 360; s = isGrey ? 2 : 20; l = 10; }
             else if (elName.includes("Sidebar")) { h = (baseH + 10) % 360; s = isGrey ? 3 : 25; l = 7; }
             else if (elName.includes("Header")) { h = baseH; s = isGrey ? 4 : 40; l = 18; }
@@ -1297,6 +1313,10 @@
             else if (elName.includes("Card")) { h = (baseH + 5) % 360; s = isGrey ? 4 : 22; l = 14; }
             else if (elName.includes("Scrollbar")) { h = baseH; s = isGrey ? 0 : 20; l = 35; }
             else if (elName.includes("Success")) { h = 140; s = 80; l = 45; }
+            else if (elName.includes("Input & Form")) { h = baseH; s = isGrey ? 5 : 15; l = 5; }
+            else if (elName.includes("Modal & Overlay")) { h = baseH; s = isGrey ? 5 : 10; l = 2; }
+            else if (elName.includes("Dynamic Glow")) { h = baseH; s = 100; l = 60; }
+            else if (elName.includes("Interactive Shadow")) { h = baseH; s = 10; l = 5; }
 
             // 3. Generation Era Logic
             if (variant === 1) { // Old School (Dull / Analog / 70s-90s)
