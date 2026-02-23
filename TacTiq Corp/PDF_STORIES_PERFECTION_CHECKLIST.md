@@ -43,6 +43,19 @@ This document defines the coding, testing, and visual standards for the **Tactiq
 
 ---
 
+## 🌐 IV. GLOBAL ACCESSIBILITY & HYBRID NAVIGATION
+### 1. Cross-Project Integrity
+- [ ] **Zero Hardcoded Paths**: Audit for absolute `C:\` or `http://localhost` strings (Relative paths only).
+- [ ] **Navigation Loop**: Verified links: Main → Designer, Designer → Stories, Stories → Home.
+- [ ] **Multi-Origin Sync**: `localStorage` verified to work across same-domain deployments (e.g. GitHub Pages).
+
+### 2. Device Continuity
+- [ ] **Touch Target Sizing**: All interactive buttons ≥ 44x44px for tablet/mobile accessibility.
+- [ ] **Aria-Labeling**: All navigation buttons and icons have descriptive ARIA roles for screen readers.
+- [ ] **Security Hardening**: External links use `rel="noopener noreferrer"` for reverse-tabnabbing protection.
+
+---
+
 ## 🎨 III. BRAND & ATMOSPHERIC STANDARDS
 ### 1. Visual Quality (Quality Assurance)
 - [ ] **DPI Consistency**: All hero assets exported at @2x for Retina/High-PPI tablet displays.
