@@ -546,8 +546,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - DISCOVERY
-                INTELLIGENCE V8.5</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - AUTO-REPROTOCOL
+                V9.0</span>
         </div>
     </footer>
 
@@ -1059,10 +1059,13 @@
 
                 if (existingIdx !== -1) {
                     foundCount++;
-                    // PROTOCOL UPDATE: If we find a matching core element, pull the live color into THE ACTIVE THEMES
+
+                    // ARCHITECT PROTOCOL UPDATE: Update the technical mapping to the new site's CSS variable name
+                    elements[existingIdx].mapping = v.raw;
+
+                    // COLOR INJECTION: Pull the live colors into your designer matrix
                     if (detectedColor) {
                         for (let i = 0; i < themes.length; i++) {
-                            // Only update if it's currently a placeholder or if it's the first sync
                             elements[existingIdx].colors[i] = detectedColor;
                         }
                     }
