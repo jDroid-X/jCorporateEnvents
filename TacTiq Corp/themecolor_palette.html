@@ -247,7 +247,19 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
-            min-width: 200px;
+            min-width: 180px;
+        }
+
+        .proto-col {
+            background: #0a0a0a !important;
+            border-right: 1px solid var(--border);
+            font-family: 'Courier New', monospace;
+            font-size: 0.65rem;
+            color: var(--accent);
+            padding: 8px;
+            text-align: left;
+            min-width: 140px;
+            opacity: 0.8;
         }
 
         .row-options {
@@ -513,8 +525,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - COMMAND CENTER MAX
-                V5.8</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - ARCHITECT DUAL-SYNC
+                V6.1</span>
         </div>
     </footer>
 
@@ -647,21 +659,28 @@
                     { name: "TacTiq Teal (Base)", key: "tactiq-teal", active: true, locked: false }
                 ];
                 elements = [
-                    { name: "Main Body BG", role: "Page Backdrop", colors: ["#174C56"] },
-                    { name: "Sidebar / UI BG", role: "Navigation Rails", colors: ["#0F353C"] },
-                    { name: "Header and Footer", role: "Structural Bars", colors: ["#0F353C"] },
-                    { name: "Action Buttons", role: "Primary Interaction", colors: ["#174C56"] },
-                    { name: "Primary Accent", role: "Brand Identity", colors: ["#FF9933"] },
-                    { name: "Secondary Accent", role: "Soft Highlights", colors: ["#CC7A29"] },
-                    { name: "Primary Font", role: "Content Body", colors: ["#FFFFFF"] },
-                    { name: "Highlighted Font", role: "Indicators / Titles", colors: ["#FFD700"] },
-                    { name: "UI Border / Divider", role: "Tactical Grid", colors: ["#FFFFFF1A"] },
-                    { name: "Card & Tile BG", role: "Content Modules", colors: ["#0F353C"] },
-                    { name: "Scrollbar & Track", role: "Utility Theming", colors: ["#FF9933"] },
-                    { name: "Success / Alert", role: "Status Feedback", colors: ["#44FF44"] }
+                    { name: "Main Body BG", mapping: "main-body-bg", role: "Page Backdrop", colors: ["#174C56"] },
+                    { name: "Sidebar / UI BG", mapping: "sidebar-ui-bg", role: "Navigation Rails", colors: ["#0F353C"] },
+                    { name: "Header and Footer", mapping: "header-and-footer", role: "Structural Bars", colors: ["#0F353C"] },
+                    { name: "Action Buttons", mapping: "action-buttons", role: "Primary Interaction", colors: ["#174C56"] },
+                    { name: "Primary Accent", mapping: "primary-accent", role: "Brand Identity", colors: ["#FF9933"] },
+                    { name: "Secondary Accent", mapping: "secondary-accent", role: "Soft Highlights", colors: ["#CC7A29"] },
+                    { name: "Primary Font", mapping: "primary-font", role: "Content Body", colors: ["#FFFFFF"] },
+                    { name: "Highlighted Font", mapping: "highlighted-font", role: "Indicators / Titles", colors: ["#FFD700"] },
+                    { name: "UI Border / Divider", mapping: "ui-border-divider", role: "Tactical Grid", colors: ["#FFFFFF1A"] },
+                    { name: "Card & Tile BG", mapping: "card-tile-bg", role: "Content Modules", colors: ["#0F353C"] },
+                    { name: "Scrollbar & Track", mapping: "scrollbar-track", role: "Utility Theming", colors: ["#FF9933"] },
+                    { name: "Success / Alert", mapping: "success-alert", role: "Status Feedback", colors: ["#44FF44"] }
                 ];
                 saveData();
             }
+
+            // Ensure every element has a mapping
+            elements.forEach(el => {
+                if (!el.mapping) {
+                    el.mapping = el.name.toLowerCase().replace(/ \/ /g, '-').replace(/ & /g, '-').replace(/ /g, '-');
+                }
+            });
         }
 
         function saveData() {
@@ -686,7 +705,8 @@
             // 1. CLEAR AND PREP HEADERS (Themes are now columns)
             headerRow.innerHTML = `
                 <th class="push-col">Mapping</th>
-                <th class="theme-name" style="justify-content:center; text-align:center; line-height:1.2;">UI<br>Element<br>Layer</th>
+                <th class="theme-name" style="justify-content:center; text-align:center; line-height:1.2;">UI Element Layer</th>
+                <th class="proto-col" style="text-align:center;">Website Protocol</th>
             `;
 
             const selector = document.getElementById('theme-selector');
@@ -746,27 +766,40 @@
                 const mappingTd = document.createElement('td');
                 mappingTd.className = 'push-col';
                 mappingTd.innerHTML = `
-                    <div class="sync-indicator ${isSupported ? 'active' : ''}" 
+                    <div class="sync-indicator active" 
                          onclick="toggleMapping(${elIdx})"
-                         title="${isSupported ? 'Perfect Match' : 'Click to Sync'}">
-                        ${isSupported ? '✓' : ''}
+                         title="Link this Designer Layer to Website CSS">
+                         ✓
                     </div>
                 `;
                 tr.appendChild(mappingTd);
 
-                // Cell 2: Element Identity (Sticky)
+                // Cell 2: Element Name
                 const nameTd = document.createElement('td');
                 nameTd.className = 'theme-name';
                 nameTd.innerHTML = `
-                    <div style="display:flex; flex-direction:column; gap:2px;">
-                        <span style="font-size:0.75rem;">${el.name}</span>
-                        <span style="font-size:0.45rem; color:#666; font-weight:400; text-transform:uppercase;">${el.role}</span>
+                    <span>${el.name}</span>
+                    <div class="row-options">
+                        <span class="edit-row" onclick="editElement(${elIdx})" title="Rename Layer">✎</span>
+                        <span class="del-row" onclick="deleteElement(${elIdx})" title="Delete Layer">×</span>
                     </div>
-                    <span class="del-row" onclick="deleteElement(${elIdx})" style="opacity:0.2; margin-left:10px;">×</span>
                 `;
                 tr.appendChild(nameTd);
 
-                // Cells 3-N: Colors for each Theme
+                // Cell 3: Website Protocol (Mapping)
+                const protoTd = document.createElement('td');
+                protoTd.className = 'proto-col';
+                protoTd.innerHTML = `<code>--${el.mapping}</code>`;
+                protoTd.onclick = () => {
+                    const newMap = prompt(`Enter Website CSS Variable name for "${el.name}":\n(Example: main-body-bg)`, el.mapping);
+                    if (newMap) {
+                        el.mapping = newMap.replace(/^--/, '');
+                        saveData(); renderTable();
+                    }
+                };
+                tr.appendChild(protoTd);
+
+                // Cells 4-N: Colors for each Theme
                 themes.forEach((theme, themeIdx) => {
                     const color = el.colors[themeIdx] || "#333333";
                     const td = document.createElement('td');
@@ -972,6 +1005,7 @@
                 } else {
                     elements.push({
                         name: v.name,
+                        mapping: v.raw, // Capture the raw CSS variable name
                         role: "Discovered Layer",
                         colors: new Array(themes.length).fill(detectedColor || "#333333")
                     });
@@ -1001,6 +1035,15 @@
         function deleteElement(idx) {
             if (confirm(`Delete UI element "${elements[idx].name}"?`)) {
                 elements.splice(idx, 1);
+                saveData(); renderTable();
+            }
+        }
+
+        function editElement(idx) {
+            const currentName = elements[idx].name;
+            const newName = prompt(`Rename UI Layer "${currentName}":`, currentName);
+            if (newName && newName !== currentName) {
+                elements[idx].name = toTitleCase(newName);
                 saveData(); renderTable();
             }
         }
@@ -1244,7 +1287,7 @@
         function exportBlueprint() {
             let blueprint = `/* TACTIQ DESIGN ARCHITECT BLUEPRINT */\n\n`;
             elements.forEach((el, idx) => {
-                const varName = el.name.toLowerCase().replace(/ \/ /g, '-').replace(/ & /g, '-').replace(/ /g, '-');
+                const varName = el.mapping || el.name.toLowerCase().replace(/ \/ /g, '-').replace(/ & /g, '-').replace(/ /g, '-');
                 blueprint += `/* ${el.name} (${el.role}) */\n`;
                 themes.forEach((theme, themeIdx) => {
                     blueprint += `--${varName}-${theme.key}: ${el.colors[themeIdx]};\n`;
