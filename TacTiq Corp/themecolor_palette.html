@@ -507,8 +507,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - BRANDING MAX
-                V5.5</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - PROTOCOL SYNC
+                V5.6</span>
         </div>
     </footer>
 
@@ -1173,7 +1173,11 @@
                 if (word.startsWith('(')) {
                     return '(' + word.charAt(1).toUpperCase() + word.slice(2).toLowerCase();
                 }
-                // Handle special brand names
+                // Technical Protocols / Acronyms (Keep All Caps)
+                const upper = word.toUpperCase();
+                if (upper === "BG" || upper === "UI" || upper === "CSS" || upper === "PDF") return upper;
+
+                // Special brand names
                 if (word.toLowerCase() === "tactiq") return "TacTiq";
                 if (word.toLowerCase() === "genz") return "GenZ";
 
