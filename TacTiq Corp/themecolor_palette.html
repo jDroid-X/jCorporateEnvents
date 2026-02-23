@@ -245,19 +245,28 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
-            min-width: 180px;
+            width: 220px;
+            min-width: 220px;
+            max-width: 220px;
+            white-space: normal;
+            word-wrap: break-word;
+            padding: 8px 12px;
         }
 
         .proto-col {
             background: #0a0a0a !important;
             border-right: 1px solid var(--border);
             font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
             color: var(--accent);
             padding: 8px 12px;
             text-align: left;
-            min-width: 180px;
+            width: 200px;
+            min-width: 200px;
+            max-width: 200px;
+            white-space: normal;
+            word-break: break-all;
             opacity: 1;
         }
 
@@ -472,7 +481,9 @@
                     Design System</h1>
                 <p
                     style="margin: 0; font-size: 0.55rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 700;">
-                    Atmospheric Theme Designer - Active Workflow Mode
+                    Atmospheric Theme Designer | <span id="active-protocol-badge"
+                        style="color: #44ff44; background: rgba(68,255,68,0.1); padding: 1px 6px; border-radius: 4px;">Standalone
+                        Mode</span>
                 </p>
             </div>
 
@@ -519,8 +530,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - EVOLUTION FINAL
-                V9.6</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - STABILITY ADVANCE
+                V9.8</span>
         </div>
     </footer>
 
@@ -666,11 +677,42 @@
 
         let themes = [];
         let elements = [];
+        let activeWebsite = "Standalone Mode";
         let pendingOptions = null;
+
+        const semanticPatterns = {
+            "Main Body BG": ["bg", "body", "background", "backdrop", "main-bg"],
+            "Sidebar / UI BG": ["side", "nav", "ui-bg", "panel", "sidebar"],
+            "Header and Footer": ["header", "footer", "top-bar", "bottom-bar", "railing"],
+            "Action Buttons": ["btn", "button", "cta", "action", "trigger"],
+            "Primary Accent": ["accent", "brand", "primary", "theme"],
+            "Secondary Accent": ["soft", "secondary", "sub-accent"],
+            "Primary Font": ["text", "font", "body-text", "copy"],
+            "Highlighted Font": ["highlight", "title", "gold", "heading"],
+            "UI Border / Divider": ["border", "divide", "line", "separator"],
+            "Card & Tile BG": ["card", "tile", "box", "module", "container"],
+            "Scrollbar & Track": ["scroll", "thumb", "track"],
+            "Success / Alert": ["status", "ok", "success", "alert", "warning", "error"]
+        };
+
+        function getSemanticGroup(varName) {
+            const name = varName.toLowerCase();
+            for (const [group, patterns] of Object.entries(semanticPatterns)) {
+                if (patterns.some(p => name.includes(p))) return group;
+            }
+            return null;
+        }
 
         function loadData() {
             const savedThemes = localStorage.getItem('tactiq-matrix-themes');
             const savedElements = localStorage.getItem('tactiq-matrix-elements');
+            const savedWebsite = localStorage.getItem('tactiq-active-site');
+
+            if (savedWebsite) {
+                activeWebsite = savedWebsite;
+                document.getElementById('active-protocol-badge').innerText = activeWebsite;
+            }
+
             if (savedThemes && savedElements) {
                 themes = JSON.parse(savedThemes).filter(t => t.key !== 'default');
                 elements = JSON.parse(savedElements);
@@ -711,9 +753,10 @@
             });
         }
 
-        function saveData() {
+        function saveData() { // V9.8 SV
             localStorage.setItem('tactiq-matrix-themes', JSON.stringify(themes));
             localStorage.setItem('tactiq-matrix-elements', JSON.stringify(elements));
+            localStorage.setItem('tactiq-active-site', activeWebsite);
             const pill = document.getElementById('status-pill');
             pill.style.display = 'block';
             setTimeout(() => { pill.style.display = 'none'; }, 2000);
@@ -952,7 +995,7 @@
                     basePath = path.substring(0, path.lastIndexOf('/') + 1);
                 }
 
-                await processStructure(content, basePath);
+                await processStructure(content, basePath, path);
             } catch (err) {
                 console.error(err);
                 connectBtn.innerText = "Connect";
@@ -977,7 +1020,12 @@
             await processStructure(code);
         }
 
-        async function processStructure(content, basePath = "") {
+        async function processStructure(content, basePath = "", sourceUrl = "") {
+            if (sourceUrl) {
+                activeWebsite = sourceUrl.includes('/') ? sourceUrl.substring(sourceUrl.lastIndexOf('/') + 1) : sourceUrl;
+                if (!activeWebsite) activeWebsite = sourceUrl;
+                document.getElementById('active-protocol-badge').innerText = activeWebsite;
+            }
             // Updated Regex to find CSS variables: --name: value
             const varRegex = /--([a-zA-Z0-9-]+)\s*:\s*([^;!]+)/g;
             let match;
@@ -1027,25 +1075,32 @@
             }
 
             detectedVars.forEach(v => {
-                const existingIdx = elements.findIndex(el => el.name.toLowerCase() === v.name.toLowerCase());
+                // INTELLIGENT GROUPING: Try to match by name OR semantic group
+                let existingIdx = elements.findIndex(el => el.name.toLowerCase() === v.name.toLowerCase());
+
+                if (existingIdx === -1) {
+                    const groupName = getSemanticGroup(v.raw);
+                    if (groupName) {
+                        existingIdx = elements.findIndex(el => el.name === groupName);
+                    }
+                }
+
                 const detectedColor = v.value.startsWith('#') ? v.value : null;
 
                 if (existingIdx !== -1) {
                     foundCount++;
-
-                    // ARCHITECT PROTOCOL UPDATE: Update the technical mapping to the new site's CSS variable name
                     elements[existingIdx].mapping = v.raw;
-
-                    // COLOR INJECTION: Pull the live colors into your designer matrix
                     if (detectedColor) {
                         for (let i = 0; i < themes.length; i++) {
-                            elements[existingIdx].colors[i] = detectedColor;
+                            if (elements[existingIdx].role === "Discovered Layer") {
+                                elements[existingIdx].colors[i] = detectedColor;
+                            }
                         }
                     }
                 } else {
                     elements.push({
                         name: v.name,
-                        mapping: v.raw, // Capture the raw CSS variable name
+                        mapping: v.raw,
                         role: "Discovered Layer",
                         colors: new Array(themes.length).fill(detectedColor || "#333333")
                     });
@@ -1057,10 +1112,11 @@
             renderTable();
             closeModal();
 
-            const msg = `✓ STRUCTURE DISCOVERY COMPLETE\n\n` +
-                `• ${foundCount} elements mapped to existing structure.\n` +
-                `• ${newCount} new architectural layers discovered.\n\n` +
-                `Note: Your Designer now reflects the exact live structure of the website.`;
+            const msg = `✓ ARCHITECTURAL INTEGRATION COMPLETE\n\n` +
+                `• Website: ${activeWebsite}\n` +
+                `• ${foundCount} elements semantically grouped into existing structure.\n` +
+                `• ${newCount} new specific layers discovered.\n\n` +
+                `Note: Your Designer is now synchronized with "${activeWebsite}".`;
             alert(msg);
         }
 
