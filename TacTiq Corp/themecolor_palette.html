@@ -586,7 +586,7 @@
             // 1. CLEAR AND PREP HEADERS (Themes are now columns)
             headerRow.innerHTML = `
                 <th class="push-col">Mapping</th>
-                <th class="theme-name" style="justify-content:center;">UI ARCHITECTURE LAYER</th>
+                <th class="theme-name" style="justify-content:center; text-align:center; line-height:1.2;">UI<br>ELEMENT<br>LAYER</th>
             `;
 
             themes.forEach((theme, themeIdx) => {
@@ -740,7 +740,7 @@
             const currentName = themes[idx].name;
             const newName = prompt(`Enter a new name for the theme "${currentName}":`, currentName);
             if (newName && newName !== currentName) {
-                themes[idx].name = newName;
+                themes[idx].name = toTitleCase(newName);
                 saveData();
                 renderTable();
             }
@@ -888,8 +888,9 @@
         let discoveryHue = 0; // Global tracking for manual overrides
 
         function openThemeDiscovery() {
-            const themeName = prompt("Atmosphere name:", "Cyber Oasis");
+            let themeName = prompt("Atmosphere name:", "Cyber Oasis");
             if (!themeName) return;
+            themeName = toTitleCase(themeName);
             document.getElementById('disc-theme-name').innerText = themeName;
 
             // 1. Initial Semantic Detection
@@ -1059,6 +1060,10 @@
             return hslToHex(h, s, l);
         }
 
+        function toTitleCase(str) {
+            return str.replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
+        }
+
         function hslToHex(h, s, l) {
             l /= 100;
             const a = s * Math.min(l, 1 - l) / 100;
@@ -1076,7 +1081,7 @@
 
             const prefixes = { "1": "Old", "2": "New", "3": "GenZ" };
             const prefix = prefixes[selectedOptNum];
-            const fullName = `${prefix} ${pendingOptions.baseName}`;
+            const fullName = toTitleCase(`${prefix} ${pendingOptions.baseName}`);
 
             themes.push({ name: fullName, key: fullName.toLowerCase().replace(/\s/g, '-'), active: true });
             elements.forEach((el, idx) => el.colors.push(chosenColors[idx]));
