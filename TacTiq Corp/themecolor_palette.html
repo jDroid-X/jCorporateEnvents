@@ -672,7 +672,11 @@
             { name: "UI Border / Divider", role: "Tactical Grid", colors: [] },
             { name: "Card & Tile BG", role: "Content Modules", colors: [] },
             { name: "Scrollbar & Track", role: "Utility Theming", colors: [] },
-            { name: "Success / Alert", role: "Status Feedback", colors: [] }
+            { name: "Success / Alert", role: "Status Feedback", colors: [] },
+            { name: "Input & Form BG", role: "Input Surfaces", colors: [] },
+            { name: "Modal & Overlay", role: "Pop-up Layers", colors: [] },
+            { name: "Dynamic Glow", role: "Aura Effects", colors: [] },
+            { name: "Interactive Shadow", role: "Depth Control", colors: [] }
         ];
 
         let themes = [];
@@ -692,7 +696,11 @@
             "UI Border / Divider": ["border", "divide", "line", "separator"],
             "Card & Tile BG": ["card", "tile", "box", "module", "container"],
             "Scrollbar & Track": ["scroll", "thumb", "track"],
-            "Success / Alert": ["status", "ok", "success", "alert", "warning", "error"]
+            "Success / Alert": ["status", "ok", "success", "alert", "warning", "error"],
+            "Input & Form BG": ["input", "form", "field", "text-box", "search"],
+            "Modal & Overlay": ["modal", "overlay", "popup", "dialog", "mask"],
+            "Dynamic Glow": ["glow", "aura", "neon", "bloom"],
+            "Interactive Shadow": ["shadow", "drop", "depth", "elevation"]
         };
 
         function getSemanticGroup(varName) {
@@ -740,7 +748,11 @@
                     { name: "UI Border / Divider", mapping: "ui-border-divider", role: "Tactical Grid", colors: ["#FFFFFF1A"] },
                     { name: "Card & Tile BG", mapping: "card-tile-bg", role: "Content Modules", colors: ["#0F353C"] },
                     { name: "Scrollbar & Track", mapping: "scrollbar-track", role: "Utility Theming", colors: ["#FF9933"] },
-                    { name: "Success / Alert", mapping: "success-alert", role: "Status Feedback", colors: ["#44FF44"] }
+                    { name: "Success / Alert", mapping: "success-alert", role: "Status Feedback", colors: ["#44FF44"] },
+                    { name: "Input & Form BG", mapping: "input-form-bg", role: "Input Surfaces", colors: ["#0000004D"] },
+                    { name: "Modal & Overlay", mapping: "modal-overlay", role: "Pop-up Layers", colors: ["#000000CC"] },
+                    { name: "Dynamic Glow", mapping: "dynamic-glow", role: "Aura Effects", colors: ["#FF993333"] },
+                    { name: "Interactive Shadow", mapping: "interactive-shadow", role: "Depth Control", colors: ["#00000099"] }
                 ];
                 saveData();
             }
@@ -860,7 +872,8 @@
                 // Cell 3: Website Protocol (Mapping)
                 const protoTd = document.createElement('td');
                 protoTd.className = 'proto-col';
-                protoTd.innerHTML = `<code>--${el.mapping}</code>`;
+                const siteMarker = activeWebsite !== "Standalone Mode" ? `<div style="font-size:0.5rem; color:#666; font-family:sans-serif; margin-bottom:2px;">[${activeWebsite}]</div>` : '';
+                protoTd.innerHTML = `${siteMarker}<code>--${el.mapping}</code>`;
                 protoTd.onclick = () => {
                     const newMap = prompt(`Enter Website CSS Variable name for "${el.name}":\n(Example: main-body-bg)`, el.mapping);
                     if (newMap) {
@@ -913,7 +926,8 @@
                 "Main Body BG", "Sidebar / UI BG", "Header and Footer",
                 "Action Buttons", "Primary Accent", "Secondary Accent",
                 "Primary Font", "Highlighted Font", "UI Border / Divider",
-                "Card & Tile BG", "Scrollbar & Track", "Success / Alert"
+                "Card & Tile BG", "Scrollbar & Track", "Success / Alert",
+                "Input & Form BG", "Modal & Overlay", "Dynamic Glow", "Interactive Shadow"
             ];
             const el = elements[idx];
             if (supportedElements.includes(el.name)) {
@@ -923,8 +937,8 @@
 
             const choice = prompt(
                 `"${el.name}" is a STANDALONE column (not yet controlling visible code).\n\n` +
-                `Type a NUMBER to map it to the Website's 12-Layer Structure:\n` +
-                `1. Main Body BG\n2. Sidebar / UI BG\n3. Header and Footer\n4. Action Buttons\n5. Primary Accent\n6. Secondary Accent\n7. Primary Font\n8. Highlighted Font\n9. UI Border / Divider\n10. Card & Tile BG\n11. Scrollbar & Track\n12. Success / Alert`
+                `Type a NUMBER (1-16) to map it to the Website's 16-Layer Structure:\n` +
+                `1. Main Body BG\n2. Sidebar / UI BG\n3. Header and Footer\n4. Action Buttons\n5. Primary Accent\n6. Secondary Accent\n7. Primary Font\n8. Highlighted Font\n9. UI Border / Divider\n10. Card & Tile BG\n11. Scrollbar & Track\n12. Success / Alert\n13. Input & Form BG\n14. Modal & Overlay\n15. Dynamic Glow\n16. Interactive Shadow`
             );
 
             if (choice) {
@@ -932,7 +946,8 @@
                     "1": "Main Body BG", "2": "Sidebar / UI BG", "3": "Header and Footer",
                     "4": "Action Buttons", "5": "Primary Accent", "6": "Secondary Accent",
                     "7": "Primary Font", "8": "Highlighted Font", "9": "UI Border / Divider",
-                    "10": "Card & Tile BG", "11": "Scrollbar & Track", "12": "Success / Alert"
+                    "10": "Card & Tile BG", "11": "Scrollbar & Track", "12": "Success / Alert",
+                    "13": "Input & Form BG", "14": "Modal & Overlay", "15": "Dynamic Glow", "16": "Interactive Shadow"
                 };
                 if (map[choice]) {
                     el.name = map[choice];
@@ -963,7 +978,19 @@
 
         function syncToWebsite() {
             saveData();
-            alert("✓ SYNC COMPLETE: Your 12-Layer UI Matrix has been pushed to the website. Refresh PDF Stories to see the atmosphere update.");
+
+            // ARCHITECTURAL CLOSED LOOP: Generate a complete CSS block for the current active site
+            let blueprint = `:root {\n  /* TACTIQ ARCHITECT - LIVE SITE INJECTION: ${activeWebsite} */\n`;
+            elements.forEach(el => {
+                const activeThemeIdx = themes.findIndex(t => t.active);
+                const themeIdx = activeThemeIdx !== -1 ? activeThemeIdx : 0;
+                blueprint += `  --${el.mapping}: ${el.colors[themeIdx]};\n`;
+            });
+            blueprint += `}\n`;
+
+            navigator.clipboard.writeText(blueprint).then(() => {
+                alert(`✓ CLOSED LOOP SYNC COMPLETE\n\n1. Technical Blueprint for "${activeWebsite}" copied to clipboard.\n2. Paste this into your site's :root block to apply the new atmosphere.\n\nNote: The 16-Layer UI matrix is now fully synchronized.`);
+            });
         }
 
         function syncToPalette() {
