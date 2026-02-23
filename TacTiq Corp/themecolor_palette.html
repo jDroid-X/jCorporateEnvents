@@ -710,44 +710,78 @@
             feedback.style.display = 'none';
 
             try {
-                // Heuristic: Browsers block reading local paths like C:\ via fetch. 
-                // We attempt a fetch if it's a relative path or URL, elsewhere we provide a fallback.
                 const response = await fetch(path);
                 if (!response.ok) throw new Error("Could not reach site.");
-                const html = await response.text();
-                processStructure(html);
+                const content = await response.text();
+
+                // Determine base path for resolving linked CSS
+                let basePath = "";
+                if (path.includes('/')) {
+                    basePath = path.substring(0, path.lastIndexOf('/') + 1);
+                }
+
+                await processStructure(content, basePath);
             } catch (err) {
                 console.error(err);
                 connectBtn.innerText = "Connect";
                 feedback.style.display = 'block';
-                feedback.innerHTML = `⚠️ <b>Connection Error:</b> Browser security prevents reading local disk paths directly.<br><br>Please <b>Paste the Source Code</b> (HTML or CSS) below to manually discovery the UI structure:`;
+                feedback.innerHTML = `⚠️ <b>Connection Error:</b> Browsers block reading local disk paths directly.<br><br>Please <b>Paste the Source Code</b> (HTML or CSS) below to manually discover the UI structure:`;
                 document.getElementById('fallback-area').style.display = 'block';
             }
         }
 
-        function processManualContent() {
+        async function processManualContent() {
             const code = document.getElementById('manual-code-input').value;
             if (!code) return alert("Please paste code first.");
-            processStructure(code);
+            await processStructure(code);
         }
 
-        function processStructure(content) {
-            // Regex to find CSS variables: --name: #hex or rgb() or var()
-            const varRegex = /--([a-zA-Z0-9-]+)\s*:\s*([^;]+)/g;
+        async function processStructure(content, basePath = "") {
+            // Updated Regex to find CSS variables: --name: value
+            const varRegex = /--([a-zA-Z0-9-]+)\s*:\s*([^;!]+)/g;
             let match;
             let foundCount = 0;
             let newCount = 0;
-
             const detectedVars = [];
 
+            // 1. Scrape variables from the current content
             while ((match = varRegex.exec(content)) !== null) {
                 const varName = match[1];
                 const cleanName = varName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-                detectedVars.push({ name: cleanName, raw: varName, value: match[2].trim() });
+                if (!detectedVars.find(v => v.raw === varName)) {
+                    detectedVars.push({ name: cleanName, raw: varName, value: match[2].trim() });
+                }
+            }
+
+            // 2. If HTML, follow linked stylesheets
+            if (content.includes('<link') && content.includes('stylesheet')) {
+                const linkRegex = /<link[^>]+href=["']([^"']+\.css)["']/g;
+                let linkMatch;
+                while ((linkMatch = linkRegex.exec(content)) !== null) {
+                    const cssUrl = linkMatch[1];
+                    try {
+                        // Resolve relative URL
+                        const targetUrl = basePath + cssUrl;
+                        const cssResponse = await fetch(targetUrl);
+                        if (cssResponse.ok) {
+                            const cssContent = await cssResponse.text();
+                            varRegex.lastIndex = 0; // Reset regex
+                            while ((match = varRegex.exec(cssContent)) !== null) {
+                                const varName = match[1];
+                                const cleanName = varName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                                if (!detectedVars.find(v => v.raw === varName)) {
+                                    detectedVars.push({ name: cleanName, raw: varName, value: match[2].trim() });
+                                }
+                            }
+                        }
+                    } catch (e) {
+                        console.warn("Could not follow stylesheet:", cssUrl);
+                    }
+                }
             }
 
             if (detectedVars.length === 0) {
-                alert("No defined UI structure (CSS variables) found in the provided content.");
+                alert("No UI structure (CSS variables) found. Tip: Point to the .css file instead of .html, or paste your CSS code directly into the box.");
                 return;
             }
 
@@ -756,7 +790,6 @@
                 if (existingIdx !== -1) {
                     foundCount++;
                 } else {
-                    // Add as a new column
                     elements.push({
                         name: v.name,
                         role: "Discovered Layer",
@@ -772,8 +805,8 @@
 
             const msg = `✓ STRUCTURE DISCOVERY COMPLETE\n\n` +
                 `• ${foundCount} elements mapped to existing structure.\n` +
-                `• ${newCount} new architectural layers discovered and added.\n\n` +
-                `Note: Only mapped elements can be synchronized back to the website live.`;
+                `• ${newCount} new architectural layers discovered.\n\n` +
+                `Note: Your Designer now reflects the exact live structure of the website.`;
             alert(msg);
         }
 
