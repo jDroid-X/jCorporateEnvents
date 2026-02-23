@@ -432,14 +432,30 @@
 </head>
 
 <body>
-    <div class="top-nav">
-        <img src="jdroidxlogo.png" alt="jDroid-X Logo" class="logo-jdroidx">
-        <div class="theme-selector-container">
-            <span style="font-size: 0.7rem; font-weight: 800; color: #666; text-transform: uppercase;">Atmosphere
-                Sync:</span>
-            <select id="theme-selector" class="theme-select" onchange="applyThemeToDesigner(this.value)">
-                <option value="-1">Base Designer Theme</option>
-            </select>
+    <div class="top-nav" style="justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 25px;">
+            <img src="jdroidxlogo.png" alt="jDroid-X Logo" class="logo-jdroidx">
+            <div class="theme-selector-container">
+                <span
+                    style="font-size: 0.6rem; font-weight: 800; color: #666; text-transform: uppercase; letter-spacing: 0.1em;">Atmosphere
+                    Sync:</span>
+                <select id="theme-selector" class="theme-select" onchange="applyThemeToDesigner(this.value)">
+                    <option value="-1">Base Designer Theme</option>
+                </select>
+            </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <button class="btn-premium" onclick="openThemeDiscovery()">+ Discover Atmosphere</button>
+            <button class="btn-secondary" onclick="addNewElement()">+ Add UI Layer</button>
+            <button class="btn-secondary" style="border-color: #44ff44; color: #44ff44;" onclick="syncToWebsite()">↑
+                Sync To Website</button>
+            <button class="btn-secondary" style="border-color: #33aaff; color: #33aaff;" onclick="syncToPalette()">↓
+                Sync To Palette</button>
+            <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.1); margin: 0 10px;"></div>
+            <button class="btn-secondary" style="font-size: 0.6rem; opacity: 0.7;"
+                onclick="window.location.href='digital_clone/PDF Stories/index.html'">View Stories</button>
+            <button class="btn-reset" onclick="resetData()">Reset</button>
         </div>
     </div>
 
@@ -448,21 +464,7 @@
     <h1>Jdroid-X Theme Palette Design System</h1>
     <p>Atmospheric Theme Designer - Active Workflow Mode</p>
 
-    <div class="action-bar" style="justify-content: space-between;">
-        <div style="display:flex; gap:10px;">
-            <button class="btn-secondary" onclick="window.location.href='digital_clone/PDF Stories/index.html'">View
-                Stories</button>
-        </div>
-        <div style="display:flex; gap:10px;">
-            <button class="btn-premium" onclick="openThemeDiscovery()">+ Discover Atmosphere</button>
-            <button class="btn-secondary" onclick="addNewElement()">+ Add UI Layer</button>
-            <button class="btn-secondary" style="border-color: #44ff44; color: #44ff44;" onclick="syncToWebsite()">↑
-                Sync To Website</button>
-            <button class="btn-secondary" style="border-color: #33aaff; color: #33aaff;" onclick="syncToPalette()">↓
-                Sync To Palette</button>
-        </div>
-        <button class="btn-reset" onclick="resetData()">Factory Reset</button>
-    </div>
+
 
     <div class="table-container">
         <table id="palette-table">
@@ -483,8 +485,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - CONSISTENCY
-                V4.0</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - COMMAND CENTER
+                V4.5</span>
         </div>
     </footer>
 
