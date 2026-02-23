@@ -483,8 +483,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - LOGO & SYNC
-                V3.5</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - CONSISTENCY
+                V4.0</span>
         </div>
     </footer>
 
@@ -604,6 +604,13 @@
             if (savedThemes && savedElements) {
                 themes = JSON.parse(savedThemes).filter(t => t.key !== 'default');
                 elements = JSON.parse(savedElements);
+
+                // Enforce Title Case on all existing data
+                themes.forEach(t => t.name = toTitleCase(t.name));
+                elements.forEach(e => {
+                    e.name = toTitleCase(e.name);
+                    if (e.role) e.role = toTitleCase(e.role);
+                });
             } else {
                 // Initialize with TacTiq Teal (Default) as a starting point
                 themes = [
