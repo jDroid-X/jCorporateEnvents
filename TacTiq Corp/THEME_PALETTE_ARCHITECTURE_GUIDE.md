@@ -1,53 +1,59 @@
-# TacTiq Theme Architecture Guide (V9.5)
+# TacTiq Theme Architecture Guide (V9.6)
 ## 12-Layer UI Matrix (The Master Blueprint)
 
-This guide documents the semantic mapping between the **Atmospheric Theme Designer** and the website's technical structure. Use this blueprint to replicate the TacTiq experience across new projects.
+This guide documents the semantic mapping between the **Atmospheric Theme Designer** and the website's technical structure.
 
 ---
 
 ### 1. Unified 12-Layer Matrix
-All Jdroid-X projects now follow this horizontal command structure.
+Every Jdroid-X production site is built on these 12 semantic layers.
 
-| UI Element Layer | Technical Role | Website Protocol (Default) |
-| :--- | :--- | :--- |
-| **Main Body BG** | Page Backdrop | `--main-body-bg` |
-| **Sidebar / UI BG** | Navigation Rails | `--sidebar-ui-bg` |
-| **Header and Footer** | Structural Bars | `--header-and-footer` |
-| **Action Buttons** | Primary Interaction | `--action-buttons` |
-| **Primary Accent** | Brand Identity | `--primary-accent` |
-| **Secondary Accent** | Soft Highlights | `--secondary-accent` |
-| **Primary Font** | Content Body | `--primary-font` |
-| **Highlighted Font** | Indicators / Titles | `--highlighted-font` |
-| **UI Border / Divider**| Tactical Grid | `--ui-border-divider` |
-| **Card & Tile BG** | Content Modules | `--card-tile-bg` |
-| **Scrollbar & Track** | Utility Theming | `--scrollbar-track` |
-| **Success / Alert** | Status Feedback | `--success-alert` |
-
----
-
-### 2. High-Efficiency Features (Added in V9.0+)
-
-#### **A. Auto-Reprotocol Engine**
-When connecting to a new website, the Designer automatically detects the site's unique CSS variable names. 
-- **Dynamic Re-Mapping**: The "Website Protocol" column shifts to match the target site's code instantly.
-- **Architectural Independence**: You can rename "UI Element Layer" (e.g., to "My Cool Background") while keeping the link to `--main-body-bg`.
-
-#### **B. Discovery Intelligence (No-Code Sync)**
-For unknown websites where direct connection is blocked:
-1. View Source (Ctrl+U) on the target site.
-2. Copy All (Ctrl+A).
-3. Paste into the **Intelligent Discovery** box.
-4. The system scours the code and extracts the UI architecture automatically.
-
-#### **C. Tri-Column Command Center**
-The compact 3-column header (Identity, Atmosphere, Actions) ensures maximum screen real estate for the design matrix while providing 1-click access to all system controls.
+| UI Element Layer | Technical Role | Website Protocol (CSS) | Visual Association |
+| :--- | :--- | :--- | :--- |
+| **Main Body BG** | Page Backdrop | `--main-body-bg` | Full screen background |
+| **Sidebar / UI BG** | Navigation Rails | `--sidebar-ui-bg` | Side menus / vertical bars |
+| **Header and Footer** | Structural Bars | `--header-and-footer` | Top/Bottom sticky panels |
+| **Action Buttons** | Primary Interaction | `--action-buttons` | Clickable CTAs & buttons |
+| **Primary Accent** | Brand Identity | `--primary-accent` | Borders / Hovers / Brand color |
+| **Secondary Accent** | Soft Highlights | `--secondary-accent` | Sub-glows / Secondary buttons |
+| **Primary Font** | Content Body | `--primary-font` | Main paragraph text |
+| **Highlighted Font** | System Feedback | `--highlighted-font` | Titles / Indicators / Gold text |
+| **UI Border / Divider**| Tactical Grid | `--ui-border-divider` | Thin lines separating sections |
+| **Card & Tile BG** | Content Modules | `--card-tile-bg` | Data tiles / Strategy boxes |
+| **Scrollbar & Track** | Utility Theming | `--scrollbar-track` | Browser navigation scrollbar |
+| **Success / Alert** | Status Feedback | `--success-alert` | Green ticks / Success messages |
 
 ---
 
-### 3. Cloning Procedure (Website #2 & #3)
-1. **Copy Logic**: Copy the `index.html` structure from the **PDF Stories Master Blueprint**.
-2. **Apply Theme**: Use **"↑ Sync To Website"** to push the JSON matrix to your production site.
-3. **Validate**: Check the "Website Protocol" column in the Designer to ensure it matches the target site's variables.
+### 2. High-Efficiency Features (V9.0 - V9.6)
+
+#### **A. Auto-Reprotocol & Dual-Mapping (V9.0)**
+The Designer maintains a dual-link between user-friendly names and technical code.
+- **Dynamic Re-Mapping**: Connecting to a new site automatically updates the **Website Protocol** column.
+- **Independence**: You can rename "UI Element Layer" without breaking the code synchronization.
+
+#### **B. Discovery Intelligence & AI Bridge (V8.5)**
+For high-security external sites:
+- **No-Code Extract**: Paste "View Source" code; the system scours and extracts the 12 layers automatically.
+- **AI Proxy**: Copy the "AI Bridge" prompt to have Antigravity scan and return the UI structure for you.
+
+#### **C. Matrix Optimization (V9.5)**
+- **Horizontal Flow**: Narrowed the "Mapping" column (40px) to maximize the palette view.
+- **High Visibility**: Protocol fonts increased to **0.85rem** for technical clarity.
+- **Compact Branding**: Compressed Nav Bar height (5px padding) while restoring full Logo scale (80px).
 
 ---
-**© 2026 TACTIQ • ARCHITECTURAL BLUEPRINT v9.5 - MATRIX OPTIMIZED**
+
+### 3. System Evolution Log (Milestones)
+
+- **V2.0 - V4.0**: Initial baseline of the 12-layer system and localStorage persistence.
+- **V5.0**: Title Case Enforcement for professional design handoff.
+- **V6.0**: "Website Protocol" column introduced for dual-sync capabilities.
+- **V7.0**: Tri-Column Command Center (Identity | Atmosphere | Actions).
+- **V8.0**: AI Proxy Bridge for CORS-restricted site scanning.
+- **V9.0**: Auto-Reprotocol (Dynamic technical variable updates).
+- **V9.5**: Matrix Compression (Mapping column 40px, Protocol font 0.85rem).
+- **V9.6**: **Evolution Final** - Optimized visual balance and protocol stability.
+
+---
+**© 2026 TACTIQ • ARCHITECTURAL BLUEPRINT v9.6 - FINAL**
