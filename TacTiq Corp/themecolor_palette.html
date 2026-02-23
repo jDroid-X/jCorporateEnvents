@@ -427,15 +427,22 @@
             </div>
         </div>
 
-        <div class="suggestion-grid">
-            <div class="grid-header" style="text-align: left;">UI Element</div>
-            <div class="grid-header"><input type="radio" name="theme-option" value="1" id="rad-1"
-                    class="selection-radio" checked> <label for="rad-1">Old School</label></div>
-            <div class="grid-header"><input type="radio" name="theme-option" value="2" id="rad-2"
-                    class="selection-radio"> <label for="rad-2">New School</label></div>
-            <div class="grid-header"><input type="radio" name="theme-option" value="3" id="rad-3"
-                    class="selection-radio"> <label for="rad-3">Ai GenZ</label></div>
-            <div id="dynamic-grid" style="display: contents;"></div>
+        <div
+            style="max-height: 400px; overflow-y: auto; margin-top: 10px; border: 1px solid rgba(255,255,255,0.05); border-radius: 4px; padding-right: 5px;">
+            <div class="suggestion-grid" style="margin-top: 0;">
+                <div class="grid-header"
+                    style="text-align: left; position: sticky; top: 0; z-index: 10; background: #222;">UI Element</div>
+                <div class="grid-header" style="position: sticky; top: 0; z-index: 10; background: #222;"><input
+                        type="radio" name="theme-option" value="1" id="rad-1" class="selection-radio" checked> <label
+                        for="rad-1">Old School</label></div>
+                <div class="grid-header" style="position: sticky; top: 0; z-index: 10; background: #222;"><input
+                        type="radio" name="theme-option" value="2" id="rad-2" class="selection-radio"> <label
+                        for="rad-2">New School</label></div>
+                <div class="grid-header" style="position: sticky; top: 0; z-index: 10; background: #222;"><input
+                        type="radio" name="theme-option" value="3" id="rad-3" class="selection-radio"> <label
+                        for="rad-3">Ai GenZ</label></div>
+                <div id="dynamic-grid" style="display: contents;"></div>
+            </div>
         </div>
 
         <div style="margin-top: 15px; display: flex; gap: 8px;">
