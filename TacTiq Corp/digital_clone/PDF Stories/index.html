@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TacTiq Experiences | Digital Credentials Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button id="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar">
+            <div class="logo-box">
+                <img src="pages/logo.png" alt="TacTiq" style="width: 100%;">
+            </div>
+
+            <div class="nav-menu" id="nav-menu">
+                <div class="nav-item" onclick="window.location.href='../../index.html'"
+                    style="color:var(--accent); font-weight:800; border-bottom:1px solid var(--border); margin-bottom:10px; padding-bottom:10px;">
+                    ← BACK TO HOME</div>
+                <!-- Sections populated here -->
+            </div>
+
+            <div class="timeline-container"
+                style="padding: 10px 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                <div id="year-filter"
+                    style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-top: 10px;">
+                    <!-- Years populated here -->
+                </div>
+            </div>
+
+
+            <div
+                style="padding: 10px 25px; font-size: 0.55rem; color: var(--text); opacity: 0.2; letter-spacing: 0.05em; text-align: center; margin-top: auto;">
+                © 2026 TACTIQ • DIGITAL CLONE
+            </div>
+        </aside>
+
+        <!-- Main Viewer Content -->
+        <main>
+            <header class="slim-header">
+                <div class="header-nav">
+                    <button class="btn-slim" id="prev-section-btn" title="Previous Section">«</button>
+                    <div class="header-title" id="header-title">TacTiq Credentials</div>
+                    <button class="btn-slim" id="next-section-btn" title="Next Section">»</button>
+                </div>
+                <button class="btn btn-slim" id="fs-btn">FULLSCREEN</button>
+            </header>
+
+            <div id="error-log"
+                style="position:fixed; top:0; left:0; width:100%; background:rgba(255,0,0,0.8); color:white; font-size:10px; z-index:9999; display:none; pointer-events:none; padding:5px;">
+            </div>
+
+            <div class="viewer-container" id="viewer-container">
+                <div id="slide-viewport">
+                    <img id="slide-image" src="" alt="PDF Page">
+                    <!-- Last Page Logo Design Overlay -->
+                    <div id="last-page-overlay"
+                        style="display:none; position:absolute; z-index:200; pointer-events:none; top: 10%; left: 70%; transform: translateX(-50%); max-height: 80%; width: 45%;">
+                        <div
+                            style="display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 15px 25px; align-items: center; justify-items: center; height: auto;">
+                            <!-- Row 1: Compact/Small -->
+                            <img src="logo/logo_25.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 60px; opacity: 0.8; border-right: 1.5px solid var(--highlight-gold); padding-right: 15px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));">
+                            <img src="logo/logo_3.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 65px; opacity: 0.9; border-right: 1.5px solid var(--highlight-gold); padding-right: 15px; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));">
+                            <img src="logo/logo_8.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 100px; opacity: 0.8; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.6));">
+
+                            <!-- Row 2: Medium -->
+                            <img src="logo/logo_6.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 130px; opacity: 0.9; border-right: 1.5px solid var(--highlight-gold); padding-right: 15px; border-top: 1.5px solid var(--highlight-gold); padding-top: 15px; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.7));">
+                            <img src="logo/logo_17.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 140px; border-right: 1.5px solid var(--highlight-gold); padding-right: 15px; border-top: 1.5px solid var(--highlight-gold); padding-top: 15px; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.7));">
+                            <img src="logo/logo_19.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 145px; border-top: 1.5px solid var(--highlight-gold); padding-top: 15px; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.7));">
+
+                            <!-- Row 3: Large Partners -->
+                            <img src="logo/logo_10.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 220px; border-right: 1.5px solid var(--highlight-gold); padding-right: 15px; border-top: 1.5px solid var(--highlight-gold); padding-top: 15px; filter: drop-shadow(0 0 15px rgba(255,255,255,0.4)) drop-shadow(0 15px 25px rgba(0,0,0,0.8)) brightness(1.2);">
+                            <img src="logo/logo_18.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 200px; opacity: 0.8; border-right: 1.5px solid var(--highlight-gold); padding-right: 15px; border-top: 1.5px solid var(--highlight-gold); padding-top: 15px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));">
+                            <img src="logo/logo_20.png"
+                                style="width: auto; height: auto; max-width: 90%; max-height: 180px; border-top: 1.5px solid var(--highlight-gold); padding-top: 15px; filter: drop-shadow(0 15px 25px rgba(0,0,0,0.8));">
+
+                            <!-- Row 4: Primary Anchor -->
+                            <img src="logo/logo_16.png"
+                                style="width: auto; height: auto; max-width: 50%; max-height: 180px; grid-column: span 3; justify-self: center; border-top: 2px solid var(--highlight-gold); padding-top: 20px; margin-top: 10px; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.9));">
+                        </div>
+                    </div>
+                    <div id="interaction-layer" class="interaction-layer"></div>
+                </div>
+            </div>
+
+            <!-- Strategy Grid Overlay with Transitions -->
+            <div id="strategy-grid-overlay"
+                style="display:none; flex:1; overflow-y:auto; background:var(--bg); border-top:1px solid rgba(255,255,255,0.05); position: relative; z-index: 500;">
+                <style>
+                    /* Transition States */
+                    #hero-image-container {
+                        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+                        transform: scale(1.2) translateY(20%);
+                        /* Initial large state */
+                        opacity: 0;
+                    }
+
+                    #hero-image-container.active {
+                        transform: scale(1) translateY(0);
+                        opacity: 1;
+                    }
+
+                    #grid-content {
+                        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+                        transform: translateY(100px);
+                        /* Initial bottom state */
+                        opacity: 0;
+                    }
+
+                    #grid-content.active {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+
+                    .strategy-tile {
+                        animation: tileFadeUp 0.6s ease forwards;
+                    }
+
+                    @keyframes tileFadeUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                </style>
+
+                <!-- Top Row: Compact Static Hero (Page 1) -->
+                <div id="hero-row"
+                    style="padding: 25px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1); border-bottom: 1px solid rgba(255,255,255,0.05); min-height: 250px;">
+                    <div id="hero-image-container"
+                        style="width: 100%; max-width: 420px; aspect-ratio: 16/9; border-radius: 6px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15);">
+                        <img id="hero-intro-image" src="" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+
+                <!-- Bottom Row: Vertical Year Tiles -->
+                <div style="padding:20px 20px 60px 20px; flex: 1; min-height: 0;">
+                    <div style="max-width:1400px; margin:0 auto;">
+                        <h2 id="grid-title" style="display:none;"></h2>
+                        <div id="grid-content"
+                            style="display:grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap:20px;">
+                            <!-- Tiles populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <footer class="slim-footer">
+                <button class="btn btn-slim" id="prev-btn" aria-label="Previous Page">PREVIOUS</button>
+                <div class="page-info" id="page-info">0 / 0</div>
+                <div id="video-playing-now"
+                    style="display: none; color: var(--accent); font-size: 0.7rem; font-weight: 800;">▶ VIDEO DETECTED
+                </div>
+                <button class="btn btn-slim" id="next-btn" aria-label="Next Page">NEXT</button>
+            </footer>
+        </main>
+    </div>
+    <script>const metadata = [{
+            "number": 1,
+            "image": "page_1.jpg",
+            "links": [],
+            "section": "Introduction",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Credentials"
+        }
+
+            ,
+        {
+            "number": 2,
+            "image": "page_2.jpg",
+            "links": [],
+            "section": "Introduction",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "We are a newly formed 360\u00b0 experiential and"
+        }
+
+            ,
+        {
+            "number": 3,
+            "image": "page_3.jpg",
+            "links": [],
+            "section": "Introduction",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Our Story"
+        }
+
+            ,
+        {
+            "number": 4,
+            "image": "page_4.jpg",
+            "links": [],
+            "section": "Introduction",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Our Vision"
+        }
+
+            ,
+        {
+            "number": 5,
+            "image": "page_5.jpg",
+            "links": [],
+            "section": "Introduction",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Strong network of skilled production"
+        }
+
+            ,
+        {
+            "number": 6,
+            "image": "page_6.jpg",
+            "links": [],
+            "section": "Introduction",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "360\u00b0 Event Management"
+        }
+
+            ,
+        {
+            "number": 7,
+            "image": "page_7.jpg",
+            "links": [],
+            "section": "Introduction",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Work Showcase"
+        }
+
+            ,
+        {
+            "number": 8,
+            "image": "page_8.jpg",
+            "links": [],
+            "section": "Where Creativity Meets Scale",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "62%"
+        }
+
+            ,
+        {
+
+            "number": 9,
+            "image": "page_9.jpg",
+            "links": [{
+                "url": "https://youtu.be/Ij6OiRwdVdI",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "A one-day meet across Mumbai,"
+        }
+
+            ,
+        {
+
+            "number": 10,
+            "image": "page_10.jpg",
+            "links": [{
+                "url": "https://youtu.be/_AWrb3no2Nw",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "A festive, residential Diwali meet"
+        }
+
+            ,
+        {
+
+            "number": 11,
+            "image": "page_11.jpg",
+            "links": [{
+                "url": "https://youtu.be/TadbFg01-kM",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP hosted an exclusive launch event"
+        }
+
+            ,
+        {
+
+            "number": 12,
+            "image": "page_12.jpg",
+            "links": [{
+                "url": "https://youtu.be/bRGq-GMPIUg",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "The HP AI Product Launch, powered by"
+        }
+
+            ,
+        {
+
+            "number": 13,
+            "image": "page_13.jpg",
+            "links": [{
+                "url": "https://youtu.be/KUzDhMtt6Y4",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Showcasing HP\u2019s cutting-edge AI-"
+        }
+
+            ,
+        {
+
+            "number": 14,
+            "image": "page_14.jpg",
+            "links": [{
+                "url": "https://youtu.be/qYVWRk38fRI",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP unveiled its new PC Plus Series to"
+        }
+
+            ,
+        {
+
+            "number": 15,
+            "image": "page_15.jpg",
+            "links": [{
+                "url": "https://youtu.be/fZGj99ygDc4",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "A 3-day immersive event introduced"
+        }
+
+            ,
+        {
+
+            "number": 16,
+            "image": "page_16.jpg",
+            "links": [{
+                "url": "https://youtu.be/UUnQeaH7dW8",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Where Creativity Meets Scale",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "A high-energy \u201cBeat the Heat\u201d launch"
+        }
+
+            ,
+        {
+            "number": 17,
+            "image": "page_17.jpg",
+            "links": [],
+            "section": "Where Creativity Meets Scale",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "A festive Pan-India celebration across"
+        }
+
+            ,
+        {
+            "number": 18,
+            "image": "page_18.jpg",
+            "links": [],
+            "section": "Large-Scale Deployment",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "62%"
+        }
+
+            ,
+        {
+            "number": 19,
+            "image": "page_19.jpg",
+            "links": [],
+            "section": "Large-Scale Deployment",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Executed the HP \u201cInkredible\u201d Partners"
+        }
+
+            ,
+        {
+            "number": 20,
+            "image": "page_20.jpg",
+            "links": [],
+            "section": "Large-Scale Deployment",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Printposium"
+        }
+
+            ,
+        {
+            "number": 21,
+            "image": "page_21.jpg",
+            "links": [],
+            "section": "Large-Scale Deployment",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Executed a successful HP Next Gen AI"
+        }
+
+            ,
+        {
+            "number": 22,
+            "image": "page_22.jpg",
+            "links": [],
+            "section": "Large-Scale Deployment",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP ESF Festive Meets 2025, themed"
+        }
+
+            ,
+        {
+            "number": 23,
+            "image": "page_23.jpg",
+            "links": [],
+            "section": "Large-Scale Deployment",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Growthon, HP\u2019s new initiative themed"
+        }
+
+            ,
+        {
+
+            "number": 24,
+            "image": "page_24.jpg",
+            "links": [{
+                "url": "https://youtube.com/shorts/FM_0Q_Xq8P8?feature=share",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Large-Scale Deployment",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP RSM & ZM Meet \u2013 \u201cFighters\u201d"
+        }
+
+            ,
+        {
+
+            "number": 25,
+            "image": "page_25.jpg",
+            "links": [{
+                "url": "https://youtube.com/shorts/ILeHoVgbU_Y?feature=share",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "Large-Scale Deployment",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP launched 18 Omen Playground"
+        }
+
+            ,
+        {
+            "number": 26,
+            "image": "page_26.jpg",
+            "links": [],
+            "section": "Brand Partner Engagement",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "62%"
+        }
+
+            ,
+        {
+            "number": 27,
+            "image": "page_27.jpg",
+            "links": [],
+            "section": "Brand Partner Engagement",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "The event strengthened partnerships"
+        }
+
+            ,
+        {
+            "number": 28,
+            "image": "page_28.jpg",
+            "links": [],
+            "section": "Brand Partner Engagement",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "The Redington Annual Conference"
+        }
+
+            ,
+        {
+            "number": 29,
+            "image": "page_29.jpg",
+            "links": [],
+            "section": "Brand Partner Engagement",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "The event showcased the Google\u2013"
+        }
+
+            ,
+        {
+            "number": 30,
+            "image": "page_30.jpg",
+            "links": [],
+            "section": "Media & Trailer Rollout",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "62%"
+        }
+
+            ,
+        {
+            "number": 31,
+            "image": "page_31.jpg",
+            "links": [],
+            "section": "Media & Trailer Rollout",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "ESCAYPE LIVE"
+        }
+
+            ,
+        {
+            "number": 32,
+            "image": "page_32.jpg",
+            "links": [],
+            "section": "Media & Trailer Rollout",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "KOFFEE WITH KARAN"
+        }
+
+            ,
+        {
+            "number": 33,
+            "image": "page_33.jpg",
+            "links": [],
+            "section": "Media & Trailer Rollout",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "SHOW TIME"
+        }
+
+            ,
+        {
+            "number": 34,
+            "image": "page_34.jpg",
+            "links": [],
+            "section": "Media & Trailer Rollout",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "KOFFEE WITH KARAN"
+        }
+
+            ,
+        {
+            "number": 35,
+            "image": "page_35.jpg",
+            "links": [],
+            "section": "Media & Trailer Rollout",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "GOOD LUCK JERRY"
+        }
+
+            ,
+        {
+
+            "number": 36,
+            "image": "page_36.jpg",
+            "links": [{
+                "url": "https://youtu.be/QaZ4auwwzgg",
+                "is_video": true,
+                "rect": [0.2959513982137044,
+                    0.9065324011757397,
+                    0.4377013736300998,
+                    0.9896311355543725]
+            }
+
+            ],
+            "section": "Media & Trailer Rollout",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "TAAZA KHABAR"
+        }
+
+            ,
+        {
+            "number": 37,
+            "image": "page_37.jpg",
+            "links": [],
+            "section": "Pre-Lockdown Showcase",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "62%"
+        }
+
+            ,
+        {
+            "number": 38,
+            "image": "page_38.jpg",
+            "links": [],
+            "section": "Pre-Lockdown Showcase",
+            "year": "2018",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Truly a global movement, the 4th"
+        }
+
+            ,
+        {
+            "number": 39,
+            "image": "page_39.jpg",
+            "links": [],
+            "section": "Pre-Lockdown Showcase",
+            "year": "2018",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "PM Narendra Modi, along with"
+        }
+
+            ,
+        {
+            "number": 40,
+            "image": "page_40.jpg",
+            "links": [],
+            "section": "Pre-Lockdown Showcase",
+            "year": "2018",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "The IGIA Awards by GMR showcased a"
+        }
+
+            ,
+        {
+            "number": 41,
+            "image": "page_41.jpg",
+            "links": [],
+            "section": "Pre-Lockdown Showcase",
+            "year": "2018",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "The Decennial Celebration of GMR"
+        }
+
+            ,
+        {
+            "number": 42,
+            "image": "page_42.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "ON GROUND IMPACT"
+        }
+
+            ,
+        {
+            "number": 43,
+            "image": "page_43.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2025",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Ran a Holi-themed activation with"
+        }
+
+            ,
+        {
+            "number": 44,
+            "image": "page_44.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Engage the right audience and boost"
+        }
+
+            ,
+        {
+            "number": 45,
+            "image": "page_45.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP brought festive cheer to the IT hub"
+        }
+
+            ,
+        {
+            "number": 46,
+            "image": "page_46.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "A pan-India IT hub activation for HP\u2019s"
+        }
+
+            ,
+        {
+            "number": 47,
+            "image": "page_47.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Celebrate with HP\u2019s AI-powered PCs"
+        }
+
+            ,
+        {
+            "number": 48,
+            "image": "page_48.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP executed a pan-India Holi market-"
+        }
+
+            ,
+        {
+            "number": 49,
+            "image": "page_49.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "HP"
+        }
+
+            ,
+        {
+            "number": 50,
+            "image": "page_50.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2023",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "The three-day SRCC Business Conclave"
+        }
+
+            ,
+        {
+            "number": 51,
+            "image": "page_51.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "EXHIBITION"
+        }
+
+            ,
+        {
+
+            "number": 52,
+            "image": "page_52.jpg",
+            "links": [{
+                "url": "https://youtu.be/7QHQNFcHC3I",
+                "is_video": true,
+                "rect": [0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263]
+            }
+
+            ],
+            "section": "On Ground Impact",
+            "year": "2024",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "At Gaming Con Mumbai, the HyperX"
+        }
+
+            ,
+        {
+            "number": 53,
+            "image": "page_53.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2019",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Held from 4\u20138 December at GMR"
+        }
+
+            ,
+        {
+            "number": 54,
+            "image": "page_54.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2018",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Vedanta showcased its growth vision"
+        }
+
+            ,
+        {
+            "number": 55,
+            "image": "page_55.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": "2018",
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "At the 11th Zee Jaipur Literature Fest,"
+        }
+
+            ,
+        {
+            "number": 56,
+            "image": "page_56.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "Across India, Across"
+        }
+
+            ,
+        {
+            "number": 57,
+            "image": "page_57.jpg",
+            "links": [],
+            "section": "On Ground Impact",
+            "year": null,
+            "width": 1440.0,
+            "height": 810.1199951171875,
+            "title": "THANK YOU"
+        }
+
+        ];
+
+        let currentIndex = 0;
+        let touchStartX = 0;
+
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            const log = document.getElementById('error-log');
+            if (log) {
+                log.style.display = 'block';
+                log.innerHTML += `JS Error: ${msg} [Line: ${lineNo}]<br>`;
+            }
+            return false;
+        };
+
+        function setTheme(themeKey, themeName, customColors = null) {
+            const body = document.body;
+            body.classList.remove('theme-custom');
+            ['--bg', '--side-bg', '--header-bg', '--footer-bg', '--btn-bg', '--text', '--accent', '--highlight-gold'].forEach(p => body.style.removeProperty(p));
+
+            if (themeKey === 'custom' && !customColors) {
+                try {
+                    const savedThemes = JSON.parse(localStorage.getItem('tactiq-matrix-themes') || '[]');
+                    const savedElements = JSON.parse(localStorage.getItem('tactiq-matrix-elements') || '[]');
+                    const themeIdx = savedThemes.findIndex(t => t.name === themeName);
+                    if (themeIdx !== -1) customColors = savedElements.map(el => el.colors[themeIdx]);
+                } catch (e) { }
+            }
+
+            if (customColors && customColors.length >= 7) {
+                body.classList.add('theme-custom');
+                body.style.setProperty('--bg', customColors[0]);
+                body.style.setProperty('--side-bg', customColors[1]);
+                body.style.setProperty('--header-bg', customColors[2]);
+                body.style.setProperty('--btn-bg', customColors[3]);
+                body.style.setProperty('--accent', customColors[4]);
+                // Advanced 12-Layer Logic Mapping
+                if (customColors[5]) body.style.setProperty('--accent-soft', customColors[5]);
+                body.style.setProperty('--text', customColors[6] || customColors[5]);
+                body.style.setProperty('--highlight-gold', customColors[7] || customColors[6]);
+                if (customColors[8]) body.style.setProperty('--border', customColors[8]);
+                if (customColors[9]) body.style.setProperty('--card-bg', customColors[9]);
+                if (customColors[10]) body.style.setProperty('--scroll-thumb', customColors[10]);
+                if (customColors[11]) body.style.setProperty('--status-ok', customColors[11]);
+            }
+
+            localStorage.setItem('tactiq-theme-key', themeKey);
+            localStorage.setItem('tactiq-theme-name', themeName);
+            if (document.getElementById('active-theme-name')) document.getElementById('active-theme-name').textContent = themeName;
+
+            document.querySelectorAll('.theme-opt').forEach(opt => {
+                const isActive = (opt.dataset.key === themeKey && themeKey !== 'custom') || (opt.dataset.name === themeName);
+                opt.classList.toggle('active', isActive);
+            });
+
+            const menu = document.getElementById('theme-popup-menu');
+            if (menu) menu.style.display = 'none';
+        }
+
+        function init() {
+            const savedKey = localStorage.getItem('tactiq-theme-key') || 'default';
+            const savedName = localStorage.getItem('tactiq-theme-name') || 'Default Theme';
+            setTheme(savedKey, savedName);
+
+            const img = document.getElementById('slide-image');
+            if (img) {
+                img.onerror = () => {
+                    const log = document.getElementById('error-log');
+                    if (log) {
+                        log.style.display = 'block';
+                        log.innerHTML += `Image Failed: ${img.src}<br>`;
+                    }
+                };
+            }
+
+            buildUI();
+            loadSlide(0);
+
+            document.getElementById('prev-btn').onclick = () => changeSlide(-1);
+            document.getElementById('next-btn').onclick = () => changeSlide(1);
+            document.getElementById('menu-toggle').onclick = () => document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('prev-section-btn').onclick = () => changeSlide(-1);
+            document.getElementById('next-section-btn').onclick = () => changeSlide(1);
+
+            document.getElementById('fs-btn').onclick = () => {
+                if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+                else document.exitFullscreen();
+            };
+
+            const container = document.getElementById('viewer-container');
+            if (container) {
+                container.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
+                container.addEventListener('touchend', e => {
+                    const diff = e.changedTouches[0].screenX - touchStartX;
+                    if (Math.abs(diff) > 50) changeSlide(diff > 0 ? -1 : 1);
+                });
+            }
+
+            window.addEventListener('keydown', e => {
+                if (document.getElementById('strategy-grid-overlay').style.display === 'block') return;
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+            });
+
+            let isScrolling = false;
+            window.addEventListener('wheel', e => {
+                if (document.getElementById('strategy-grid-overlay').style.display === 'block') return;
+                if (isScrolling) return;
+                if (Math.abs(e.deltaY) > 60) {
+                    isScrolling = true;
+                    changeSlide(e.deltaY > 0 ? 1 : -1);
+                    setTimeout(() => { isScrolling = false; }, 700);
+                }
+            }, { passive: true });
+        }
+
+        function buildUI() {
+            const menu = document.getElementById('nav-menu');
+            const yearBox = document.getElementById('year-filter');
+            const gridOverlay = document.getElementById('strategy-grid-overlay');
+            const viewerCont = document.getElementById('viewer-container');
+
+            let lastSection = "";
+            let years = new Set();
+
+            metadata.forEach((page, idx) => {
+                if (page.section && page.section !== lastSection) {
+                    const item = document.createElement('div');
+                    item.className = 'nav-item active-section';
+                    let displayText = page.section;
+                    if (page.title && !page.title.includes("62%")) displayText += `: ${page.title}`;
+                    item.textContent = displayText;
+                    item.id = `nav-item-${idx}`;
+                    item.onclick = () => {
+                        loadSlide(idx);
+                        document.getElementById('sidebar').classList.remove('open');
+                    };
+                    if (menu) menu.appendChild(item);
+                    lastSection = page.section;
+                }
+                if (page.year) years.add(page.year);
+            });
+
+            Array.from(years).sort().forEach(year => {
+                const pill = document.createElement('button');
+                pill.style.cssText = "background: rgba(0,0,0,0.3); border: 1px solid var(--accent); color: var(--text); opacity: 0.6; padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: var(--transition);";
+                pill.textContent = year;
+                pill.dataset.year = year;
+                pill.onclick = () => {
+                    buildStrategyGrid(year);
+                    if (gridOverlay) gridOverlay.style.display = 'block';
+                };
+                if (yearBox) yearBox.appendChild(pill);
+            });
+
+            const storiesBtn = document.createElement('button');
+            storiesBtn.style.cssText = "background: rgba(0,0,0,0.3); border: 1px solid var(--accent); color: var(--text); opacity: 0.6; padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: var(--transition); position: relative;";
+            storiesBtn.textContent = 'Stories';
+
+            const storiesPopup = document.createElement('div');
+            storiesPopup.id = 'stories-popup-menu';
+            storiesPopup.style.cssText = "display:none; position:absolute; bottom:45px; left:0; width:190px; background:var(--side-bg); backdrop-filter:blur(15px); border:1px solid var(--accent); opacity:0.95; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; animation: scrollUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);";
+
+            // First option: Show current all stories
+            const allStoriesRow = document.createElement('div');
+            allStoriesRow.className = 'theme-opt';
+            allStoriesRow.style.cssText = "padding:12px; font-size:0.75rem; color:var(--highlight-gold); opacity:1; border-bottom:1px solid var(--accent); cursor:pointer; font-weight:800;";
+            allStoriesRow.textContent = 'Overview (Current Work)';
+            allStoriesRow.onclick = (e) => {
+                e.stopPropagation();
+                buildStrategyGrid(null);
+                if (gridOverlay) gridOverlay.style.display = 'block';
+                storiesPopup.style.display = 'none';
+            };
+            storiesPopup.appendChild(allStoriesRow);
+
+            const storyLinks = ['TicTaq Story1', 'TicTaq Story2', 'TicTaq Story3'];
+            storyLinks.forEach(name => {
+                const row = document.createElement('div');
+                row.className = 'theme-opt';
+                row.style.cssText = "padding:12px; font-size:0.75rem; color:var(--text); opacity:1; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;";
+                row.textContent = name;
+                row.onclick = (e) => {
+                    e.stopPropagation();
+                    window.location.href = `../${name}/index.html`;
+                };
+                storiesPopup.appendChild(row);
+            });
+
+            storiesBtn.appendChild(storiesPopup);
+            storiesBtn.onclick = (e) => {
+                const isVisible = storiesPopup.style.display === 'block';
+                storiesPopup.style.display = isVisible ? 'none' : 'block';
+                e.stopPropagation();
+            };
+            document.addEventListener('click', () => storiesPopup.style.display = 'none');
+
+            if (yearBox) yearBox.appendChild(storiesBtn);
+
+            const themeBtn = document.createElement('button');
+            themeBtn.id = 'theme-switch-btn';
+            themeBtn.style.cssText = "background: var(--side-bg); border: 1px solid var(--accent); color: white; padding: 0; border-radius: 6px; font-size: 1.2rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; margin-left: 8px; position: relative; width: 32px; height: 32px; transition: var(--transition); flex-shrink: 0;";
+            themeBtn.innerHTML = '🎨';
+
+            const menuPopup = document.createElement('div');
+            menuPopup.id = 'theme-popup-menu';
+            menuPopup.style.cssText = "display:none; position:absolute; bottom:40px; right:0; width:180px; background:var(--side-bg); backdrop-filter:blur(15px); border:1px solid var(--accent); opacity:0.95; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; animation: scrollUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);";
+
+            function getThemesFromDB() {
+                try {
+                    const savedMatrixThemes = JSON.parse(localStorage.getItem('tactiq-matrix-themes') || '[]');
+                    const savedMatrixElements = JSON.parse(localStorage.getItem('tactiq-matrix-elements') || '[]');
+                    return savedMatrixThemes.map((t, themeIdx) => ({
+                        active: t.active,
+                        name: t.name,
+                        colors: savedMatrixElements.map(el => el.colors[themeIdx])
+                    }));
+                } catch (e) { return []; }
+            }
+
+            function renderThemeMenu() {
+                menuPopup.innerHTML = '';
+                const themesFromDB = getThemesFromDB();
+                const currentKey = localStorage.getItem('tactiq-theme-key');
+                const currentName = localStorage.getItem('tactiq-theme-name');
+
+                addMenuRow('default', 'Default Theme', null, false);
+                themesFromDB.forEach(t => {
+                    if (t.active && t.name !== 'Default Theme') addMenuRow('custom', t.name, t.colors, true);
+                });
+
+                const addBtn = document.createElement('div');
+                addBtn.style.cssText = "padding:12px; font-size:0.7rem; color:var(--accent); text-align:center; cursor:pointer; font-weight:800; text-transform:uppercase; background:rgba(0,0,0,0.1); border-top:1px solid var(--accent); opacity: 0.8;";
+                addBtn.innerHTML = '+ Add Theme';
+                addBtn.onclick = (e) => {
+                    e.stopPropagation();
+                    window.open('../../themecolor_palette.html', '_blank', 'noopener,noreferrer');
+                };
+                menuPopup.appendChild(addBtn);
+
+                function addMenuRow(key, name, colors, isCustom) {
+                    const row = document.createElement('div');
+                    row.className = 'theme-opt';
+                    row.dataset.key = key;
+                    row.dataset.name = name;
+                    const isActive = (key === currentKey && key !== 'custom') || (name === currentName);
+                    row.style.cssText = `padding:12px; font-size:0.75rem; color:${isActive ? 'var(--highlight-gold)' : 'var(--text)'}; opacity:1; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; display:flex; justify-content:space-between; align-items:center;`;
+                    const nameSpan = document.createElement('span');
+                    nameSpan.textContent = name;
+                    row.appendChild(nameSpan);
+
+                    if (isActive) row.classList.add('active');
+
+                    if (isCustom) {
+                        const del = document.createElement('span');
+                        del.innerHTML = '×';
+                        del.style.cssText = "color:#ff4444; font-size:1.1rem; padding:0 5px; opacity:0.5;";
+                        del.onclick = (e) => {
+                            e.stopPropagation();
+                            if (confirm(`Remove "${name}"?`)) {
+                                try {
+                                    const saved = JSON.parse(localStorage.getItem('tactiq-matrix-themes') || '[]');
+                                    const idx = saved.findIndex(t => t.name === name);
+                                    if (idx !== -1) {
+                                        saved[idx].active = false;
+                                        localStorage.setItem('tactiq-matrix-themes', JSON.stringify(saved));
+                                        renderThemeMenu();
+                                    }
+                                } catch (err) { }
+                            }
+                        };
+                        row.appendChild(del);
+                    }
+
+                    row.onclick = (e) => {
+                        e.stopPropagation();
+                        setTheme(key, name, colors);
+                        renderThemeMenu();
+                    };
+                    menuPopup.appendChild(row);
+                }
+            }
+
+            renderThemeMenu();
+            themeBtn.appendChild(menuPopup);
+            if (yearBox) yearBox.appendChild(themeBtn);
+
+            window.onfocus = () => renderThemeMenu();
+            themeBtn.onclick = (e) => {
+                const isVisible = menuPopup.style.display === 'block';
+                menuPopup.style.display = isVisible ? 'none' : 'block';
+                if (!isVisible) renderThemeMenu();
+                e.stopPropagation();
+            };
+            document.addEventListener('click', () => menuPopup.style.display = 'none');
+
+            const tickerStyles = document.createElement('style');
+            tickerStyles.textContent = `
+                @keyframes scrollUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+                .theme-opt:hover { background: var(--accent) !important; color: white !important; }
+                .theme-opt.active { background: rgba(255, 255, 255, 0.1) !important; color: var(--highlight-gold) !important; font-weight: 400; border-left: 3px solid var(--accent); }
+                #theme-switch-btn:hover { background: var(--accent) !important; transform: scale(1.05); }
+            `;
+            document.head.appendChild(tickerStyles);
+
+            function buildStrategyGrid(targetYear = null) {
+                const grid = document.getElementById('grid-content');
+                const heroRow = document.getElementById('hero-row');
+                const heroImg = document.getElementById('hero-intro-image');
+                const gridCont = document.getElementById('grid-content');
+                const heroImageCont = document.getElementById('hero-image-container');
+
+                if (grid) grid.innerHTML = '';
+                if (gridCont) gridCont.classList.remove('active');
+                if (heroImageCont) heroImageCont.classList.remove('active');
+
+                if (viewerCont) viewerCont.style.display = 'none';
+                if (gridOverlay) gridOverlay.style.display = 'block';
+
+                setTimeout(() => {
+                    if (heroImageCont) heroImageCont.classList.add('active');
+                    if (gridCont) gridCont.classList.add('active');
+                }, 10);
+
+                document.querySelectorAll('[data-year]').forEach(btn => {
+                    const isActive = btn.dataset.year === targetYear;
+                    btn.style.borderColor = "var(--accent)";
+                    btn.style.color = isActive ? "var(--accent)" : "var(--text)";
+                    btn.style.opacity = isActive ? "1" : "0.5";
+                });
+
+                if (heroImg) heroImg.src = `pages/${metadata[0].image}`;
+                if (heroRow) heroRow.style.display = 'flex';
+
+                if (targetYear) {
+                    metadata.forEach((page, idx) => {
+                        if (page.year === targetYear) addTile(grid, page, idx, `PG${page.number}`);
+                    });
+                } else {
+                    const sortedYears = Array.from(years).sort().reverse();
+                    sortedYears.forEach(year => {
+                        const firstIdx = metadata.findIndex(p => p.year === year);
+                        if (firstIdx !== -1) addTile(grid, metadata[firstIdx], firstIdx, `${year}`);
+                    });
+                }
+
+                function addTile(container, page, idx, label) {
+                    const tile = document.createElement('div');
+                    tile.className = 'strategy-tile';
+                    tile.style.cssText = "background:var(--side-bg); border:1px solid var(--accent); opacity:0.9; border-radius:10px; overflow:hidden; cursor:pointer; transition:all 0.3s; position:relative;";
+                    tile.innerHTML = `
+                        <div style="aspect-ratio:16/9; background:var(--bg); overflow:hidden;">
+                            <img src="pages/${encodeURIComponent(page.image)}" style="width:100%; height:100%; object-fit:cover; opacity:0.8;" alt="${label}">
+                        </div>
+                        <div style="position:absolute; bottom:8px; right:10px; color:white; font-size:10px; font-weight:900; background:rgba(0,0,0,0.5); padding: 2px 5px; border-radius:3px; backdrop-filter: blur(2px);">${label}</div>
+                    `;
+                    tile.onmouseover = () => { tile.style.transform = "scale(1.03)"; tile.style.borderColor = "var(--accent)"; };
+                    tile.onmouseout = () => { tile.style.transform = "scale(1.0)"; tile.style.borderColor = "transparent"; };
+                    tile.onclick = () => loadSlide(idx);
+                    if (container) container.appendChild(tile);
+                }
+            }
+        }
+
+        function loadSlide(index) {
+            if (index < 0 || index >= metadata.length) return;
+            currentIndex = index;
+            const page = metadata[index];
+
+            const gridOverlay = document.getElementById('strategy-grid-overlay');
+            const viewerCont = document.getElementById('viewer-container');
+            if (gridOverlay) gridOverlay.style.display = 'none';
+            if (viewerCont) {
+                viewerCont.style.display = 'flex';
+                viewerCont.style.height = '100%';
+            }
+
+            const lastOverlay = document.getElementById('last-page-overlay');
+            if (lastOverlay) lastOverlay.style.display = (index === metadata.length - 1) ? 'block' : 'none';
+
+            const img = document.getElementById('slide-image');
+            if (img) img.src = `pages/${page.image}`;
+
+            const info = document.getElementById('page-info');
+            if (info) info.textContent = `Page ${page.number} of ${metadata.length}`;
+
+            const layer = document.getElementById('interaction-layer');
+            if (layer) {
+                layer.innerHTML = '';
+                let hasVideo = false;
+                page.links.forEach(link => {
+                    const a = document.createElement('a');
+                    a.className = 'pdf-link';
+                    a.href = link.url;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    a.style.left = (link.rect[0] * 100) + '%';
+                    a.style.top = (link.rect[1] * 100) + '%';
+                    a.style.width = ((link.rect[2] - link.rect[0]) * 100) + '%';
+                    a.style.height = ((link.rect[3] - link.rect[1]) * 100) + '%';
+                    if (link.is_video) {
+                        hasVideo = true;
+                        a.style.border = "2px dashed var(--accent)";
+                        const playIcon = document.createElement('div');
+                        playIcon.style.cssText = "position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:30px; height:30px; background:var(--accent); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:10px; color:white; pointer-events:none; box-shadow:0 0 15px rgba(255, 153, 51, 0.6);";
+                        playIcon.textContent = "▶";
+                        a.appendChild(playIcon);
+                    }
+                    layer.appendChild(a);
+                });
+
+                const syncLayer = () => {
+                    if (!img) return;
+                    layer.style.width = img.clientWidth + 'px';
+                    layer.style.height = img.clientHeight + 'px';
+                    layer.style.top = img.offsetTop + 'px';
+                    layer.style.left = img.offsetLeft + 'px';
+                };
+                img.onload = syncLayer;
+                window.onresize = syncLayer;
+                syncLayer();
+                const videoAlert = document.getElementById('video-playing-now');
+                if (videoAlert) videoAlert.style.display = hasVideo ? 'flex' : 'none';
+            }
+
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            let activeIdx = -1;
+            for (let i = 0; i <= index; i++) {
+                if (document.getElementById(`nav-item-${i}`)) activeIdx = i;
+            }
+            if (activeIdx !== -1) {
+                const activeItem = document.getElementById(`nav-item-${activeIdx}`);
+                if (activeItem) activeItem.classList.add('active');
+                const title = document.getElementById('header-title');
+                if (title) title.textContent = metadata[activeIdx].section || "TacTiq Credentials";
+            }
+
+            document.querySelectorAll('[data-year]').forEach(el => {
+                const isActive = el.dataset.year === page.year;
+                el.style.borderColor = "var(--accent)";
+                el.style.color = isActive ? "var(--accent)" : "var(--text)";
+                el.style.opacity = isActive ? "1" : "0.5";
+            });
+        }
+
+        function changeSlide(dir) {
+            loadSlide(currentIndex + dir);
+        }
+
+        init();
+    </script>
+    <div class="demo-disclaimer">
+        Concept Demo Presentation Only | © 2026 TacTiq Corp | All respective logos & content are property of their
+        owners
+    </div>
+</body>
+
+</html>

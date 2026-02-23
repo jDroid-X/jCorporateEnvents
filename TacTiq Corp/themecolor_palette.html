@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TacTiq Theme Palette - Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card-bg: #111;
+            --border: rgba(255, 255, 255, 0.1);
+            --header-text: #888;
+            --accent: #FF9933;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: #ddd;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: white;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 2px;
+            font-size: 1.5rem;
+        }
+
+        p {
+            color: var(--header-text);
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+
+        .action-bar {
+            width: 100%;
+            max-width: 1400px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        .btn-premium {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 153, 51, 0.2);
+            white-space: nowrap;
+        }
+
+        .btn-secondary {
+            background: #222;
+            color: #ccc;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.7rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reset {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-size: 0.6rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            opacity: 0.5;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 1400px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow-x: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.8rem;
+            min-width: 1100px;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.03);
+            color: white;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            padding: 12px 10px;
+            border-bottom: 2px solid var(--accent);
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .del-col {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 0.7rem;
+            opacity: 0.1;
+            transition: 0.2s;
+            padding: 2px 5px;
+        }
+
+        th:hover .del-col {
+            opacity: 1;
+        }
+
+        .sync-indicator {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            font-size: 0.55rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .sync-indicator.active {
+            background: #44ff44;
+            color: #000;
+            border-color: #44ff44;
+            font-weight: 900;
+            box-shadow: 0 0 8px rgba(68, 255, 68, 0.3);
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+            white-space: nowrap;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 400;
+        }
+
+        .theme-name {
+            color: white;
+            font-weight: 700;
+            background: rgba(255, 255, 255, 0.08);
+            border-right: 1px solid var(--border);
+            position: sticky;
+            left: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .row-options {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .edit-row,
+        .del-row {
+            cursor: pointer;
+            font-size: 0.85rem;
+            opacity: 0.3;
+            transition: 0.2s;
+            padding: 0 2px;
+        }
+
+        .edit-row {
+            color: var(--accent);
+        }
+
+        .del-row {
+            color: #ff4444;
+        }
+
+        .theme-name:hover .edit-row,
+        .theme-name:hover .del-row {
+            opacity: 1;
+        }
+
+        .push-col {
+            width: 80px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-right: 1px solid var(--border);
+        }
+
+        .btn-push {
+            background: rgba(255, 153, 51, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 4px 8px;
+            font-size: 0.6rem;
+            border-radius: 4px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.2s;
+        }
+
+        .btn-push:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-push.active {
+            background: #44ff44;
+            border-color: #44ff44;
+            color: #000;
+        }
+
+        .color-cell {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.02);
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .color-cell:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+
+        .color-box {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .hex-code {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        #suggestion-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95%;
+            max-width: 600px;
+            background: #111;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 15px;
+            z-index: 3000;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2500;
+        }
+
+        .suggestion-grid {
+            display: grid;
+            grid-template-columns: 130px repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .grid-header {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px;
+            border-radius: 4px;
+            color: var(--accent);
+            font-weight: 800;
+            text-align: center;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .option-choice {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 4px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .status-pill {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #44ff44;
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            display: none;
+            z-index: 4000;
+        }
+
+        .selection-radio {
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="status-pill" class="status-pill">CHANGES SAVED</div>
+
+    <h1>TacTiq Design System</h1>
+    <p>Atmospheric Theme Designer - Active Workflow Mode</p>
+
+    <div class="action-bar" style="justify-content: space-between;">
+        <div style="display:flex; gap:10px;">
+            <button class="btn-secondary" onclick="window.location.href='index.html'"
+                style="border-color: var(--accent); color: var(--accent);">← Home</button>
+            <button class="btn-secondary" onclick="window.location.href='digital_clone/PDF Stories/index.html'">View
+                Stories</button>
+        </div>
+        <div style="display:flex; gap:10px;">
+            <button class="btn-premium" onclick="openThemeDiscovery()">+ Discover Atmosphere</button>
+            <button class="btn-secondary" onclick="addNewElement()">+ Add UI Layer</button>
+            <button class="btn-secondary" style="border-color: #44ff44; color: #44ff44;" onclick="syncToWebsite()">↑
+                Sync To Website</button>
+            <button class="btn-secondary" style="border-color: #33aaff; color: #33aaff;" onclick="syncToPalette()">↓
+                Sync To Palette</button>
+        </div>
+        <button class="btn-reset" onclick="resetData()">Factory Reset</button>
+    </div>
+
+    <div class="table-container">
+        <table id="palette-table">
+            <thead>
+                <tr id="header-row">
+                    <th class="push-col">Select</th>
+                    <th class="theme-name" style="justify-content:center;">Atmosphere Theme</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+    </div>
+
+    <footer
+        style="margin-top: 50px; padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; display: flex; justify-content: center;">
+        <p style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white;">© 2026
+            TACTIQ • DESIGN SYSTEM MASTER</p>
+    </footer>
+
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal()"></div>
+    <div id="suggestion-modal">
+        <div
+            style="color: white; font-weight: 800; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <span id="disc-theme-name" style="font-size: 0.95rem; color: var(--accent);">New Theme</span>
+                <div style="font-size: 0.55rem; color: #666; font-weight: 400;">Intelligent matching based on atmosphere
+                    keywords</div>
+            </div>
+            <span
+                style="font-size: 0.5rem; color: var(--accent); border: 1px solid var(--accent); padding: 1px 4px; border-radius: 8px;">3-Tier
+                Strategy</span>
+        </div>
+
+        <!-- Semantic Hue Anchor Bar -->
+        <div id="semantic-anchor-container"
+            style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px; background: rgba(255,255,255,0.03); padding: 4px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05);">
+            <div id="semantic-hue-bar"
+                style="height: 6px; flex: 1; border-radius: 10px; background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00); position: relative;">
+                <div id="hue-selector-marker"
+                    style="position: absolute; top: -4px; width: 14px; height: 14px; background: white; border: 2px solid #000; border-radius: 50%; left: 50%; transform: translateX(-50%); box-shadow: 0 0 10px rgba(0,0,0,0.5);">
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 5px;">
+                <div id="anchor-color-preview"
+                    style="width: 12px; height: 12px; border-radius: 2px; background: #fff; border: 1px solid rgba(255,255,255,0.2);">
+                </div>
+                <span id="anchor-color-name"
+                    style="font-size: 0.6rem; color: #888; text-transform: uppercase; font-weight: 700; width: 60px;">Primary
+                    Font</span>
+            </div>
+        </div>
+
+        <div class="suggestion-grid">
+            <div class="grid-header" style="text-align: left;">UI Element</div>
+            <div class="grid-header"><input type="radio" name="theme-option" value="1" id="rad-1"
+                    class="selection-radio" checked> <label for="rad-1">Old School</label></div>
+            <div class="grid-header"><input type="radio" name="theme-option" value="2" id="rad-2"
+                    class="selection-radio"> <label for="rad-2">New School</label></div>
+            <div class="grid-header"><input type="radio" name="theme-option" value="3" id="rad-3"
+                    class="selection-radio"> <label for="rad-3">Ai GenZ</label></div>
+            <div id="dynamic-grid" style="display: contents;"></div>
+        </div>
+
+        <div style="margin-top: 15px; display: flex; gap: 8px;">
+            <button class="btn-premium" style="flex: 1;" onclick="applySuggestedTheme()">Save & Add to Website</button>
+            <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <script>
+        const defaultThemes = []; // Empty to prevent rendering in table
+        const rootThemeIdentity = { name: "Default Theme", key: "default", active: true, locked: true };
+
+        const defaultElements = [
+            { name: "Main Body BG", role: "Page Backdrop", colors: [] },
+            { name: "Sidebar / UI BG", role: "Navigation Rails", colors: [] },
+            { name: "Header and Footer", role: "Structural Bars", colors: [] },
+            { name: "Action Buttons", role: "Primary Interaction", colors: [] },
+            { name: "Primary Accent", role: "Brand Identity", colors: [] },
+            { name: "Secondary Accent", role: "Soft Highlights", colors: [] },
+            { name: "Primary Font", role: "Content Body", colors: [] },
+            { name: "Highlighted Font", role: "Indicators / Titles", colors: [] },
+            { name: "UI Border / Divider", role: "Tactical Grid", colors: [] },
+            { name: "Card & Tile BG", role: "Content Modules", colors: [] },
+            { name: "Scrollbar & Track", role: "Utility Theming", colors: [] },
+            { name: "Success / Alert", role: "Status Feedback", colors: [] }
+        ];
+
+        let themes = [];
+        let elements = [];
+        let pendingOptions = null;
+
+        function loadData() {
+            const savedThemes = localStorage.getItem('tactiq-matrix-themes');
+            const savedElements = localStorage.getItem('tactiq-matrix-elements');
+            if (savedThemes && savedElements) {
+                themes = JSON.parse(savedThemes).filter(t => t.key !== 'default');
+                elements = JSON.parse(savedElements);
+            } else {
+                themes = [];
+                elements = [...defaultElements];
+                saveData();
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem('tactiq-matrix-themes', JSON.stringify(themes));
+            localStorage.setItem('tactiq-matrix-elements', JSON.stringify(elements));
+            const pill = document.getElementById('status-pill');
+            pill.style.display = 'block';
+            setTimeout(() => { pill.style.display = 'none'; }, 2000);
+        }
+
+        function resetData() {
+            if (confirm("Factory Reset? All custom data will be lost.")) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        function renderTable() {
+            const headerRow = document.getElementById('header-row');
+            const tbody = document.getElementById('table-body');
+            headerRow.innerHTML = '<th class="push-col">Action</th><th class="theme-name" style="justify-content:center;">Atmosphere Theme</th>';
+            tbody.innerHTML = '';
+
+            const supportedElements = [
+                "Main Body BG", "Sidebar / UI BG", "Header and Footer",
+                "Action Buttons", "Primary Accent", "Secondary Accent",
+                "Primary Font", "Highlighted Font", "UI Border / Divider",
+                "Card & Tile BG", "Scrollbar & Track", "Success / Alert"
+            ];
+
+            elements.forEach((el, idx) => {
+                const isSupported = supportedElements.includes(el.name);
+                const th = document.createElement('th');
+                th.innerHTML = `
+                    <div class="sync-indicator ${isSupported ? 'active' : ''}" 
+                         onclick="toggleMapping(${idx})"
+                         title="${isSupported ? 'Perfect Match: Website Theme Composite Structure' : 'Click to Sync with Website Structure'}">
+                        ${isSupported ? '✓' : ''}
+                    </div>
+                    <span class="del-col" onclick="deleteElement(${idx})" title="Delete Element">×</span>
+                    ${el.name}<br><span style="font-size:0.45rem; color:#555; font-weight:400;">${el.role}</span>
+                `;
+                headerRow.appendChild(th);
+            });
+
+            themes.forEach((theme, themeIdx) => {
+                const tr = document.createElement('tr');
+
+                // Action Cell (Push to Website)
+                const actionTd = document.createElement('td');
+                actionTd.className = 'push-col';
+                const isPinned = theme.active;
+                actionTd.innerHTML = `<button class="btn-push ${isPinned ? 'active' : ''}" onclick="pushTheme(${themeIdx})">${isPinned ? 'Pinned' : 'Add'}</button>`;
+                tr.appendChild(actionTd);
+
+                // Name Cell
+                const nameTd = document.createElement('td');
+                nameTd.className = 'theme-name';
+
+                let actionIcons = '';
+                if (!theme.locked) {
+                    actionIcons = `
+                        <div class="row-options">
+                            <span class="edit-row" onclick="renameTheme(${themeIdx})" title="Rename Theme">✎</span>
+                            <span class="del-row" onclick="deleteTheme(${themeIdx})" title="Delete Theme">×</span>
+                        </div>
+                    `;
+                } else {
+                    actionIcons = `<div class="row-options"><span style="font-size:0.6rem; color:#44ff44; opacity:0.5;">LOCKED</span></div>`;
+                }
+
+                nameTd.innerHTML = `
+                    <span style="${theme.locked ? '' : 'cursor:pointer;'}" onclick="${theme.locked ? '' : `renameTheme(${themeIdx})`}" title="${theme.locked ? 'Permanent Theme' : 'Click to rename'}">${theme.name}</span>
+                    ${actionIcons}
+                `;
+                tr.appendChild(nameTd);
+
+                elements.forEach((el, elIdx) => {
+                    const color = el.colors[themeIdx] || "#333333";
+                    const td = document.createElement('td');
+                    td.innerHTML = `
+                        <div class="color-cell" onclick="editColor(${themeIdx}, ${elIdx})" title="Click to change color">
+                            <div class="color-box" style="background: ${color};"></div>
+                            <span class="hex-code">${color}</span>
+                        </div>
+                    `;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+        }
+
+        function editColor(themeIdx, elIdx) {
+            const picker = document.createElement('input');
+            picker.type = 'color';
+            picker.value = elements[elIdx].colors[themeIdx] || "#333333";
+
+            picker.oninput = (e) => {
+                const newColor = e.target.value.toUpperCase();
+                elements[elIdx].colors[themeIdx] = newColor;
+
+                // Partial render for speed: find every instance of this cell and update
+                renderTable();
+            };
+
+            picker.onchange = () => {
+                saveData(); // Commit to storage
+            };
+
+            picker.click();
+        }
+
+        function toggleMapping(idx) {
+            const supportedElements = [
+                "Main Body BG", "Sidebar / UI BG", "Header and Footer",
+                "Action Buttons", "Primary Accent", "Secondary Accent",
+                "Primary Font", "Highlighted Font", "UI Border / Divider",
+                "Card & Tile BG", "Scrollbar & Track", "Success / Alert"
+            ];
+            const el = elements[idx];
+            if (supportedElements.includes(el.name)) {
+                alert("✓ COMPOSITE MATCH: This element is already live-mapped to your website's CSS structure.");
+                return;
+            }
+
+            const choice = prompt(
+                `"${el.name}" is a STANDALONE column (not yet controlling visible code).\n\n` +
+                `Type a NUMBER to map it to the Website's 12-Layer Structure:\n` +
+                `1. Main Body BG\n2. Sidebar / UI BG\n3. Header and Footer\n4. Action Buttons\n5. Primary Accent\n6. Secondary Accent\n7. Primary Font\n8. Highlighted Font\n9. UI Border / Divider\n10. Card & Tile BG\n11. Scrollbar & Track\n12. Success / Alert`
+            );
+
+            if (choice) {
+                const map = {
+                    "1": "Main Body BG", "2": "Sidebar / UI BG", "3": "Header and Footer",
+                    "4": "Action Buttons", "5": "Primary Accent", "6": "Secondary Accent",
+                    "7": "Primary Font", "8": "Highlighted Font", "9": "UI Border / Divider",
+                    "10": "Card & Tile BG", "11": "Scrollbar & Track", "12": "Success / Alert"
+                };
+                if (map[choice]) {
+                    el.name = map[choice];
+                    el.role = "Mapped Core Element";
+                    saveData(); renderTable();
+                }
+            }
+        }
+
+        function pushTheme(idx) {
+            themes[idx].active = !themes[idx].active;
+            saveData();
+            renderTable();
+            if (themes[idx].active) {
+                alert(`"${themes[idx].name}" added to website menu! Close this window to return to PDF Stories.`);
+            }
+        }
+
+        function renameTheme(idx) {
+            const currentName = themes[idx].name;
+            const newName = prompt(`Enter a new name for the theme "${currentName}":`, currentName);
+            if (newName && newName !== currentName) {
+                themes[idx].name = newName;
+                saveData();
+                renderTable();
+            }
+        }
+
+        function syncToWebsite() {
+            saveData();
+            alert("✓ SYNC COMPLETE: Your 12-Layer UI Matrix has been pushed to the website. Refresh PDF Stories to see the atmosphere update.");
+        }
+
+        function syncToPalette() {
+            if (confirm("Sync from Website? This will re-align your designer columns to match the Website's 7-Layer Structure.")) {
+                // Force-reset elements to the standard 7-layer structure defined in the code
+                elements = [...defaultElements];
+                saveData();
+                renderTable();
+                alert("✓ RECOVERY COMPLETE: Designer columns are now perfectly synchronized with the Website Code Structure.");
+            }
+        }
+
+        function deleteTheme(idx) {
+            if (confirm(`Delete theme "${themes[idx].name}"?`)) {
+                themes.splice(idx, 1);
+                elements.forEach(el => el.colors.splice(idx, 1));
+                saveData(); renderTable();
+            }
+        }
+
+        function deleteElement(idx) {
+            if (confirm(`Delete UI element "${elements[idx].name}"?`)) {
+                elements.splice(idx, 1);
+                saveData(); renderTable();
+            }
+        }
+
+        let discoveryHue = 0; // Global tracking for manual overrides
+
+        function openThemeDiscovery() {
+            const themeName = prompt("Atmosphere name:", "Cyber Oasis");
+            if (!themeName) return;
+            document.getElementById('disc-theme-name').innerText = themeName;
+
+            // 1. Initial Semantic Detection
+            const nameLower = themeName.toLowerCase();
+            if (nameLower.includes("red")) discoveryHue = 0;
+            else if (nameLower.includes("orange")) discoveryHue = 25;
+            else if (nameLower.includes("gold") || nameLower.includes("yellow")) discoveryHue = 48;
+            else if (nameLower.includes("green")) discoveryHue = 135;
+            else if (nameLower.includes("cyan") || nameLower.includes("teal")) discoveryHue = 185;
+            else if (nameLower.includes("blue")) discoveryHue = 215;
+            else if (nameLower.includes("purple")) discoveryHue = 275;
+            else if (nameLower.includes("pink")) discoveryHue = 335;
+            else {
+                let tempH = 0;
+                for (let i = 0; i < nameLower.length; i++) tempH += nameLower.charCodeAt(i);
+                discoveryHue = tempH % 360;
+            }
+
+            updateDiscoveryGrid(themeName);
+            document.getElementById('modal-overlay').style.display = 'block';
+            document.getElementById('suggestion-modal').style.display = 'block';
+        }
+
+        function updateDiscoveryGrid(themeName) {
+            pendingOptions = {
+                baseName: themeName,
+                option1: elements.map(el => generateIntelligentColor(themeName, el.name, 1, discoveryHue)),
+                option2: elements.map(el => generateIntelligentColor(themeName, el.name, 2, discoveryHue)),
+                option3: elements.map(el => generateIntelligentColor(themeName, el.name, 3, discoveryHue))
+            };
+            const grid = document.getElementById('dynamic-grid');
+            grid.innerHTML = '';
+            elements.forEach((el, idx) => {
+                const label = document.createElement('div');
+                label.style.padding = "5px 10px";
+                label.innerHTML = `<span style="color:#aaa; font-size:0.7rem;">${el.name}</span>`;
+                grid.appendChild(label);
+                [pendingOptions.option1[idx], pendingOptions.option2[idx], pendingOptions.option3[idx]].forEach(val => {
+                    const box = document.createElement('div');
+                    box.className = 'option-choice';
+                    box.innerHTML = `<div class="color-box" style="background: ${val}; width: 22px; height: 22px;"></div><span class="hex-code" style="font-size:0.6rem;">${val}</span>`;
+                    grid.appendChild(box);
+                });
+            });
+
+            // Update UI Tracker
+            const marker = document.getElementById('hue-selector-marker');
+            const preview = document.getElementById('anchor-color-preview');
+            const nameLabel = document.getElementById('anchor-color-name');
+            marker.style.left = `${(discoveryHue / 360) * 100}%`;
+            preview.style.background = `hsl(${discoveryHue}, 100%, 60%)`;
+            nameLabel.innerText = themeName.split(' ')[0];
+        }
+
+        // Make Hue Bar Interactive
+        document.addEventListener('DOMContentLoaded', () => {
+            const hueBar = document.getElementById('semantic-hue-bar');
+            if (!hueBar) return;
+
+            const handleHueChange = (e) => {
+                const rect = hueBar.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                x = Math.max(0, Math.min(x, rect.width));
+                discoveryHue = Math.round((x / rect.width) * 360);
+                const themeName = document.getElementById('disc-theme-name').innerText;
+                updateDiscoveryGrid(themeName);
+            };
+
+            hueBar.onmousedown = (e) => {
+                handleHueChange(e);
+                const moveHandler = (me) => handleHueChange(me);
+                const upHandler = () => {
+                    window.removeEventListener('mousemove', moveHandler);
+                    window.removeEventListener('mouseup', upHandler);
+                };
+                window.addEventListener('mousemove', moveHandler);
+                window.addEventListener('mouseup', upHandler);
+            };
+        });
+
+        function generateIntelligentColor(themeName, elName, variant, manualHue = null) {
+            const name = themeName.toLowerCase();
+            let baseH = manualHue !== null ? manualHue : 0;
+            let isGrey = false;
+
+            // 1. Semantic Keyword Detection (Only if not manually overridden)
+            if (manualHue === null) {
+                if (name.includes("grey") || name.includes("gray") || name.includes("stock") || name.includes("silver") || name.includes("slate") || name.includes("metal")) {
+                    isGrey = true;
+                    baseH = 210; // Cool grey base
+                }
+                else if (name.includes("red") || name.includes("blood") || name.includes("lava")) baseH = 0;
+                else if (name.includes("orange") || name.includes("sunset") || name.includes("tiger")) baseH = 25;
+                else if (name.includes("gold") || name.includes("yellow") || name.includes("sun")) baseH = 48;
+                else if (name.includes("green") || name.includes("emerald") || name.includes("forest")) baseH = 135;
+                else if (name.includes("cyan") || name.includes("teal") || name.includes("aqua") || name.includes("ice")) baseH = 185;
+                else if (name.includes("blue") || name.includes("ocean") || name.includes("sky")) baseH = 215;
+                else if (name.includes("purple") || name.includes("violet") || name.includes("berry")) baseH = 275;
+                else if (name.includes("pink") || name.includes("rose") || name.includes("candy")) baseH = 335;
+                else {
+                    for (let i = 0; i < name.length; i++) baseH += name.charCodeAt(i);
+                    baseH = baseH % 360;
+                }
+            }
+
+            let h = baseH, s = isGrey ? 5 : 70, l = 50;
+
+            // 2. Structural Role Logic & Bracketing (Comprehensive 12-Layer)
+            if (elName.includes("Main Body")) { h = (baseH + 5) % 360; s = isGrey ? 2 : 20; l = 10; }
+            else if (elName.includes("Sidebar")) { h = (baseH + 10) % 360; s = isGrey ? 3 : 25; l = 7; }
+            else if (elName.includes("Header")) { h = baseH; s = isGrey ? 4 : 40; l = 18; }
+            else if (elName.includes("Primary Font")) { s = isGrey ? 0 : 70; l = 92; }
+            else if (elName.includes("Button")) { h = baseH; s = isGrey ? 8 : 45; l = 28; }
+            else if (elName.includes("Accent")) { h = baseH; s = isGrey ? 15 : 100; l = 60; }
+            else if (elName.includes("Secondary Accent")) { h = (baseH + 20) % 360; s = isGrey ? 5 : 50; l = 40; }
+            else if (elName.includes("Highlighted")) { h = 45; s = 90; l = 75; }
+            else if (elName.includes("Border")) { h = baseH; s = isGrey ? 2 : 15; l = 25; }
+            else if (elName.includes("Card")) { h = (baseH + 5) % 360; s = isGrey ? 4 : 22; l = 14; }
+            else if (elName.includes("Scrollbar")) { h = baseH; s = isGrey ? 0 : 20; l = 35; }
+            else if (elName.includes("Success")) { h = 140; s = 80; l = 45; }
+
+            // 3. Generation Era Logic
+            if (variant === 1) { // Old School (Dull / Analog / 70s-90s)
+                if (isGrey) {
+                    s = 2;
+                    if (elName.includes("Accent")) { l = 45; s = 8; }
+                    else if (elName.includes("Primary Font")) { l = 70; s = 0; }
+                    else if (elName.includes("Button")) { l = 35; }
+                } else {
+                    s = Math.max(10, s - 30);
+                    if (elName.includes("Main Body")) l = 12;
+                    else if (elName.includes("Accent")) l = 45;
+                }
+            }
+            else if (variant === 2) { // New School (Glossy / Vibrant / 2020s)
+                if (isGrey) {
+                    s = 15; h = 215; // Cool Chrome
+                    if (elName.includes("Accent")) l = 85;
+                    else if (elName.includes("Button")) l = 45;
+                    else if (elName.includes("Main Body")) l = 8;
+                } else {
+                    s = 100; // Max Sensation
+                    if (elName.includes("Main Body")) l = 10;
+                    else if (elName.includes("Accent")) { l = 65; s = 100; }
+                    else if (elName.includes("Button")) { l = 40; h = (baseH - 10) % 360; }
+                }
+            }
+            else { // Ai GenZ (Synthetic / Neon / Futuristic)
+                if (isGrey) {
+                    if (elName.includes("Main Body")) l = 2;
+                    else if (elName.includes("Sidebar")) l = 4;
+                    else if (elName.includes("Accent")) { l = 95; s = 0; }
+                    else if (elName.includes("Header")) { l = 15; }
+                    else if (elName.includes("Button")) { l = 30; }
+                } else {
+                    s = 100;
+                    h = (baseH + 35) % 360;
+                    if (elName.includes("Main Body")) { l = 3; h = (baseH + 200) % 360; s = 40; }
+                    else if (elName.includes("Sidebar")) { l = 6; h = (baseH + 200) % 360; s = 30; }
+                    else if (elName.includes("Header")) { l = 10; h = (baseH + 200) % 360; s = 50; }
+                    else if (elName.includes("Accent")) { l = 60; s = 100; h = (baseH + 35) % 360; }
+                    else if (elName.includes("Button")) { l = 35; h = (baseH + 75) % 360; s = 80; }
+                    else if (elName.includes("Primary Font")) { l = 96; s = 50; h = (baseH + 20) % 360; }
+                }
+            }
+
+            return hslToHex(h, s, l);
+        }
+
+        function hslToHex(h, s, l) {
+            l /= 100;
+            const a = s * Math.min(l, 1 - l) / 100;
+            const f = n => {
+                const k = (n + h / 30) % 12;
+                const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+                return Math.round(255 * color).toString(16).padStart(2, '0');
+            };
+            return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
+        }
+
+        function applySuggestedTheme() {
+            const selectedOptNum = document.querySelector('input[name="theme-option"]:checked').value;
+            const chosenColors = pendingOptions[`option${selectedOptNum}`];
+
+            const prefixes = { "1": "Old", "2": "New", "3": "GenZ" };
+            const prefix = prefixes[selectedOptNum];
+            const fullName = `${prefix} ${pendingOptions.baseName}`;
+
+            themes.push({ name: fullName, key: fullName.toLowerCase().replace(/\s/g, '-'), active: true });
+            elements.forEach((el, idx) => el.colors.push(chosenColors[idx]));
+            saveData(); renderTable(); closeModal();
+            alert(`"${fullName}" created and added to website!`);
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').style.display = 'none';
+            document.getElementById('suggestion-modal').style.display = 'none';
+        }
+
+        function addNewElement() {
+            const name = prompt("Element Name:"); if (!name) return;
+            const role = prompt("Visual Role:"); if (!role) return;
+            elements.push({ name, role, colors: new Array(themes.length).fill("#333333") });
+            saveData(); renderTable();
+        }
+
+        function exportBlueprint() {
+            let blueprint = `/* TACTIQ DESIGN ARCHITECT BLUEPRINT */\n\n`;
+            elements.forEach((el, idx) => {
+                const varName = el.name.toLowerCase().replace(/ \/ /g, '-').replace(/ & /g, '-').replace(/ /g, '-');
+                blueprint += `/* ${el.name} (${el.role}) */\n`;
+                themes.forEach((theme, themeIdx) => {
+                    blueprint += `--${varName}-${theme.key}: ${el.colors[themeIdx]};\n`;
+                });
+                blueprint += `\n`;
+            });
+            navigator.clipboard.writeText(blueprint).then(() => {
+                alert("Master Design Blueprint copied to clipboard!\n\nYou can now paste this CSS structure into any new website project.");
+            });
+        }
+
+        window.onload = () => { loadData(); renderTable(); };
+    </script>
+</body>
+
+</html>

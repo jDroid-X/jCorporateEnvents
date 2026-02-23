@@ -1,0 +1,704 @@
+[
+    {
+        "number": 1,
+        "image": "page_1.jpg",
+        "links": [],
+        "section": "Introduction",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Credentials"
+    },
+    {
+        "number": 2,
+        "image": "page_2.jpg",
+        "links": [],
+        "section": "Introduction",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "We are a newly formed 360\u00b0 experiential and"
+    },
+    {
+        "number": 3,
+        "image": "page_3.jpg",
+        "links": [],
+        "section": "Introduction",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Our Story"
+    },
+    {
+        "number": 4,
+        "image": "page_4.jpg",
+        "links": [],
+        "section": "Introduction",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Our Vision"
+    },
+    {
+        "number": 5,
+        "image": "page_5.jpg",
+        "links": [],
+        "section": "Introduction",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Strong network of skilled production"
+    },
+    {
+        "number": 6,
+        "image": "page_6.jpg",
+        "links": [],
+        "section": "Introduction",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "360\u00b0 Event Management"
+    },
+    {
+        "number": 7,
+        "image": "page_7.jpg",
+        "links": [],
+        "section": "Introduction",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Work Showcase"
+    },
+    {
+        "number": 8,
+        "image": "page_8.jpg",
+        "links": [],
+        "section": "Where Creativity Meets Scale",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "62%"
+    },
+    {
+        "number": 9,
+        "image": "page_9.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/Ij6OiRwdVdI",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "A one-day meet across Mumbai,"
+    },
+    {
+        "number": 10,
+        "image": "page_10.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/_AWrb3no2Nw",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "A festive, residential Diwali meet"
+    },
+    {
+        "number": 11,
+        "image": "page_11.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/TadbFg01-kM",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP hosted an exclusive launch event"
+    },
+    {
+        "number": 12,
+        "image": "page_12.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/bRGq-GMPIUg",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "The HP AI Product Launch, powered by"
+    },
+    {
+        "number": 13,
+        "image": "page_13.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/KUzDhMtt6Y4",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Showcasing HP\u2019s cutting-edge AI-"
+    },
+    {
+        "number": 14,
+        "image": "page_14.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/qYVWRk38fRI",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP unveiled its new PC Plus Series to"
+    },
+    {
+        "number": 15,
+        "image": "page_15.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/fZGj99ygDc4",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "A 3-day immersive event introduced"
+    },
+    {
+        "number": 16,
+        "image": "page_16.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/UUnQeaH7dW8",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Where Creativity Meets Scale",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "A high-energy \u201cBeat the Heat\u201d launch"
+    },
+    {
+        "number": 17,
+        "image": "page_17.jpg",
+        "links": [],
+        "section": "Where Creativity Meets Scale",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "A festive Pan-India celebration across"
+    },
+    {
+        "number": 18,
+        "image": "page_18.jpg",
+        "links": [],
+        "section": "Large-Scale Deployment",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "62%"
+    },
+    {
+        "number": 19,
+        "image": "page_19.jpg",
+        "links": [],
+        "section": "Large-Scale Deployment",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Executed the HP \u201cInkredible\u201d Partners"
+    },
+    {
+        "number": 20,
+        "image": "page_20.jpg",
+        "links": [],
+        "section": "Large-Scale Deployment",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Printposium"
+    },
+    {
+        "number": 21,
+        "image": "page_21.jpg",
+        "links": [],
+        "section": "Large-Scale Deployment",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Executed a successful HP Next Gen AI"
+    },
+    {
+        "number": 22,
+        "image": "page_22.jpg",
+        "links": [],
+        "section": "Large-Scale Deployment",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP ESF Festive Meets 2025, themed"
+    },
+    {
+        "number": 23,
+        "image": "page_23.jpg",
+        "links": [],
+        "section": "Large-Scale Deployment",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Growthon, HP\u2019s new initiative themed"
+    },
+    {
+        "number": 24,
+        "image": "page_24.jpg",
+        "links": [
+            {
+                "url": "https://youtube.com/shorts/FM_0Q_Xq8P8?feature=share",
+                "is_video": true,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Large-Scale Deployment",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP RSM & ZM Meet \u2013 \u201cFighters\u201d"
+    },
+    {
+        "number": 25,
+        "image": "page_25.jpg",
+        "links": [
+            {
+                "url": "https://youtube.com/shorts/ILeHoVgbU_Y?feature=share",
+                "is_video": true,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "Large-Scale Deployment",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP launched 18 Omen Playground"
+    },
+    {
+        "number": 26,
+        "image": "page_26.jpg",
+        "links": [],
+        "section": "Brand Partner Engagement",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "62%"
+    },
+    {
+        "number": 27,
+        "image": "page_27.jpg",
+        "links": [],
+        "section": "Brand Partner Engagement",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "The event strengthened partnerships"
+    },
+    {
+        "number": 28,
+        "image": "page_28.jpg",
+        "links": [],
+        "section": "Brand Partner Engagement",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "The Redington Annual Conference"
+    },
+    {
+        "number": 29,
+        "image": "page_29.jpg",
+        "links": [],
+        "section": "Brand Partner Engagement",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "The event showcased the Google\u2013"
+    },
+    {
+        "number": 30,
+        "image": "page_30.jpg",
+        "links": [],
+        "section": "Media & Trailer Rollout",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "62%"
+    },
+    {
+        "number": 31,
+        "image": "page_31.jpg",
+        "links": [],
+        "section": "Media & Trailer Rollout",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "ESCAYPE LIVE"
+    },
+    {
+        "number": 32,
+        "image": "page_32.jpg",
+        "links": [],
+        "section": "Media & Trailer Rollout",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "KOFFEE WITH KARAN"
+    },
+    {
+        "number": 33,
+        "image": "page_33.jpg",
+        "links": [],
+        "section": "Media & Trailer Rollout",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "SHOW TIME"
+    },
+    {
+        "number": 34,
+        "image": "page_34.jpg",
+        "links": [],
+        "section": "Media & Trailer Rollout",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "KOFFEE WITH KARAN"
+    },
+    {
+        "number": 35,
+        "image": "page_35.jpg",
+        "links": [],
+        "section": "Media & Trailer Rollout",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "GOOD LUCK JERRY"
+    },
+    {
+        "number": 36,
+        "image": "page_36.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/QaZ4auwwzgg",
+                "is_video": false,
+                "rect": [
+                    0.2959513982137044,
+                    0.9065324011757397,
+                    0.4377013736300998,
+                    0.9896311355543725
+                ]
+            }
+        ],
+        "section": "Media & Trailer Rollout",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "TAAZA KHABAR"
+    },
+    {
+        "number": 37,
+        "image": "page_37.jpg",
+        "links": [],
+        "section": "Pre-Lockdown Showcase",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "62%"
+    },
+    {
+        "number": 38,
+        "image": "page_38.jpg",
+        "links": [],
+        "section": "Pre-Lockdown Showcase",
+        "year": "2018",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Truly a global movement, the 4th"
+    },
+    {
+        "number": 39,
+        "image": "page_39.jpg",
+        "links": [],
+        "section": "Pre-Lockdown Showcase",
+        "year": "2018",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "PM Narendra Modi, along with"
+    },
+    {
+        "number": 40,
+        "image": "page_40.jpg",
+        "links": [],
+        "section": "Pre-Lockdown Showcase",
+        "year": "2018",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "The IGIA Awards by GMR showcased a"
+    },
+    {
+        "number": 41,
+        "image": "page_41.jpg",
+        "links": [],
+        "section": "Pre-Lockdown Showcase",
+        "year": "2018",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "The Decennial Celebration of GMR"
+    },
+    {
+        "number": 42,
+        "image": "page_42.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "ON GROUND IMPACT"
+    },
+    {
+        "number": 43,
+        "image": "page_43.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2025",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Ran a Holi-themed activation with"
+    },
+    {
+        "number": 44,
+        "image": "page_44.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Engage the right audience and boost"
+    },
+    {
+        "number": 45,
+        "image": "page_45.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP brought festive cheer to the IT hub"
+    },
+    {
+        "number": 46,
+        "image": "page_46.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "A pan-India IT hub activation for HP\u2019s"
+    },
+    {
+        "number": 47,
+        "image": "page_47.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Celebrate with HP\u2019s AI-powered PCs"
+    },
+    {
+        "number": 48,
+        "image": "page_48.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP executed a pan-India Holi market-"
+    },
+    {
+        "number": 49,
+        "image": "page_49.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "HP"
+    },
+    {
+        "number": 50,
+        "image": "page_50.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2023",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "The three-day SRCC Business Conclave"
+    },
+    {
+        "number": 51,
+        "image": "page_51.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "EXHIBITION"
+    },
+    {
+        "number": 52,
+        "image": "page_52.jpg",
+        "links": [
+            {
+                "url": "https://youtu.be/7QHQNFcHC3I",
+                "is_video": false,
+                "rect": [
+                    0.3124513838026259,
+                    0.9083098433015099,
+                    0.4542013804117839,
+                    0.9914086530210263
+                ]
+            }
+        ],
+        "section": "On Ground Impact",
+        "year": "2024",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "At Gaming Con Mumbai, the HyperX"
+    },
+    {
+        "number": 53,
+        "image": "page_53.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2019",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Held from 4\u20138 December at GMR"
+    },
+    {
+        "number": 54,
+        "image": "page_54.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2018",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Vedanta showcased its growth vision"
+    },
+    {
+        "number": 55,
+        "image": "page_55.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": "2018",
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "At the 11th Zee Jaipur Literature Fest,"
+    },
+    {
+        "number": 56,
+        "image": "page_56.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "Across India, Across"
+    },
+    {
+        "number": 57,
+        "image": "page_57.jpg",
+        "links": [],
+        "section": "On Ground Impact",
+        "year": null,
+        "width": 1440.0,
+        "height": 810.1199951171875,
+        "title": "THANK YOU"
+    }
+]
