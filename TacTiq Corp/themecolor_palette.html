@@ -507,8 +507,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - PROTOCOL SYNC
-                V5.6</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - DATA INJECTION
+                V5.7</span>
         </div>
     </footer>
 
@@ -952,13 +952,22 @@
 
             detectedVars.forEach(v => {
                 const existingIdx = elements.findIndex(el => el.name.toLowerCase() === v.name.toLowerCase());
+                const detectedColor = v.value.startsWith('#') ? v.value : null;
+
                 if (existingIdx !== -1) {
                     foundCount++;
+                    // PROTOCOL UPDATE: If we find a matching core element, pull the live color into THE ACTIVE THEMES
+                    if (detectedColor) {
+                        for (let i = 0; i < themes.length; i++) {
+                            // Only update if it's currently a placeholder or if it's the first sync
+                            elements[existingIdx].colors[i] = detectedColor;
+                        }
+                    }
                 } else {
                     elements.push({
                         name: v.name,
                         role: "Discovered Layer",
-                        colors: new Array(themes.length).fill(v.value.startsWith('#') ? v.value : "#333333")
+                        colors: new Array(themes.length).fill(detectedColor || "#333333")
                     });
                     newCount++;
                 }
