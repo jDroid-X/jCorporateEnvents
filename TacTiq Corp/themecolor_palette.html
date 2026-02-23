@@ -208,16 +208,18 @@
         }
 
         .sync-indicator {
-            font-size: 0.55rem;
-            width: 14px;
-            height: 14px;
-            border-radius: 3px;
-            display: flex;
+            font-size: 0.8rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
+            cursor: pointer;
+            margin: 0 auto;
         }
 
         .sync-indicator.active {
@@ -225,7 +227,7 @@
             color: #000;
             border-color: #44ff44;
             font-weight: 900;
-            box-shadow: 0 0 8px rgba(68, 255, 68, 0.3);
+            box-shadow: 0 0 12px rgba(68, 255, 68, 0.4);
         }
 
         .push-col {
