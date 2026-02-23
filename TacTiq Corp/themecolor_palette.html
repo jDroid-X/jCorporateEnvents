@@ -466,46 +466,45 @@
 </head>
 
 <body>
-    <div class="top-nav" style="display: flex; gap: 40px; align-items: start; padding: 25px 40px;">
+    <div class="top-nav" style="display: flex; gap: 40px; align-items: center; padding: 20px 40px;">
         <!-- Column 1: Fit-to-size Logo -->
         <div style="flex-shrink: 0;">
             <img src="jdroidxlogo.png" alt="jDroid-X Logo" class="logo-jdroidx">
         </div>
 
-        <!-- Column 2: 3-Row Command Matrix -->
-        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 18px;">
+        <!-- Column 2: Atmosphere Synchronization (2 Rows) -->
+        <div
+            style="display: flex; flex-direction: column; gap: 8px; border-right: 1px solid rgba(255,255,255,0.1); padding-right: 40px;">
+            <span
+                style="font-size: 0.65rem; font-weight: 800; color: #666; text-transform: uppercase; letter-spacing: 0.1em; white-space: nowrap;">Atmosphere
+                Sync:</span>
+            <select id="theme-selector" class="theme-select" style="width: 200px;"
+                onchange="applyThemeToDesigner(this.value)">
+                <option value="-1">Base Designer Theme</option>
+            </select>
+        </div>
 
-            <!-- Row 1: Atmosphere Synchronization -->
-            <div style="display: flex; align-items: center;">
-                <div class="theme-selector-container">
-                    <span
-                        style="font-size: 0.65rem; font-weight: 800; color: #666; text-transform: uppercase; letter-spacing: 0.1em;">Atmosphere
-                        Sync:</span>
-                    <select id="theme-selector" class="theme-select" onchange="applyThemeToDesigner(this.value)">
-                        <option value="-1">Base Designer Theme</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Row 2: System Branding & Workflow Mode -->
-            <div>
-                <h1 style="margin: 0; font-size: 1.6rem; letter-spacing: -0.02em; color: white;">Jdroid-X Theme Palette
+        <!-- Column 3: Design Identity & Action Control (2 Rows) -->
+        <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 15px;">
+            <!-- Row 1: System Branding -->
+            <div style="display: flex; align-items: baseline; gap: 20px;">
+                <h1 style="margin: 0; font-size: 1.3rem; letter-spacing: -0.02em; color: white;">Jdroid-X Theme Palette
                     Design System</h1>
                 <p
-                    style="margin: 0; font-size: 0.75rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 700;">
+                    style="margin: 0; font-size: 0.6rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 700;">
                     Atmospheric Theme Designer - Active Workflow Mode
                 </p>
             </div>
 
-            <!-- Row 3: Action Control Matrix (Fit to Width) -->
-            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; width: 100%;">
+            <!-- Row 2: Action Control Matrix -->
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; width: 100%;">
                 <button class="btn-premium" onclick="openThemeDiscovery()">+ Discover Atmosphere</button>
                 <button class="btn-secondary" onclick="addNewElement()">+ Add UI Layer</button>
                 <button class="btn-secondary" style="border-color: #44ff44; color: #44ff44;" onclick="syncToWebsite()">↑
                     Sync To Website</button>
                 <button class="btn-secondary" style="border-color: #33aaff; color: #33aaff;" onclick="syncToPalette()">↓
                     Sync To Palette</button>
-                <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.1); margin: 0 5px;"></div>
+                <div style="width: 1px; height: 15px; background: rgba(255,255,255,0.1); margin: 0 5px;"></div>
                 <button class="btn-secondary" style="font-size: 0.6rem; opacity: 0.7;"
                     onclick="window.location.href='digital_clone/PDF Stories/index.html'">View Stories</button>
                 <button class="btn-reset" onclick="resetData()">Reset</button>
@@ -538,8 +537,8 @@
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
             </p>
-            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - COMMAND MATRIX
-                V6.5</span>
+            <span style="font-size: 0.5rem; color: #444; letter-spacing: 0.1em;">BUILD: 2026-02-23 - TRI-COLUMN COMMAND
+                V7.0</span>
         </div>
     </footer>
 
