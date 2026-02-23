@@ -78,6 +78,50 @@
             transition: all 0.3s ease;
         }
 
+        .top-nav {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 10px 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border);
+            gap: 30px;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-jdroidx {
+            height: 35px;
+            filter: drop-shadow(0 0 5px var(--accent));
+        }
+
+        .theme-selector-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .theme-select {
+            background: #111;
+            color: white;
+            border: 1px solid var(--accent);
+            padding: 5px 15px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .theme-select:hover {
+            background: var(--accent);
+        }
+
         .btn-reset {
             background: #ff4444;
             color: white;
@@ -388,6 +432,16 @@
 </head>
 
 <body>
+    <div class="top-nav">
+        <img src="jdroidxlogo.png" alt="jDroid-X Logo" class="logo-jdroidx">
+        <div class="theme-selector-container">
+            <span style="font-size: 0.7rem; font-weight: 800; color: #666; text-transform: uppercase;">Atmosphere
+                Sync:</span>
+            <select id="theme-selector" class="theme-select" onchange="applyThemeToDesigner(this.value)">
+                <option value="-1">Base Designer Theme</option>
+            </select>
+        </div>
+    </div>
 
     <div id="status-pill" class="status-pill">CHANGES SAVED</div>
 
@@ -471,7 +525,8 @@
             style="max-height: 50vh; overflow-y: auto; margin-top: 10px; border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 5px; background: rgba(0,0,0,0.3);">
             <div class="suggestion-grid" style="margin-top: 0;">
                 <div class="grid-header"
-                    style="text-align: left; position: sticky; top: 0; z-index: 10; background: #222;">UI Element</div>
+                    style="text-align: left; position: sticky; top: 0; z-index: 10; background: #222;">
+                    UI Element</div>
                 <div class="grid-header" style="position: sticky; top: 0; z-index: 10; background: #222;"><input
                         type="radio" name="theme-option" value="1" id="rad-1" class="selection-radio" checked> <label
                         for="rad-1">Old School</label></div>
@@ -480,7 +535,8 @@
                         for="rad-2">New School</label></div>
                 <div class="grid-header" style="position: sticky; top: 0; z-index: 10; background: #222;"><input
                         type="radio" name="theme-option" value="3" id="rad-3" class="selection-radio"> <label
-                        for="rad-3">Ai GenZ</label></div>
+                        for="rad-3">Ai
+                        GenZ</label></div>
                 <div id="dynamic-grid" style="display: contents;"></div>
             </div>
         </div>
@@ -509,7 +565,8 @@
             <textarea id="manual-code-input" placeholder="Paste HTML or CSS code here..."
                 style="width:100%; height:120px; background:#000; border:1px solid #333; color:white; border-radius:5px; margin-bottom:15px; padding:10px; font-family:monospace; font-size:0.7rem; resize:none;"></textarea>
             <button class="btn-premium" style="width:100%; margin-bottom:10px;"
-                onclick="processManualContent()">Discover Structure from Code</button>
+                onclick="processManualContent()">Discover
+                Structure from Code</button>
         </div>
 
         <div style="display:flex; gap:10px;">
@@ -595,8 +652,19 @@
                 <th class="theme-name" style="justify-content:center; text-align:center; line-height:1.2;">UI<br>ELEMENT<br>LAYER</th>
             `;
 
+            const selector = document.getElementById('theme-selector');
+            const currentVal = selector.value;
+            selector.innerHTML = '<option value="-1">Base Designer Theme</option>';
+
             themes.forEach((theme, themeIdx) => {
                 const isPinned = theme.active;
+
+                // Populate Dropdown
+                const opt = document.createElement('option');
+                opt.value = themeIdx;
+                opt.innerText = theme.name;
+                selector.appendChild(opt);
+
                 let actionIcons = '';
                 if (!theme.locked) {
                     actionIcons = `
@@ -1124,6 +1192,33 @@
             navigator.clipboard.writeText(blueprint).then(() => {
                 alert("Master Design Blueprint copied to clipboard!\n\nYou can now paste this CSS structure into any new website project.");
             });
+        }
+
+        function applyThemeToDesigner(themeIdx) {
+            if (themeIdx == -1) {
+                // Restore default designer colors
+                document.documentElement.style.setProperty('--bg', '#0a0a0a');
+                document.documentElement.style.setProperty('--card-bg', '#111');
+                document.documentElement.style.setProperty('--accent', '#FF9933');
+                return;
+            }
+
+            // Map Palette Elements to Designer UI variables
+            const theme = themes[themeIdx];
+
+            // Function to find color by element name
+            const getColor = (name) => {
+                const el = elements.find(e => e.name === name);
+                return el ? el.colors[themeIdx] : null;
+            };
+
+            const bg = getColor("Main Body BG");
+            const cardBg = getColor("Card & Tile BG") || getColor("Sidebar / UI BG");
+            const accent = getColor("Primary Accent");
+
+            if (bg) document.documentElement.style.setProperty('--bg', bg);
+            if (cardBg) document.documentElement.style.setProperty('--card-bg', cardBg);
+            if (accent) document.documentElement.style.setProperty('--accent', accent);
         }
 
         window.onload = () => { loadData(); renderTable(); };
