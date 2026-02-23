@@ -813,7 +813,7 @@
             // 1. Scrape variables from the current content
             while ((match = varRegex.exec(content)) !== null) {
                 const varName = match[1];
-                const cleanName = varName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                const cleanName = toTitleCase(varName.replace(/-/g, ' '));
                 if (!detectedVars.find(v => v.raw === varName)) {
                     detectedVars.push({ name: cleanName, raw: varName, value: match[2].trim() });
                 }
@@ -834,7 +834,7 @@
                             varRegex.lastIndex = 0; // Reset regex
                             while ((match = varRegex.exec(cssContent)) !== null) {
                                 const varName = match[1];
-                                const cleanName = varName.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+                                const cleanName = toTitleCase(varName.replace(/-/g, ' '));
                                 if (!detectedVars.find(v => v.raw === varName)) {
                                     detectedVars.push({ name: cleanName, raw: varName, value: match[2].trim() });
                                 }
@@ -1106,7 +1106,8 @@
         function addNewElement() {
             const name = prompt("Element Name:"); if (!name) return;
             const role = prompt("Visual Role:"); if (!role) return;
-            elements.push({ name, role, colors: new Array(themes.length).fill("#333333") });
+            const formattedName = toTitleCase(name);
+            elements.push({ name: formattedName, role: toTitleCase(role), colors: new Array(themes.length).fill("#333333") });
             saveData(); renderTable();
         }
 
