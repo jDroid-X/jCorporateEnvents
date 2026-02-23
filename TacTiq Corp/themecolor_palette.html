@@ -474,8 +474,24 @@
                 themes = JSON.parse(savedThemes).filter(t => t.key !== 'default');
                 elements = JSON.parse(savedElements);
             } else {
-                themes = [];
-                elements = [...defaultElements];
+                // Initialize with TacTiq Teal (Default) as a starting point
+                themes = [
+                    { name: "TacTiq Teal (Base)", key: "tactiq-teal", active: true, locked: false }
+                ];
+                elements = [
+                    { name: "Main Body BG", role: "Page Backdrop", colors: ["#174C56"] },
+                    { name: "Sidebar / UI BG", role: "Navigation Rails", colors: ["#0F353C"] },
+                    { name: "Header and Footer", role: "Structural Bars", colors: ["#0F353C"] },
+                    { name: "Action Buttons", role: "Primary Interaction", colors: ["#174C56"] },
+                    { name: "Primary Accent", role: "Brand Identity", colors: ["#FF9933"] },
+                    { name: "Secondary Accent", role: "Soft Highlights", colors: ["#CC7A29"] },
+                    { name: "Primary Font", role: "Content Body", colors: ["#FFFFFF"] },
+                    { name: "Highlighted Font", role: "Indicators / Titles", colors: ["#FFD700"] },
+                    { name: "UI Border / Divider", role: "Tactical Grid", colors: ["#FFFFFF1A"] },
+                    { name: "Card & Tile BG", role: "Content Modules", colors: ["#0F353C"] },
+                    { name: "Scrollbar & Track", role: "Utility Theming", colors: ["#FF9933"] },
+                    { name: "Success / Alert", role: "Status Feedback", colors: ["#44FF44"] }
+                ];
                 saveData();
             }
         }
