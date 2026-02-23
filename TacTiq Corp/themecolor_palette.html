@@ -106,7 +106,7 @@
             border-collapse: collapse;
             text-align: left;
             font-size: 0.8rem;
-            min-width: 100%;
+            /* Restricted width to content only */
         }
 
         th {
@@ -115,7 +115,8 @@
             text-transform: uppercase;
             font-size: 0.7rem;
             letter-spacing: 0.05em;
-            padding: 12px 10px;
+            padding: 5px 8px;
+            /* Compacted height */
             border-bottom: 2px solid var(--accent);
             white-space: nowrap;
             position: sticky;
@@ -600,22 +601,22 @@
                 let actionIcons = '';
                 if (!theme.locked) {
                     actionIcons = `
-                        <div class="row-options" style="margin-top:5px;">
+                        <div class="row-options" style="margin-top:2px;">
                             <span class="edit-row" onclick="renameTheme(${themeIdx})" title="Rename Theme">✎</span>
                             <span class="del-row" onclick="deleteTheme(${themeIdx})" title="Delete Theme">×</span>
                         </div>
                     `;
                 } else {
-                    actionIcons = `<div class="row-options" style="margin-top:5px;"><span style="font-size:0.5rem; color:#44ff44; opacity:0.5;">LOCKED</span></div>`;
+                    actionIcons = `<div class="row-options" style="margin-top:2px;"><span style="font-size:0.45rem; color:#44ff44; opacity:0.5;">LOCKED</span></div>`;
                 }
 
                 const th = document.createElement('th');
                 th.style.width = "auto";
-                th.style.padding = "10px 20px";
+                th.style.padding = "4px 12px";
                 th.innerHTML = `
-                    <div style="display:flex; flex-direction:column; align-items:center; gap:5px; padding:10px 0;">
-                        <span style="font-size:0.8rem; font-weight:800; color:white;">${theme.name}</span>
-                        <button class="btn-push ${isPinned ? 'active' : ''}" onclick="pushTheme(${themeIdx})">
+                    <div style="display:flex; flex-direction:column; align-items:center; gap:3px; padding:4px 0;">
+                        <span style="font-size:0.75rem; font-weight:800; color:white;">${theme.name}</span>
+                        <button class="btn-push ${isPinned ? 'active' : ''}" onclick="pushTheme(${themeIdx})" style="padding: 2px 6px; font-size: 0.55rem;">
                             ${isPinned ? 'Pinned' : 'Add to Site'}
                         </button>
                         ${actionIcons}
