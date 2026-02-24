@@ -33,6 +33,13 @@ window.JdroidX = {
             const S = JdroidX.state;
             const C = S.constants;
             try {
+                // ── V11 AUTO-UPGRADE: wipe stale themes, keep elements ──
+                const storedVersion = localStorage.getItem('jdroid-x-version');
+                if (storedVersion !== 'V11') {
+                    localStorage.removeItem(C.THEME_KEY); // force theme regen
+                    localStorage.setItem('jdroid-x-version', 'V11');
+                }
+
                 const savedThemes = localStorage.getItem(C.THEME_KEY);
                 const savedElements = localStorage.getItem(C.ELEMENT_KEY);
                 const savedSite = localStorage.getItem(C.SITE_KEY);
