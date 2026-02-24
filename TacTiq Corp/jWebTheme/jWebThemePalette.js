@@ -33,11 +33,11 @@ window.JdroidX = {
             const S = JdroidX.state;
             const C = S.constants;
             try {
-                // ── V11 AUTO-UPGRADE: wipe stale themes, keep elements ──
+                // ── V11.2 AUTO-UPGRADE: force fresh regen on version mismatch ──
                 const storedVersion = localStorage.getItem('jdroid-x-version');
-                if (storedVersion !== 'V11') {
-                    localStorage.removeItem(C.THEME_KEY); // force theme regen
-                    localStorage.setItem('jdroid-x-version', 'V11');
+                if (storedVersion !== 'V11.2') {
+                    localStorage.removeItem(C.THEME_KEY);
+                    localStorage.setItem('jdroid-x-version', 'V11.2');
                 }
 
                 const savedThemes = localStorage.getItem(C.THEME_KEY);
@@ -53,22 +53,56 @@ window.JdroidX = {
                     const badge = document.getElementById('active-protocol-badge');
                     if (badge) badge.innerText = S.activeSite;
                 }
+
                 if (savedThemes && savedElements) {
                     S.themes = JSON.parse(savedThemes).filter(t => t.key !== 'default');
                     S.elements = JSON.parse(savedElements);
-                    // Ensure Title Case
+                    // Enforce Title Case
                     S.themes.forEach(t => t.name = toTitleCase(t.name));
                     S.elements.forEach(e => {
                         e.name = toTitleCase(e.name);
                         if (e.role) e.role = toTitleCase(e.role);
                         if (!e.mapping) e.mapping = e.name.toLowerCase().replace(/\s+/g, '-');
                     });
+                    // ── VALIDATION: repair any missing default themes ──
+                    this.repairDefaultThemes();
                 } else {
                     this.setupDefaults();
                 }
             } catch (e) {
+                console.warn('Jdroid-X: Load error, resetting.', e);
                 this.setupDefaults();
             }
+        },
+
+        // Ensures all 7 bases × 3 variants are present; adds missing ones without touching custom themes
+        repairDefaultThemes() {
+            const S = JdroidX.state;
+            const bases = [
+                { name: 'Copper', hue: 28 },
+                { name: 'Aluminium', hue: 210 },
+                { name: 'Titan', hue: 200 },
+                { name: 'Red', hue: 0 },
+                { name: 'Green', hue: 130 },
+                { name: 'Blue', hue: 220 },
+                { name: 'Orange', hue: 32 }
+            ];
+            let repaired = false;
+            bases.forEach(b => {
+                [1, 2, 3].forEach(v => {
+                    const prefix = v === 1 ? 'Old' : v === 2 ? 'New' : 'GenZ';
+                    const name = `${prefix} ${b.name}`;
+                    const key = name.toLowerCase().replace(/\s/g, '-');
+                    if (!S.themes.find(t => t.key === key)) {
+                        S.themes.push({ name, key, active: false, locked: false });
+                        S.elements.forEach(el => {
+                            el.colors.push(generateIntelligentColor(b.name, el.name, v, b.hue));
+                        });
+                        repaired = true;
+                    }
+                });
+            });
+            if (repaired) this.save();
         },
 
         setupDefaults() {
