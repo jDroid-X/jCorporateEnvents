@@ -25,8 +25,8 @@ window.JdroidX = {
     Engine: {
         init() {
             this.load();
-            this.UI.render();
-            console.log("Jdroid-X Architect: Build V11.0 Online.");
+            JdroidX.UI.render();
+            console.log("Jdroid-X Architect: Build V11.2 Online — All systems nominal.");
         },
 
         load() {
