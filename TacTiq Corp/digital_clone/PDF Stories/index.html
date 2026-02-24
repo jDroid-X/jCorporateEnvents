@@ -1001,8 +1001,8 @@
 
             if (themeKey === 'custom' && !customColors) {
                 try {
-                    const savedThemes = JSON.parse(localStorage.getItem('tactiq-matrix-themes') || '[]');
-                    const savedElements = JSON.parse(localStorage.getItem('tactiq-matrix-elements') || '[]');
+                    const savedThemes = JSON.parse(localStorage.getItem('jdroid-x-matrix-themes') || '[]');
+                    const savedElements = JSON.parse(localStorage.getItem('jdroid-x-matrix-elements') || '[]');
                     const themeIdx = savedThemes.findIndex(t => t.name === themeName);
                     if (themeIdx !== -1) customColors = savedElements.map(el => el.colors[themeIdx]);
                 } catch (e) { }
@@ -1189,8 +1189,8 @@
 
             function getThemesFromDB() {
                 try {
-                    const savedMatrixThemes = JSON.parse(localStorage.getItem('tactiq-matrix-themes') || '[]');
-                    const savedMatrixElements = JSON.parse(localStorage.getItem('tactiq-matrix-elements') || '[]');
+                    const savedMatrixThemes = JSON.parse(localStorage.getItem('jdroid-x-matrix-themes') || '[]');
+                    const savedMatrixElements = JSON.parse(localStorage.getItem('jdroid-x-matrix-elements') || '[]');
                     return savedMatrixThemes.map((t, themeIdx) => ({
                         active: t.active,
                         name: t.name,
@@ -1215,7 +1215,7 @@
                 addBtn.innerHTML = '+ Add Theme';
                 addBtn.onclick = (e) => {
                     e.stopPropagation();
-                    window.open('../../themecolor_palette.html', '_blank', 'noopener,noreferrer');
+                    window.open('../../jWebTheme/jWebThemePalette.html', '_blank', 'noopener,noreferrer');
                 };
                 menuPopup.appendChild(addBtn);
 
@@ -1240,11 +1240,11 @@
                             e.stopPropagation();
                             if (confirm(`Remove "${name}"?`)) {
                                 try {
-                                    const saved = JSON.parse(localStorage.getItem('tactiq-matrix-themes') || '[]');
+                                    const saved = JSON.parse(localStorage.getItem('jdroid-x-matrix-themes') || '[]');
                                     const idx = saved.findIndex(t => t.name === name);
                                     if (idx !== -1) {
                                         saved[idx].active = false;
-                                        localStorage.setItem('tactiq-matrix-themes', JSON.stringify(saved));
+                                        localStorage.setItem('jdroid-x-matrix-themes', JSON.stringify(saved));
                                         renderThemeMenu();
                                     }
                                 } catch (err) { }

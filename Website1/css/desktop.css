@@ -1,0 +1,726 @@
+/* Website#1 Desktop CSS - Institutional Prestige */
+:root {
+    --bg-navy: #0f2e2e;
+    /* Midnight Emerald */
+    --bg-charcoal: #111417;
+    /* Obsidian Black */
+    --text-gold: #d6c6a8;
+    /* Antique Champagne */
+    --text-white: #f4f1ea;
+    /* Soft Pearl */
+    --text-muted: #8892b0;
+    /* Keeping muted blue-grey for now, or should adjust? Let's use a opacity of pearl for consistency */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', sans-serif;
+    --container-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-navy);
+    color: var(--text-white);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-serif);
+    color: var(--text-white);
+    font-weight: 400;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Utilities */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.section-padding {
+    padding: 8rem 0;
+}
+
+.text-gold {
+    color: var(--text-gold);
+}
+
+.fade-in {
+    animation: fadeIn 1.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border: 1px solid transparent;
+    font-family: var(--font-sans);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--text-gold);
+    color: var(--bg-navy);
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #d4af6a;
+    transform: translateY(-2px);
+}
+
+.btn-gold-outline {
+    border-color: var(--text-gold);
+    color: var(--text-gold);
+}
+
+.btn-gold-outline:hover {
+    background-color: var(--text-gold);
+    color: var(--bg-navy);
+}
+
+.btn-text {
+    color: var(--text-white);
+    margin-left: 1.5rem;
+}
+
+.btn-text .arrow {
+    display: inline-block;
+    transition: transform 0.3s;
+}
+
+.btn-text:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+    background: rgba(10, 25, 47, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--text-white);
+    letter-spacing: 2px;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    position: relative;
+    display: inline-block;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-gold);
+}
+
+/* Mega Menu / Dropdown Support */
+.nav-item {
+    display: inline-block;
+    position: relative;
+    margin-left: 2rem;
+}
+
+.nav-item>a {
+    margin-left: 0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    width: 900px;
+    background: rgba(15, 46, 46, 0.98);
+    /* Midnight Emerald */
+    border: 1px solid var(--text-gold);
+    padding: 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1100;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Fix for Event Solutions dropdown going off-screen left */
+.nav-solutions .dropdown-menu {
+    left: 0;
+    transform: translateX(0) translateY(20px);
+}
+
+.nav-solutions:hover .dropdown-menu {
+    transform: translateX(0) translateY(0);
+}
+
+.dropdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 300px;
+    gap: 2rem;
+}
+
+.dropdown-header {
+    color: var(--text-gold);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 0.5rem;
+}
+
+.dropdown-list {
+    list-style: none;
+}
+
+.dropdown-list li {
+    margin-bottom: 0.8rem;
+}
+
+.dropdown-list a {
+    color: var(--text-white);
+    margin-left: 0;
+    font-size: 0.95rem;
+    display: block;
+}
+
+.dropdown-list a:hover {
+    color: var(--text-gold);
+    transform: translateX(5px);
+}
+
+.featured-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.featured-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-serif);
+}
+
+.featured-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+.btn-sm {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-gold);
+    color: var(--text-gold);
+}
+
+.view-all {
+    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 0.8rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Chevron */
+.chevron {
+    font-size: 0.7rem;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+/* Hero Section */
+.hero-legacy {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: radial-gradient(circle at 70% 30%, #1a4040 0%, #0f2e2e 100%);
+}
+
+.eyebrow {
+    color: var(--text-gold);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.hero-divider {
+    width: 60px;
+    height: 2px;
+    background-color: var(--text-gold);
+    margin-bottom: 2rem;
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+}
+
+/* Institutional Vision */
+.vision-statement {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+.vision-text {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    border-left: 1px solid var(--text-gold);
+    padding-left: 2rem;
+}
+
+.grid-50-50 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+/* Leadership Council */
+.bg-charcoal {
+    background-color: var(--bg-charcoal);
+}
+
+.section-label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-gold);
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    display: inline-block;
+}
+
+.council-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.portrait-wrapper {
+    height: 400px;
+    background-color: #1e1e1e;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+.portrait-wrapper:hover {
+    filter: grayscale(0%);
+}
+
+.img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-family: var(--font-serif);
+    font-style: italic;
+    background: #0f0f0f;
+    border: 1px solid #222;
+}
+
+.council-info .name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.council-info .role {
+    color: var(--text-gold);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Strategic Pillars */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 3rem;
+}
+
+.pillar-col h4 {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+}
+
+.pillar-col p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.pillar-icon {
+    font-size: 1.5rem;
+    color: var(--text-gold);
+}
+
+/* Floating Register Button */
+.floating-register {
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2000;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.floating-register:hover {
+    transform: translateY(-50%) translateX(5px);
+}
+
+.floating-register img {
+    height: auto;
+    /* Vertical button - Using actual size */
+    width: auto;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer & Disclaimer */
+.footer-minimal {
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-quote {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.footer-meta {
+    display: flex;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.disclaimer-bar {
+    background: #000;
+    color: #444;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+
+
+/* Solutions Overview Grid (2-Column Layout) */
+.solutions-overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding: 4rem 0 8rem;
+}
+
+.solution-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Spanning titles for columns */
+.column-title-span {
+    grid-column: span 2;
+    margin-bottom: 20px;
+}
+
+.column-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--text-gold);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+    display: inline-block;
+}
+
+.solution-tile {
+    display: block;
+    position: relative;
+    height: 300px;
+    margin-bottom: 0;
+    /* Gap handles spacing */
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+.tile-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+}
+
+.tile-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: transform 0.6s ease, opacity 0.4s ease;
+}
+
+.tile-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.tile-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.tile-arrow {
+    font-size: 1.2rem;
+    color: var(--text-gold);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+/* Hover Effects */
+.solution-tile:hover {
+    border-color: var(--text-gold);
+    transform: translateY(-5px);
+}
+
+.solution-tile:hover .tile-bg img {
+    transform: scale(1.05);
+    opacity: 0.3;
+}
+
+.solution-tile:hover .tile-arrow {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 992px) {
+    .solutions-overview-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
+/* Event Solutions 30-70 Split Layout Redesign */
+.layout-split-30-70 {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    gap: 4rem;
+    padding: 6rem 0;
+    align-items: start;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.layout-split-30-70:last-child {
+    border-bottom: none;
+}
+
+.col-30-intro {
+    position: sticky;
+    top: 100px;
+    /* Sticky scroll effect */
+}
+
+.col-30-intro h1 {
+    font-size: 3.5rem;
+    /* Big font as per request */
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: var(--text-white);
+}
+
+.col-30-intro h2 {
+    font-size: 2.5rem;
+    color: var(--text-gold);
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.col-30-intro h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: var(--text-gold);
+}
+
+.col-30-intro p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+/* Grid within the 70% column */
+.col-70-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 columns inside the 70% area */
+    gap: 30px;
+}
+
+@media (max-width: 992px) {
+    .layout-split-30-70 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 4rem 0;
+    }
+
+    .col-30-intro {
+        position: static;
+        margin-bottom: 2rem;
+    }
+
+    .col-30-intro h1 {
+        font-size: 2.5rem;
+    }
+
+    .col-70-grid {
+        grid-template-columns: 1fr;
+        /* Stack tiles on tablet */
+    }
+}
+
+/* Venue Parallax - Added Correction for Missing Image */
+.venue-parallax {
+    height: 600px;
+    background-image: url('../images/event-solutions/overview.jpg');
+    background-attachment: fixed;
+    /* Parallax effect */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.venue-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 3rem;
+    text-align: center;
+    border: 1px solid var(--text-gold);
+    backdrop-filter: blur(5px);
+}
+
+.venue-overlay h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--text-white);
+}
+
+.venue-overlay p {
+    font-size: 1.5rem;
+    color: var(--text-gold);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}

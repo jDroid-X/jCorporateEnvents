@@ -1,0 +1,82 @@
+/* Tactiq — Tablet CSS (max-width: 992px) */
+
+:root {
+    --container-width: 92%;
+}
+
+.hero-title {
+    font-size: 3.2rem;
+}
+
+.hero-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-50-50 {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.vision-statement {
+    font-size: 2.2rem;
+}
+
+.pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.expertise-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.categories-strip {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+}
+
+.footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Split layout */
+.split-layout {
+    flex-direction: column;
+    padding-top: 60px;
+}
+
+.split-image {
+    flex: none;
+    height: 50vh;
+}
+
+.split-content {
+    padding: 3rem 2.5rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+}
+
+/* Overview */
+.work-tiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.overview-hero h1 {
+    font-size: 3rem;
+}
+
+/* Dropdown */
+.dropdown-menu {
+    width: 700px;
+}

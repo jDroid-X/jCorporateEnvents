@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Jdroid-X Theme Palette - Universal Atmosphere Synchronization Engine for Modern Web Design.">
+    <meta name="author" content="jDroid-X AI World">
+    <meta name="theme-color" content="#FF9933">
+    <link rel="icon" type="image/png" href="jdroidxlogo.png">
+    <title>Jdroid-X Theme Palette | Design System Architect</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="jWebThemePalette.css">
+</head>
+
+<body>
+    <div class="pro-bg-effects" aria-hidden="true">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+    </div>
+    <header class="top-nav">
+        <!-- Column 1: Brand Identity -->
+        <div class="brand-cluster">
+            <img src="jdroidxlogo.png" alt="jDroid-X Logo" class="logo-jdroidx">
+        </div>
+
+        <!-- Column 2: Atmosphere Synchronization -->
+        <div class="sync-cluster">
+            <span class="label-sync">Atmosphere Sync:</span>
+            <select id="theme-selector" class="theme-select" onchange="window.applyThemeToDesigner(this.value)">
+                <option value="-1">Base Designer Theme</option>
+            </select>
+        </div>
+
+        <!-- Column 3: Action Control Matrix -->
+        <div class="action-cluster">
+            <!-- Row 1: System Branding -->
+            <div class="branding-row">
+                <h1>Jdroid-X Theme Palette</h1>
+                <p class="protocol-badge">
+                    Atmospheric Designer | <span id="active-protocol-badge">Standalone Mode</span>
+                </p>
+            </div>
+
+            <!-- Row 2: Action Grid -->
+            <div class="action-grid">
+                <button class="btn-premium" onclick="openThemeDiscovery()">+ Discover</button>
+                <button class="btn-secondary" onclick="addNewElement()">+ UI Layer</button>
+                <button class="btn-secondary btn-sync-up" onclick="window.syncToWebsite()">↑ Sync Web</button>
+                <button class="btn-secondary btn-sync-down" onclick="window.syncToPalette()">↓ Sync Palette</button>
+                <div class="vertical-divider"></div>
+                <button class="btn-secondary btn-small"
+                    onclick="window.location.href='../digital_clone/PDF Stories/index.html'">Stories</button>
+                <button class="btn-reset" onclick="resetData()">Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div id="status-pill" class="status-pill" role="status">CHANGES SAVED</div>
+        <div class="table-container">
+            <table id="palette-table">
+                <thead>
+                    <tr id="header-row">
+                        <th class="push-col">Select</th>
+                        <th class="theme-name" style="justify-content:center;">Atmosphere Theme</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer
+        style="margin-top: 50px; padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+            <p
+                style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
+                © 2026 jDroid-X • DESIGN SYSTEM MASTER
+            </p>
+            <span style="font-size: 0.55rem; color: #444; letter-spacing: 0.15em; text-transform: uppercase;">
+                BUILD: 2026-02-24 • JDROID-X PRO-DESIGNER EDITION • V11.0
+            </span>
+        </div>
+    </footer>
+
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal()"></div>
+    <div id="suggestion-modal" style="display: none;">
+        <div
+            style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #333; padding-bottom: 10px;">
+            <h2 style="margin: 0; font-size: 1.1rem; color: white;">Atmosphere Discovery</h2>
+            <div id="disc-theme-name" style="font-size: 0.8rem; font-weight: 800; color: var(--accent);">CYBER OASIS
+            </div>
+        </div>
+
+        <div style="margin-top:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:0.65rem; color:#888; text-transform:uppercase; letter-spacing:0.1em;">Semantic
+                    Hue Tuning</span>
+                <div style="display:flex; align-items:center; gap:8px;">
+                    <div id="anchor-color-preview"
+                        style="width:12px; height:12px; border-radius:2px; border:1px solid rgba(255,255,255,0.2);">
+                    </div>
+                    <span id="anchor-color-name"
+                        style="font-size:0.65rem; font-weight:800; color:white; font-family:monospace;">RED</span>
+                </div>
+            </div>
+
+            <!-- Hue Bar -->
+            <div id="semantic-hue-bar"
+                style="height: 12px; border-radius: 6px; background: linear-gradient(to right, #ff0000 0%, #ffff00 17%, #00ff00 33%, #00ffff 50%, #0000ff 67%, #ff00ff 83%, #ff0000 100%); margin-bottom: 25px; cursor: crosshair; position: relative; border: 1px solid rgba(255,255,255,0.1);">
+                <div id="hue-selector-marker"
+                    style="position: absolute; top: -4px; left: 0%; transform: translateX(-50%); width: 6px; height: 20px; background: white; border-radius: 3px; box-shadow: 0 0 10px black;">
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-scroll-area" style="flex-grow: 1; margin-bottom: 20px;">
+            <div class="suggestion-grid">
+                <div class="grid-header" style="background:transparent;"></div>
+                <div class="grid-header">VARIANT 1: OLD SCHOOL</div>
+                <div class="grid-header">VARIANT 2: NEW SCHOOL</div>
+                <div class="grid-header">VARIANT 3: AI GEN-Z</div>
+            </div>
+            <div id="dynamic-grid" class="suggestion-grid">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+
+        <div
+            style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 20px;">
+            <div style="display: flex; gap: 20px;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #888;">
+                    <input type="radio" name="theme-option" value="1" class="selection-radio">
+                    <span style="font-size: 0.7rem; font-weight: 800;">Option 1</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #888;">
+                    <input type="radio" name="theme-option" value="2" class="selection-radio" checked>
+                    <span style="font-size: 0.7rem; font-weight: 800;">Option 2</span>
+                </label>
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; color: #888;">
+                    <input type="radio" name="theme-option" value="3" class="selection-radio">
+                    <span style="font-size: 0.7rem; font-weight: 800;">Option 3</span>
+                </label>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-premium" onclick="applySuggestedTheme()">Create This Atmosphere</button>
+                <button class="btn-secondary" onclick="closeModal()">Abandon</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Website Connection Modal -->
+    <div id="connect-modal"
+        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; background: #111; border: 1px solid var(--accent); border-radius: 12px; padding: 25px; z-index: 3000;">
+        <h2 style="margin: 0 0 10px 0; font-size: 1.2rem; color: white;">Connect to Website</h2>
+        <p style="font-size:0.75rem; color:#888; margin-bottom:20px;">Enter the relative path or URL of the target
+            website `index.html` to discover its 12-Layer UI Structure.</p>
+
+        <input type="text" id="site-url-input" placeholder="e.g. ../digital_clone/PDF Stories/index.html"
+            style="width:100%; padding:12px; background:#000; border:1px solid #333; color:white; border-radius:5px; margin-bottom:15px; font-family:inherit;">
+
+        <div id="connect-feedback"
+            style="display: none; padding: 15px; background: rgba(255, 153, 51, 0.1); border: 1px solid var(--accent); border-radius: 5px; margin-bottom: 20px; font-size: 0.75rem; color: #ccc; line-height: 1.4;">
+        </div>
+
+        <!-- Hidden Fallback UI for Cross-Origin -->
+        <div id="fallback-area" style="display: none; margin-bottom: 20px;">
+            <div id="ai-bridge" style="display:none; margin-bottom:15px;">
+                <div
+                    style="background: #222; border-radius: 8px; padding: 12px; position: relative; border-left: 4px solid #44ff44;">
+                    <div
+                        style="font-size: 0.55rem; color: #44ff44; font-weight: 900; margin-bottom: 4px; text-transform: uppercase;">
+                        AI Synchronization Bridge</div>
+                    <div id="ai-prompt-text" style="font-size: 0.7rem; color: #eee; font-style: italic;">I'm trying to
+                        sync my theme...</div>
+                    <div id="copy-status"
+                        style="font-size: 0.5rem; color: #666; margin-top: 8px; text-align: right; cursor: pointer;"
+                        onclick="copyAiPrompt()">Click the green text to copy</div>
+                </div>
+            </div>
+
+            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 5px; margin-bottom: 10px;">
+                <p style="margin-top:0; font-weight:800; color:white; font-size:0.75rem;">Manual Synchronization Method:
+                </p>
+                <p style="font-size:0.65rem; color:#888; line-height:1.5;">
+                    1️⃣ <b>Open Website:</b> Open the target site in a new browser tab.<br>
+                    2️⃣ <b>Extract Source:</b> Right-Click anywhere → <b>"View Page Source"</b> (or Ctrl+U).<br>
+                    3️⃣ <b>Mass Copy:</b> Press <b>Ctrl + A</b> (Select All) then <b>Ctrl + C</b> (Copy).<br>
+                    4️⃣ <b>Inject:</b> Paste the entire mess below. My AI engine will filter out the junk and find the
+                    UI layers for you.
+                </p>
+            </div>
+            <textarea id="manual-code-input"
+                placeholder="Paste the giant block of code here... I will find the structure for you."
+                style="width:100%; height:100px; background:#000; border:1px solid #333; color:white; border-radius:5px; margin-bottom:10px; padding:10px; font-family:monospace; font-size:0.7rem; resize:none;"></textarea>
+            <button class="btn-premium" style="width:100%; margin-bottom:10px;" onclick="processManualContent()">🔍
+                Start Intelligent Code Scan</button>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+            <button id="connect-btn" class="btn-premium" style="flex:1;" onclick="connectToSite()">Connect</button>
+            <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Sync Options Modal -->
+    <div id="sync-options-modal"
+        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; background: #111; border: 2px solid var(--accent); border-radius: 12px; padding: 25px; z-index: 3500; box-shadow: 0 20px 50px rgba(0,0,0,0.8); flex-direction: column;">
+        <h2 style="margin: 0 0 10px 0; font-size: 1.2rem; color: white;">Synchronize Atmosphere</h2>
+        <p style="font-size:0.75rem; color:#888; margin-bottom:20px;">Select where to anchor the Jdroid-X Designer Menu
+            on your website.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+            <label class="sync-tile">
+                <input type="radio" name="menu-pos" value="top-left">
+                <span>Top Left</span>
+            </label>
+            <label class="sync-tile">
+                <input type="radio" name="menu-pos" value="top-right">
+                <span>Top Right</span>
+            </label>
+            <label class="sync-tile">
+                <input type="radio" name="menu-pos" value="bottom-left">
+                <span>Bottom Left</span>
+            </label>
+            <label class="sync-tile">
+                <input type="radio" name="menu-pos" value="bottom-right">
+                <span>Bottom Right</span>
+            </label>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <button class="btn-premium" style="flex: 1;" onclick="executeUniversalSync()">Sync & Open Website</button>
+            <button class="btn-secondary" onclick="closeModal()">Abandon</button>
+        </div>
+    </div>
+
+    <script src="jWebThemePalette.js"></script>
+</body>
+
+</html>

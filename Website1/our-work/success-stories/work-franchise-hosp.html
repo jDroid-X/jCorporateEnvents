@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Franchise Hospitality | Curated Leadership Conclave</title>
+    <meta name="description" content="A case study on high-touch hospitality for franchise owners.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Split Stylesheets -->
+    <link rel="stylesheet" href="../../css/desktop.css">
+    <link rel="stylesheet" href="../../css/tablet.css" media="(max-width: 992px)">
+    <link rel="stylesheet" href="../../css/mobile.css" media="(max-width: 768px)">
+    
+    <style>
+        /* Internal styles for content pages specific layout */
+        .page-header {
+            background: radial-gradient(circle at 50% 50%, #1a4040 0%, #0f2e2e 100%);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+        .page-cat { color: var(--text-gold); text-transform: uppercase; letter-spacing: 2px; font-size: 0.9rem; }
+        .page-h1 { font-size: 3.5rem; margin: 1rem 0; }
+        
+        .content-split {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            padding: 6rem 0;
+            align-items: center;
+        }
+        
+        @media (max-width: 992px) { .content-split { grid-template-columns: 1fr; gap: 2rem; } }
+        
+        .art-placeholder {
+            background-color: #111417;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--text-gold);
+            position: relative;
+        }
+        .art-placeholder::after {
+            content: '';
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(214, 198, 168, 0.2);
+        }
+        .art-label { font-family: var(--font-serif); font-style: italic; color: #444; font-size: 1.5rem; }
+        
+        .content-block { margin-bottom: 3rem; }
+        .content-block h3 { color: var(--text-gold); font-size: 1.5rem; margin-bottom: 0.5rem; border-left: 2px solid var(--text-gold); padding-left: 1rem; }
+        .content-block p { color: var(--text-muted); font-size: 1.05rem; }
+        
+        /* Ensure tile images are handled gracefully if missing */
+        img { max-width: 100%; }
+    </style>
+</head>
+<body class="theme-institutional">
+
+    <!-- Floating Register Button -->
+    <a href="../../index.html#register" class="floating-register">
+        <img src="../../images/floating_invite_button.png" alt="Request Invite">
+    </a>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <a href="../../index.html" class="logo">CLC.</a>
+            <div class="nav-links">
+                <a href="../../index.html">Home</a>
+                <div class="nav-item dropdown nav-solutions">
+                    <a href="../../event-solutions/event-solutions.html" class="dropdown-trigger">Event Solutions <span class="chevron">?</span></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-grid">
+                            <div class="dropdown-col">
+                                <h3 class="dropdown-header">Event Types</h3>
+                                <ul class="dropdown-list">
+                                    <li><a href="../../event-solutions/events/event-conferences.html">Conferences</a></li>
+                                    <li><a href="../../event-solutions/events/event-incentive-trips.html">Incentive Trips</a></li>
+                                    <li><a href="../../event-solutions/events/event-channel-incentives.html">Channel Incentives</a></li>
+                                    <li><a href="../../event-solutions/events/event-sales-kickoffs.html">Sales Kickoffs</a></li>
+                                    <li><a href="../../event-solutions/events/event-strategic-meetings.html">Strategic Meetings</a></li>
+                                    <li><a href="../../event-solutions/event-solutions.html" class="view-all">See all solutions ?</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-col">
+                                <h3 class="dropdown-header">Industries</h3>
+                                <ul class="dropdown-list">
+                                    <li><a href="../../event-solutions/industries/industry-franchise.html">Franchise</a></li>
+                                    <li><a href="../../event-solutions/industries/industry-home-services.html">Home Services</a></li>
+                                    <li><a href="../../event-solutions/industries/industry-manufacturing.html">Manufacturing</a></li>
+                                    <li><a href="../../event-solutions/industries/industry-technology.html">Technology</a></li>
+                                    <li><a href="../../event-solutions/industries/industry-transportation.html">Transportation</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-col featured-col">
+                                <div class="featured-card">
+                                    <h3 class="featured-title">Governance First</h3>
+                                    <p class="featured-desc">How consistent leadership frameworks define the modern enterprise.</p>
+                                    <a href="#" class="btn btn-sm">Read Insight</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="../../our-work/our-work.html" class="dropdown-trigger">Our Work <span class="chevron">?</span></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-grid">
+                            <div class="dropdown-col">
+                                <h3 class="dropdown-header">Services</h3>
+                                <ul class="dropdown-list">
+                                    <li><a href="../../our-work/services/service-strategy.html">Event Strategy</a></li>
+                                    <li><a href="../../our-work/services/service-logistics.html">Logistics Management</a></li>
+                                    <li><a href="../../our-work/services/service-site-selection.html">Site Selection</a></li>
+                                    <li><a href="../../our-work/services/service-budgeting.html">Event Budgeting</a></li>
+                                    <li><a href="../../our-work/services/service-vendor.html">Vendor Management</a></li>
+                                    <li><a href="../../our-work/services/service-onsite.html">Onsite Management</a></li>
+                                    <li><a href="../../our-work/our-work.html" class="view-all">See all work ?</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-col">
+                                <h3 class="dropdown-header">Success Stories</h3>
+                                <ul class="dropdown-list">
+                                    <li><a href="../../our-work/success-stories/work-multicity.html">Multi-city Conference</a></li>
+                                    <li><a href="../../our-work/success-stories/work-gamification.html">Conference Gamification</a></li>
+                                    <li><a href="../../our-work/success-stories/work-franchise-hosp.html">Franchise Hospitality</a></li>
+                                    <li><a href="../../our-work/success-stories/work-kickoff-expo.html">Annual Kickoff & Expo</a></li>
+                                    <li><a href="../../our-work/success-stories/work-ai-conf.html">AI User Conference</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-col featured-col">
+                                <div class="featured-card">
+                                    <h3 class="featured-title">Legacy in Motion</h3>
+                                    <p class="featured-desc">Creating a centennial celebration for a global banking institution.</p>
+                                    <a href="#" class="btn btn-sm">Read Case Study</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nav-item dropdown">
+                    <a href="../../resources/resources.html" class="dropdown-trigger">Resources <span class="chevron">?</span></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-grid">
+                            <div class="dropdown-col">
+                                <h3 class="dropdown-header">Insights</h3>
+                                <ul class="dropdown-list">
+                                    <li><a href="../../resources/insights/resource-blog.html">Industry Blog</a></li>
+                                    <li><a href="../../resources/insights/resource-benchmarking.html">Benchmarking Reports</a></li>
+                                    <li><a href="../../resources/insights/resource-conf-costs.html">Cost Index</a></li>
+                                    <li><a href="../../resources/insights/resource-incentive-costs.html">Travel Costs</a></li>
+                                    <li><a href="../../resources/insights/resource-media.html">Event Media</a></li>
+                                    <li><a href="../../resources/resources.html" class="view-all">See all resources ?</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-col">
+                                <h3 class="dropdown-header">Guides</h3>
+                                <ul class="dropdown-list">
+                                    <li><a href="../../resources/guides/resource-trends.html">2026 Trends</a></li>
+                                    <li><a href="../../resources/guides/resource-pricing.html">Pricing Strategy</a></li>
+                                    <li><a href="../../resources/guides/resource-buying.html">Venue Buying</a></li>
+                                    <li><a href="../../resources/guides/resource-site-visit.html">Site Visit Checklist</a></li>
+                                    <li><a href="../../resources/guides/resource-top-conf-dest.html">Top Destinations</a></li>
+                                </ul>
+                            </div>
+                            <div class="dropdown-col featured-col">
+                                <div class="featured-card">
+                                    <h3 class="featured-title">The 2026 Outlook</h3>
+                                    <p class="featured-desc">Exclusive report on the future of corporate gatherings.</p>
+                                    <a href="#" class="btn btn-sm">Download PDF</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="../../index.html#council">Council</a>
+                <a href="../../index.html#agenda">Agenda</a>
+                <a href="../../index.html#register" class="btn btn-gold-outline">Request Invitation</a>
+            </div>
+            <div class="menu-toggle"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container fade-in">
+            <span class="page-cat">Success Stories</span>
+            <h1 class="page-h1">Franchise Hospitality</h1>
+            <p style="max-width: 600px; margin: 0 auto; color: var(--text-white);">Delivering a 5-star resort experience for top-tier franchise owners.</p>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <section class="container">
+        <div class="content-split">
+            <div class="art-placeholder fade-in-scroll">
+                <span class="art-label">Waiter serving drinks</span>
+                <img src="../../images/our-work/hospitality.jpg" alt="Waiter serving drinks" style="width:100%; height:100%; object-fit:cover; opacity:0.6; position:absolute; top:0; left:0;" onerror="this.style.display='none'">
+            </div>
+            <div class="content-text fade-in-scroll delay-1">
+                <div class="content-block">
+                    <h3>VIP Concierge</h3>
+                    <p>Personalized booking and itinerary services for every attendee.</p>
+                </div>
+                <div class="content-block">
+                    <h3>Exclusive Excursions</h3>
+                    <p>Private yacht charters and culinary tours for elite performers.</p>
+                </div>
+                <a href="../../index.html#register" class="btn btn-primary">Start Conversation</a>
+            </div>
+        </div>
+        
+        
+        
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-minimal section-padding" style="border-top: 1px solid #222;">
+        <div class="container">
+            <h2 class="footer-quote">"Leadership Is a Long-Term Responsibility."</h2>
+            <div class="footer-meta">
+                <span>© 2026 CLC.</span>
+                <div class="footer-links">
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="disclaimer-bar">
+        <marquee behavior="scroll" direction="left">This is a demo website created for presentation purposes only. All content is fictional.</marquee>
+    </div>
+
+    <script src="../../js/script.js"></script>
+</body>
+</html>

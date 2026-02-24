@@ -42,6 +42,22 @@ Create a premium, high-end corporate event website for "Curated Leadership Concl
     - **Fluid Typography**: Scales smoothly across device widths.
     - **Adaptive Layouts**: Content reflows for portrait/landscape orientations avoiding clipped content.
 
+### Technical Implementation: Responsive Design
+*   **CSS Architecture**:
+    *   **Goal**: Separate monolithic stylesheet for maintainability and crash prevention (Android 10).
+    *   **Files**: Split into `desktop.css` (Base), `tablet.css` (< 992px), `mobile.css` (< 768px).
+    *   **Method**: Linked via HTML `media` attributes:
+        ```html
+        <link rel="stylesheet" href="css/desktop.css">
+        <link rel="stylesheet" href="css/tablet.css" media="(max-width: 992px)">
+        <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
+        ```
+*   **Mobile Optimizations**:
+    *   **Menu**: Converted "Mega Menu" to vertical Accordion with touch-toggle logic.
+    *   **Typography**: Implemented fluid scaling (Hero lowered from 3.5rem to 2.2rem on mobile).
+    *   **Layout**: Switched fixed `100vh` heights to `min-height` to prevent landscape rotation clipping.
+    *   **Crash Fixes**: Removed hardware acceleration hacks on mobile to prevent layer explosion.
+
 ### Key Features
 1.  **Hero**: Full-width, cinematic, "Request Invitation" CTA.
 2.  **Narrative**: 2-column layout, large typography.
@@ -121,30 +137,28 @@ Create a premium, high-end corporate event website for "Curated Leadership Concl
 - Check footer scrolling text on Home, Overview phases, and a Generated Page.
 
 
-## CSS Refactoring (Mobile Crash & Layout Fixes)
-### Goal
-Separate the monolithic `style.css` into device-specific stylesheets to improve maintainability and prevent media query nesting errors.
 
-### Proposed Changes
-#### CSS Architecture
-*   **Split `style.css` into:**
-    *   `css/desktop.css`: Contains all base styles, variables, and desktop-specific layouts.
-    *   `css/tablet.css`: Contains overrides for screens `max-width: 992px` (formerly `@media (max-width: 992px)`).
-    *   `css/mobile.css`: Contains overrides for screens `max-width: 768px` (formerly `@media (max-width: 768px)`).
-    *   **Optimizations Applied**:
-        *   **Fluid Typography**: Reduced font sizes for Tablets/Mobile using `rem` overrides.
-        *   **Flexible Heights**: Converted fixed heights to `min-height` to support landscape rotation.
-        *   **Mobile Menu**: Converted Mega Menu to Accordion style for touch usability.
 
-#### HTML Updates
-*   Update `<head>` in `index.html` and all sub-pages to link these files:
-    ```html
-    <link rel="stylesheet" href="css/desktop.css">
-    <link rel="stylesheet" href="css/tablet.css" media="(max-width: 992px)">
-    <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
-    ```
+## Dry Testing & Resolved Issues
+### Session Snapshot (Last 5 Hours)
+The following critical issues were identified and resolved during the dry run verification:
 
-### Verification
-*   **Desktop**: Ensure layout is stable (navigation, grid).
-*   **Tablet**: Verify grid collapse (2 columns).
-*   **Mobile**: Verify stack layout, simplified shadows, and no hardware acceleration (crash fix persistence).
+1.  **Mobile Crashes (Android 10)**
+    *   **Issue**: Website crashing on older Android devices due to memory overload.
+    *   **Fix**: Removed heavy `hardware-acceleration` and simplified `box-shadow` effects in `mobile.css`.
+
+2.  **Broken Images**
+    *   **Issue**: Images for "Sales Kickoff", "Home Services", and "AI Conference" were missing.
+    *   **Fix**: Corrected file paths in HTML to point to the valid image locations.
+
+3.  **CSS Architecture**
+    *   **Issue**: Monolithic `style.css` was hard to manage and caused layout conflicts.
+    *   **Fix**: Split into `desktop.css`, `tablet.css`, and `mobile.css` for clean, device-specific logic.
+
+4.  **Responsive Layout & Typography**
+    *   **Issue**: Text was too large on mobile; layout clipped when rotating to landscape.
+    *   **Fix**: Implemented **Fluid Typography** (Hero title reduced from 3.5rem -> 2.2rem on mobile) and switched fixed heights to `min-height`.
+
+5.  **Mobile Menu**
+    *   **Issue**: Desktop "Mega Menu" was unusable on touch devices (flying off-screen).
+    *   **Fix**: Converted to a vertical **Accordion** menu with touch-toggle support.

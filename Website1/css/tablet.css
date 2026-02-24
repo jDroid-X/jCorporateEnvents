@@ -1,0 +1,61 @@
+/* Website#1 Tablet CSS (Max-Width: 992px) */
+
+:root {
+    --container-width: 90%;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+}
+
+/* Vision: Stacked or tighter split */
+.grid-50-50 {
+    gap: 2rem;
+}
+
+.vision-statement {
+    font-size: 2.5rem;
+}
+
+/* Council: 2 Columns */
+.council-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Pillars: 2 Columns */
+.pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* Agenda: Compact Timeline */
+.timeline-row {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 0;
+}
+
+.time {
+    margin-bottom: 0.5rem;
+    color: var(--text-gold);
+    font-weight: bold;
+}
+
+/* Floating Button: Adjust size */
+.floating-register img {
+    height: auto;
+}
+
+/* Event Solutions: Tablet Grid Override */
+.solution-tiles-row {
+    grid-template-columns: repeat(3, 1fr) !important;
+    /* 3 cols on tablet */
+}
+
+.preview-section {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px !important;
+}
+
+.preview-image-container {
+    height: 350px !important;
+}

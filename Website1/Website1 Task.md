@@ -1,0 +1,30 @@
+# Website#1 Task Checklist
+
+- [/] Project Setup
+    - [x] Identify Website#2 resources <!-- id: 0 -->
+    - [x] Create Website#1 artifacts (Plan, Task, Walkthrough) <!-- id: 1 -->
+    - [x] Add 'Dry Testing & Resolved Issues' section to artifacts <!-- id: 1.1 -->
+    - [x] Create directory structure (`css`, `js`, `images`, `sub-pages`) <!-- id: 2 -->
+    - [x] **Source Images**: "Art Gallery" / "Lighthouse Society" theme (Using CSS Placeholders) <!-- id: 2.1 -->
+- [x] Implement Plan & Design
+    - [x] Implement `index.html` structure (8 sections) <!-- id: 3 -->
+    - [x] Implement `css/desktop.css` (Midnight Emerald theme) <!-- id: 4 -->
+    - [x] Implement `css/mobile.css` (Responsive adjustments) <!-- id: 5 -->
+    - [x] Implement `css/tablet.css` <!-- id: 6 -->
+    - [x] Implement `js/script.js` (Interactions) <!-- id: 6.1 -->
+- [ ] Content Pages (Generation)
+    - [ ] Create `generate_pages.py` with new theme template <!-- id: 20 -->
+    - [ ] Generate 30+ detail pages (Solutions, Work, Resources) <!-- id: 21 -->
+    - [ ] Create Overview Pages (`event-solutions.html`, etc.) <!-- id: 22 -->
+- [/] Homepage Sections
+    - [x] **Hero**: New Legacy Statement + CTA <!-- id: 7 -->
+    - [x] **Vision**: Two-column layout <!-- id: 8 -->
+    - [x] **Leadership**: Executive Grid (B&W photos) <!-- id: 9 -->
+    - [x] **Pillars**: 4-column strategy <!-- id: 10 -->
+    - [x] **Agenda**: Horizontal timeline <!-- id: 11 -->
+    - [x] **Venue**: Full-width parallax <!-- id: 12 -->
+    - [x] **Registration**: Minimal form <!-- id: 13 -->
+    - [x] **Closing**: Authority statement <!-- id: 14 -->
+- [ ] Verification
+    - [ ] Mobile responsive check <!-- id: 15 -->
+    - [ ] Visual QA (Theme consistency) <!-- id: 16 -->

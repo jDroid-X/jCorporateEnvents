@@ -1,0 +1,256 @@
+/* Tactiq — Mobile CSS (max-width: 768px) */
+
+:root {
+    --container-width: 100%;
+    --section-gap: 4rem;
+}
+
+.container {
+    padding: 0 1.2rem;
+}
+
+.section-padding {
+    padding: 4rem 0;
+}
+
+/* Nav */
+.nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 13, 13, 0.98);
+    flex-direction: column;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--text-gold);
+}
+
+.nav-links.active {
+    display: flex;
+}
+
+.nav-links>a {
+    margin: 0.6rem 0;
+    font-size: 1rem;
+}
+
+.nav-links .btn-gold-outline {
+    margin: 0.8rem 0;
+    width: 100%;
+    text-align: center;
+}
+
+.menu-toggle {
+    display: block;
+    cursor: pointer;
+}
+
+/* Dropdowns in mobile */
+.nav-item {
+    margin: 0;
+    width: 100%;
+    display: block;
+}
+
+.nav-item>a {
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0;
+}
+
+.dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    width: 100%;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+    padding: 0 0 0 1rem;
+    display: none;
+}
+
+.dropdown-menu.active {
+    display: block;
+}
+
+.nav-item:hover .dropdown-menu {
+    transform: none;
+}
+
+.dropdown-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+}
+
+.dropdown-menu {
+    overflow: hidden;
+}
+
+.featured-col {
+    display: none;
+}
+
+.chevron {
+    float: right;
+    transition: transform 0.3s;
+}
+
+.dropdown-trigger.active .chevron {
+    transform: rotate(180deg);
+}
+
+/* Hero */
+.hero-tactiq {
+    padding-top: 5rem;
+    min-height: auto;
+    background-attachment: scroll;
+}
+
+.hero-grid {
+    grid-template-columns: 1fr;
+}
+
+.hero-title {
+    font-size: 2.4rem;
+}
+
+.hero-sub {
+    font-size: 0.95rem;
+}
+
+.hero-stats {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.hero-cta-group {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.btn-text {
+    margin-left: 0;
+}
+
+.stat-number {
+    font-size: 2rem;
+}
+
+/* Vision */
+.grid-50-50 {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.vision-statement {
+    font-size: 1.8rem;
+}
+
+.vision-text {
+    border-left: none;
+    border-top: 1px solid var(--text-gold);
+    padding-left: 0;
+    padding-top: 1.2rem;
+}
+
+/* Pillars / Expertise */
+.pillars-grid {
+    grid-template-columns: 1fr;
+}
+
+.expertise-grid {
+    grid-template-columns: 1fr;
+}
+
+.categories-strip {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Reach */
+.reach-section {
+    background-attachment: scroll;
+    min-height: auto;
+    padding: 4rem 0;
+}
+
+.reach-content h2 {
+    font-size: 2rem;
+}
+
+/* Contact */
+.contact-grid {
+    grid-template-columns: 1fr;
+}
+
+.contact-form {
+    padding: 1.5rem;
+}
+
+/* Footer */
+.footer-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+}
+
+.footer-quote {
+    font-size: 1rem;
+}
+
+/* Split layout */
+.split-layout {
+    flex-direction: column;
+    padding-top: 60px;
+}
+
+.split-image {
+    flex: none;
+    height: 45vw;
+    min-height: 250px;
+}
+
+.split-content {
+    padding: 2.5rem 1.5rem;
+}
+
+.page-title {
+    font-size: 2rem;
+}
+
+.page-description {
+    font-size: 0.95rem;
+}
+
+/* Overview */
+.work-tiles-grid {
+    grid-template-columns: 1fr;
+}
+
+.overview-hero {
+    padding: 7rem 0 3rem;
+}
+
+.overview-hero h1 {
+    font-size: 2.2rem;
+}
+
+.category-section-header {
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.category-num {
+    font-size: 2.5rem;
+}
+
+.section-title {
+    font-size: 2rem;
+}

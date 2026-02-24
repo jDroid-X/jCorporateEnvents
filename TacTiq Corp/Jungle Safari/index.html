@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jDroid-X Safari | Explore the Wild</title>
+    <meta name="description"
+        content="Experience the ultimate jungle safari across 4 breathtaking sections. From the Great Migration to Hidden Predators.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header id="header">
+        <div class="container nav">
+            <a href="index.html" class="logo">J-DROID-X<span>SAFARI</span></a>
+            <ul class="nav-links">
+                <li><a href="#migration">Migration</a></li>
+                <li><a href="#predators">Predators</a></li>
+                <li><a href="#flora">Flora & Fauna</a></li>
+                <li><a href="#conservation">Conservation</a></li>
+            </ul>
+            <a href="#booking" class="btn btn-outline" style="padding: 0.6rem 1.5rem;">Book Safari</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero"
+            style="background-image: url('https://images.unsplash.com/photo-1547407139-3c921a66005c?auto=format&fit=crop&q=80&w=1920');">
+            <div class="container">
+                <div class="hero-content" data-aos="fade-up">
+                    <h1 class="hero-title">WILD<br>UNLEASHED</h1>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--clr-text-muted);">Embark on a journey
+                        through the heart of the jungle. Witness the raw power of nature across four unique ecosystems.
+                    </p>
+                    <a href="#explore" class="btn btn-primary">Begin Expedition</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Sections Grid -->
+        <section id="explore" class="container">
+            <div class="section-intro" data-aos="fade-up">
+                <h2>The Four Realms</h2>
+                <p>Each realm holds its own secrets. Choose your path through the wild.</p>
+            </div>
+
+            <div class="category-grid">
+                <!-- Section 1: Migration -->
+                <div id="migration" class="category-card" data-aos="zoom-in"
+                    onclick="location.href='sections/migration/index.html'">
+                    <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&q=80&w=800"
+                        alt="Great Migration">
+                    <div class="category-overlay">
+                        <h3>The Great Migration</h3>
+                        <p>3 Sub-chapters • Life in Motion</p>
+                    </div>
+                </div>
+
+                <!-- Section 2: Predators -->
+                <div id="predators" class="category-card" data-aos="zoom-in" data-aos-delay="100"
+                    onclick="location.href='sections/predators/index.html'">
+                    <img src="https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&q=80&w=800"
+                        alt="Hidden Predators">
+                    <div class="category-overlay">
+                        <h3>Predator's Kingdom</h3>
+                        <p>3 Sub-chapters • The Hunter's Gaze</p>
+                    </div>
+                </div>
+
+                <!-- Section 3: Flora -->
+                <div id="flora" class="category-card" data-aos="zoom-in" data-aos-delay="200"
+                    onclick="location.href='sections/flora/index.html'">
+                    <img src="https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&q=80&w=800"
+                        alt="Exotic Flora">
+                    <div class="category-overlay">
+                        <h3>Wild Flora & Aviary</h3>
+                        <p>3 Sub-chapters • Jungle Secrets</p>
+                    </div>
+                </div>
+
+                <!-- Section 4: Conservation -->
+                <div id="conservation" class="category-card" data-aos="zoom-in" data-aos-delay="300"
+                    onclick="location.href='sections/conservation/index.html'" style="grid-column: span 3;">
+                    <img src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&q=80&w=1200"
+                        alt="Conservation">
+                    <div class="category-overlay">
+                        <h3>Heritage & Conservation</h3>
+                        <p>3 Sub-chapters • Protecting the Future</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container glass-card" style="margin-bottom: var(--space-xl);" data-aos="fade-up">
+            <div style="text-align: center;">
+                <h2>Experience the Raw Wild</h2>
+                <p style="max-width: 600px; margin: 1rem auto;">jDroid-X Safari is not just a tour; it's an immersion into
+                    the visceral reality of the animal kingdom.</p>
+                <div class="flex-center" style="gap: 1rem; margin-top: 2rem;">
+                    <div style="padding: 1rem; border-right: 1px solid var(--glass-border);">
+                        <h4 style="color: var(--clr-secondary); font-size: 2rem;">12</h4>
+                        <p>Unique Stories</p>
+                    </div>
+                    <div style="padding: 1rem; border-right: 1px solid var(--glass-border);">
+                        <h4 style="color: var(--clr-secondary); font-size: 2rem;">4</h4>
+                        <p>Expert Realms</p>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <h4 style="color: var(--clr-secondary); font-size: 2rem;">∞</h4>
+                        <p>Adrenaline</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: var(--space-l) 0; border-top: 1px solid var(--glass-border);">
+        <div class="container">
+            <div class="flex-center" style="justify-content: space-between; flex-wrap: wrap; gap: 2rem;">
+                <div class="logo">J-DROID-X<span>SAFARI</span></div>
+                <div class="flex-center" style="gap: 2rem;">
+                    <a href="#">Instagram</a>
+                    <a href="#">Tiktok</a>
+                    <a href="#">Expedition Guide</a>
+                </div>
+                <p style="color: var(--clr-text-muted);">&copy; 2026 jDroid-X Corp. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

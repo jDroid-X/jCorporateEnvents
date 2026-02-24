@@ -1,0 +1,46 @@
+{
+  "site_name": "jDroid-X Safari",
+  "tagline": "Wild Unleashed",
+  "sections": [
+    {
+      "id": "migration",
+      "title": "The Great Migration",
+      "slug": "migration",
+      "pages": [
+        { "title": "Migration Overview", "url": "sections/migration/overview.html" },
+        { "title": "The River Crossing", "url": "sections/migration/river-crossing.html" },
+        { "title": "Life Cycles", "url": "sections/migration/cycles.html" }
+      ]
+    },
+    {
+      "id": "predators",
+      "title": "Predator's Kingdom",
+      "slug": "predators",
+      "pages": [
+        { "title": "Social Monarchy", "url": "sections/predators/lion-monarchy.html" },
+        { "title": "Ghosts of the Forest", "url": "sections/predators/leopard-ghosts.html" },
+        { "title": "The Terminal Velocity", "url": "sections/predators/cheetah-sprint.html" }
+      ]
+    },
+    {
+      "id": "flora",
+      "title": "Wild Flora & Aviary",
+      "slug": "flora",
+      "pages": [
+        { "title": "Baobab Ancestry", "url": "sections/flora/baobab-ancestry.html" },
+        { "title": "Canopy Secrets", "url": "sections/flora/canopy-secrets.html" },
+        { "title": "Aviary Masterpieces", "url": "sections/flora/aviary-colors.html" }
+      ]
+    },
+    {
+      "id": "conservation",
+      "title": "Heritage & Conservation",
+      "slug": "conservation",
+      "pages": [
+        { "title": "Guardian Warriors", "url": "sections/conservation/poaching-warriors.html" },
+        { "title": "Cultural Harmony", "url": "sections/conservation/maasai-heritage.html" },
+        { "title": "Sustainable Futures", "url": "sections/conservation/eco-tourism.html" }
+      ]
+    }
+  ]
+}
