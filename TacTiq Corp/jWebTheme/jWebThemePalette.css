@@ -270,6 +270,8 @@ p {
 
 .table-container {
     width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -353,7 +355,8 @@ th:hover .del-col {
 
 /* Ensure cross-section headers stay on top of sticky columns */
 th.push-col,
-th.theme-name {
+th.theme-name,
+th.proto-col {
     z-index: 40;
 }
 
@@ -387,7 +390,7 @@ td {
 }
 
 .proto-col {
-    background: rgba(0, 0, 0, 0.4) !important;
+    background: #0d0d0d !important;
     border-right: 1px solid var(--border);
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
     font-size: 0.75rem;
@@ -400,11 +403,15 @@ td {
     max-width: 220px;
     white-space: normal;
     word-break: break-all;
+    /* ── STICKY: col 3 sits at 40px (push-col) + 220px (theme-name) ── */
+    position: sticky;
+    left: 260px;
+    z-index: 20;
     transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .proto-col:hover {
-    background: rgba(255, 153, 51, 0.05) !important;
+    background: rgba(255, 153, 51, 0.08) !important;
     color: #fff;
     cursor: cell;
 }
@@ -747,6 +754,8 @@ td {
     .proto-col {
         width: 140px;
         min-width: 140px;
+        /* 40px (push-col) + 140px (theme-name) */
+        left: 180px;
     }
 
     /* Standard touch targets for mobile */
@@ -784,6 +793,13 @@ td {
 
     .theme-name {
         left: 35px;
+        width: 120px;
+        min-width: 120px;
+    }
+
+    .proto-col {
+        /* 35px (push-col) + 120px (theme-name) */
+        left: 155px;
         width: 120px;
         min-width: 120px;
     }
