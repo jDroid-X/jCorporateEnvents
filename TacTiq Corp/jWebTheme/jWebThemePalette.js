@@ -350,8 +350,13 @@ window.connectToSite = connectToSite;
 function generateDefaultThemes() {
     const S = JdroidX.state;
     const bases = [
-        { name: "Copper", hue: 25 }, { name: "Aluminium", hue: 210, isGrey: true },
-        { name: "Uranium", hue: 80 }, { name: "Ocean", hue: 195 }
+        { name: "Copper",    hue: 28,  sat: 70,  isGrey: false },
+        { name: "Aluminium", hue: 210, sat: 15,  isGrey: true  },
+        { name: "Titan",     hue: 200, sat: 20,  isGrey: true  },
+        { name: "Red",       hue: 0,   sat: 80,  isGrey: false },
+        { name: "Green",     hue: 130, sat: 65,  isGrey: false },
+        { name: "Blue",      hue: 220, sat: 75,  isGrey: false },
+        { name: "Orange",    hue: 32,  sat: 90,  isGrey: false }
     ];
     bases.forEach(b => {
         [1, 2, 3].forEach(v => {
@@ -360,18 +365,51 @@ function generateDefaultThemes() {
             const key = name.toLowerCase().replace(/\s/g, '-');
             if (!S.themes.find(t => t.key === key)) {
                 S.themes.push({ name, key, active: false, locked: false });
-                S.elements.forEach(el => el.colors.push(generateIntelligentColor(b.name, el.name, v, b.hue)));
+                S.elements.forEach(el => el.colors.push(generateIntelligentColor(b, el.name, v)));
             }
         });
     });
 }
 
-function generateIntelligentColor(baseName, elName, variant, baseHue) {
-    const isDark = elName.includes("BG") || elName.includes("Shadow");
-    const isAccent = elName.includes("Accent") || elName.includes("Glow");
-    let l = isDark ? 10 : (isAccent ? 50 : 90);
-    if (variant === 3) l += 10;
-    return `hsl(${baseHue}, ${variant === 1 ? '30%' : '70%'}, ${l}%)`;
+function generateIntelligentColor(base, elName, variant) {
+    const hue = base.hue;
+    const baseSat = base.isGrey ? base.sat : base.sat;
+
+    // Determine element role
+    const isBG       = elName.includes("BG") || elName.includes("Body") || elName.includes("Sidebar");
+    const isHeader   = elName.includes("Header") || elName.includes("Footer");
+    const isCard     = elName.includes("Card") || elName.includes("Tile");
+    const isAccent   = elName.includes("Accent");
+    const isGlow     = elName.includes("Glow") || elName.includes("Dynamic");
+    const isShadow   = elName.includes("Shadow") || elName.includes("Interactive");
+    const isFont     = elName.includes("Font") || elName.includes("Primary Font");
+    const isHighFont = elName.includes("Highlighted");
+    const isBorder   = elName.includes("Border") || elName.includes("Divider");
+    const isScroll   = elName.includes("Scroll");
+    const isSuccess  = elName.includes("Success") || elName.includes("Alert");
+    const isInput    = elName.includes("Input") || elName.includes("Form");
+    const isModal    = elName.includes("Modal") || elName.includes("Overlay");
+    const isButton   = elName.includes("Button") || elName.includes("Action");
+
+    // Variant modifiers: 1=Old (muted), 2=New (vivid), 3=GenZ (neon+bright)
+    const satMod = variant === 1 ? 0.5 : variant === 2 ? 1.0 : 1.3;
+    const sat = Math.min(100, Math.round(baseSat * satMod));
+    const genZBoost  = variant === 3 ? 8 : 0;
+
+    if (isShadow || isModal)  return `hsla(${hue}, ${sat}%, ${5  + genZBoost}%, 0.85)`;
+    if (isBG)                 return `hsl(${hue}, ${Math.round(sat * 0.6)}%, ${variant === 1 ? 12 : variant === 2 ? 16 : 20}%)`;
+    if (isHeader || isCard)   return `hsl(${hue}, ${Math.round(sat * 0.5)}%, ${variant === 1 ? 10 : variant === 2 ? 14 : 18}%)`;
+    if (isInput)              return `hsla(${hue}, ${sat}%, ${20 + genZBoost}%, 0.4)`;
+    if (isButton)             return `hsl(${hue}, ${sat}%, ${variant === 1 ? 35 : variant === 2 ? 45 : 55}%)`;
+    if (isAccent)             return `hsl(${hue}, ${Math.min(100, sat + 10)}%, ${variant === 1 ? 45 : variant === 2 ? 55 : 65}%)`;
+    if (isGlow)               return `hsla(${hue}, ${Math.min(100, sat + 15)}%, ${55 + genZBoost}%, 0.35)`;
+    if (isHighFont)           return `hsl(${(hue + 40) % 360}, 90%, ${variant === 1 ? 65 : variant === 2 ? 75 : 85}%)`;
+    if (isFont)               return variant === 1 ? '#E0E0E0' : variant === 2 ? '#F5F5F5' : '#FFFFFF';
+    if (isBorder)             return `hsla(${hue}, ${sat}%, 70%, ${variant === 1 ? 0.12 : variant === 2 ? 0.18 : 0.25})`;
+    if (isScroll)             return `hsl(${hue}, ${sat}%, ${variant === 1 ? 40 : variant === 2 ? 50 : 60}%)`;
+    if (isSuccess)            return variant === 3 ? '#00FF88' : variant === 2 ? '#44DD66' : '#33BB55';
+
+    return `hsl(${hue}, ${sat}%, 50%)`;
 }
 
 function closeModal() {
