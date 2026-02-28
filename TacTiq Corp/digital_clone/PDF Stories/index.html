@@ -142,6 +142,10 @@
                         }
                     }
                 </style>
+                <script>
+                    // Ensure the overlay respects the grid row
+                    document.getElementById('strategy-grid-overlay').style.gridRow = '2';
+                </script>
 
                 <!-- Top Row: Compact Static Hero (Page 1) -->
                 <div id="hero-row"
@@ -167,13 +171,17 @@
 
 
 
-            <footer class="slim-footer">
+            <footer class="slim-footer" style="position: relative;">
                 <button class="btn btn-slim" id="prev-btn" aria-label="Previous Page">PREVIOUS</button>
                 <div class="page-info" id="page-info">0 / 0</div>
                 <div id="video-playing-now"
                     style="display: none; color: var(--accent); font-size: 0.7rem; font-weight: 800;">▶ VIDEO DETECTED
                 </div>
                 <button class="btn btn-slim" id="next-btn" aria-label="Next Page">NEXT</button>
+                <div class="demo-disclaimer">
+                    Concept Demo Presentation Only | © 2026 TacTiq Corp | All respective logos &amp; content are
+                    property of their owners
+                </div>
             </footer>
         </main>
     </div>
@@ -1353,7 +1361,6 @@
             if (gridOverlay) gridOverlay.style.display = 'none';
             if (viewerCont) {
                 viewerCont.style.display = 'flex';
-                viewerCont.style.height = '100%';
             }
 
             const lastOverlay = document.getElementById('last-page-overlay');
@@ -1430,10 +1437,6 @@
 
         init();
     </script>
-    <div class="demo-disclaimer">
-        Concept Demo Presentation Only | © 2026 TacTiq Corp | All respective logos & content are property of their
-        owners
-    </div>
 </body>
 
 </html>

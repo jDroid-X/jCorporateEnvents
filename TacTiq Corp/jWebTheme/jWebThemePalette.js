@@ -17,7 +17,8 @@ window.JdroidX = {
             ELEMENT_KEY: 'jdroid-x-matrix-elements',
             SITE_KEY: 'jdroid-x-active-site',
             LOGBOOK_KEY: 'WebsiteLogBook',
-            PATH_KEY: 'jdroid-x-last-path'
+            PATH_KEY: 'jdroid-x-last-path',
+            VISIBLE_KEY: 'jdroid-x-visible-themes'
         }
     },
 
@@ -69,6 +70,8 @@ window.JdroidX = {
                 } else {
                     this.setupDefaults();
                 }
+                // ── Restore theme visibility from storage ──
+                this.loadVisibility();
             } catch (e) {
                 console.warn('Jdroid-X: Load error, resetting.', e);
                 this.setupDefaults();
@@ -102,12 +105,15 @@ window.JdroidX = {
                     }
                 });
             });
-            if (repaired) this.save();
+            if (repaired) {
+                this.applyDefaultVisibility();
+                this.save();
+            }
         },
 
         setupDefaults() {
             const S = JdroidX.state;
-            S.themes = [{ name: "Jdroid-X Teal (Base)", key: "jdroidx-teal", active: true, locked: false }];
+            S.themes = [{ name: "Jdroid-X Teal (Base)", key: "jdroidx-teal", active: true, locked: false, visible: true }];
             S.elements = [
                 { name: "Main Body BG", mapping: "main-body-bg", role: "Page Backdrop", colors: ["#174C56"] },
                 { name: "Sidebar / UI BG", mapping: "sidebar-ui-bg", role: "Navigation Rails", colors: ["#0F353C"] },
@@ -127,7 +133,34 @@ window.JdroidX = {
                 { name: "Interactive Shadow", mapping: "interactive-shadow", role: "Depth Control", colors: ["#00000099"] }
             ];
             generateDefaultThemes();
+            this.applyDefaultVisibility();
             this.save();
+        },
+
+        // Set first 7 themes as visible by default
+        applyDefaultVisibility() {
+            const S = JdroidX.state;
+            S.themes.forEach((t, i) => {
+                if (t.visible === undefined) t.visible = (i < 7);
+            });
+        },
+
+        // Restore visibility flags from localStorage
+        loadVisibility() {
+            const S = JdroidX.state;
+            const saved = localStorage.getItem(S.constants.VISIBLE_KEY);
+            if (saved) {
+                try {
+                    const visibleKeys = JSON.parse(saved);
+                    S.themes.forEach(t => {
+                        t.visible = visibleKeys.includes(t.key);
+                    });
+                } catch (e) {
+                    this.applyDefaultVisibility();
+                }
+            } else {
+                this.applyDefaultVisibility();
+            }
         },
 
         save() {
@@ -138,6 +171,10 @@ window.JdroidX = {
             localStorage.setItem(C.SITE_KEY, S.activeSite);
             localStorage.setItem(C.LOGBOOK_KEY, JSON.stringify(S.logbook));
             localStorage.setItem(C.PATH_KEY, S.lastPath);
+            // Save visible theme keys
+            localStorage.setItem(C.VISIBLE_KEY, JSON.stringify(
+                S.themes.filter(t => t.visible).map(t => t.key)
+            ));
             const pill = document.getElementById('status-pill');
             if (pill) {
                 pill.style.display = 'block';
@@ -152,6 +189,10 @@ window.JdroidX = {
             const headerRow = document.getElementById('header-row');
             const tbody = document.getElementById('table-body');
             if (!headerRow || !tbody) return;
+
+            // Build list of visible theme indices
+            const visibleIdxList = [];
+            S.themes.forEach((t, i) => { if (t.visible) visibleIdxList.push(i); });
 
             const logOptions = S.logbook.map(site => {
                 const short = site.includes('/') ? site.split('/').pop() : site;
@@ -173,13 +214,15 @@ window.JdroidX = {
                 </th>
             `;
 
-            S.themes.forEach((theme, tIdx) => {
+            // Only render VISIBLE themes in the table columns
+            visibleIdxList.forEach(tIdx => {
+                const theme = S.themes[tIdx];
                 const isPinned = theme.active;
                 const th = document.createElement('th');
                 th.innerHTML = `
                     <div style="display:flex; flex-direction:column; align-items:center; gap:5px;">
                         <span style="color:white; font-weight:800;">${theme.name}</span>
-                        <button class="btn-push ${isPinned ? 'active' : ''}" onclick="window.pushTheme(${tIdx})">
+                        <button class="btn-push ${isPinned ? 'active' : ''}" onclick="window.pushTheme(${tIdx})" style="font-weight: 400;">
                             ${isPinned ? 'PINNED' : 'SYNC'}
                         </button>
                         ${!theme.locked ?
@@ -218,7 +261,8 @@ window.JdroidX = {
                 tdProto.onclick = () => JdroidX.Events.remapElement(elIdx);
                 tr.appendChild(tdProto);
 
-                S.themes.forEach((_, tIdx) => {
+                // Only render colors for VISIBLE themes
+                visibleIdxList.forEach(tIdx => {
                     const color = el.colors[tIdx] || "#333333";
                     const tdColor = document.createElement('td');
                     tdColor.innerHTML = `
@@ -242,6 +286,32 @@ window.JdroidX = {
                     selector.appendChild(opt);
                 });
             }
+
+            // ── Render the Visibility Panel checkboxes ──
+            this.renderVisibilityPanel();
+        },
+
+        renderVisibilityPanel() {
+            const S = JdroidX.state;
+            const listEl = document.getElementById('tvp-list');
+            const countEl = document.getElementById('tvp-count');
+            if (!listEl) return;
+
+            const visibleCount = S.themes.filter(t => t.visible).length;
+            if (countEl) countEl.textContent = `${visibleCount} / ${S.themes.length}`;
+
+            listEl.innerHTML = '';
+            S.themes.forEach((theme, idx) => {
+                const item = document.createElement('div');
+                item.className = 'tvp-item';
+                item.innerHTML = `
+                    <input type="checkbox" id="tvp-cb-${idx}" 
+                           ${theme.visible ? 'checked' : ''}
+                           onchange="window.toggleThemeVisibility(${idx}, this.checked)">
+                    <label for="tvp-cb-${idx}" title="${theme.name}">${theme.name}</label>
+                `;
+                listEl.appendChild(item);
+            });
         }
     },
 
@@ -309,6 +379,38 @@ function saveData() { JdroidX.Engine.save(); }
 function renderTable() { JdroidX.UI.render(); }
 window.recallWebsite = (p) => JdroidX.Events.recallWebsite(p);
 window.pushTheme = (i) => JdroidX.Events.pushTheme(i);
+
+// ── Theme Visibility Toggle (for the panel checkboxes) ──
+window.toggleThemeVisibility = function (idx, checked) {
+    const S = JdroidX.state;
+    const MAX_RECOMMENDED = 7;
+
+    if (checked) {
+        const currentVisible = S.themes.filter(t => t.visible).length;
+        if (currentVisible >= MAX_RECOMMENDED) {
+            const proceed = confirm(
+                `⚠️ You already have ${currentVisible} themes visible.\n\n` +
+                `We recommend max ${MAX_RECOMMENDED} themes on one page — ` +
+                `more columns may go out of your window.\n\n` +
+                `Do you want to continue?`
+            );
+            if (!proceed) {
+                // Uncheck the box they just ticked
+                const cb = document.getElementById(`tvp-cb-${idx}`);
+                if (cb) cb.checked = false;
+                return;
+            }
+        }
+        S.themes[idx].visible = true;
+    } else {
+        S.themes[idx].visible = false;
+        // A hidden theme cannot remain pinned
+        S.themes[idx].active = false;
+    }
+
+    JdroidX.Engine.save();
+    JdroidX.UI.render();
+};
 
 function renameTheme(i) {
     const s = JdroidX.state.themes[i];

@@ -75,8 +75,8 @@
     </main>
 
     <footer
-        style="margin-top: 50px; padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; display: flex; justify-content: center;">
-        <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+        style="margin-top: 50px; padding: 30px; border-top: 1px solid rgba(255,255,255,0.05); width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 5px;">
             <p
                 style="opacity: 0.8; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.05em; color: white; margin: 0;">
                 © 2026 jDroid-X • DESIGN SYSTEM MASTER
@@ -84,6 +84,17 @@
             <span style="font-size: 0.55rem; color: #444; letter-spacing: 0.15em; text-transform: uppercase;">
                 BUILD: 2026-02-24 • JDROID-X PRO-DESIGNER EDITION • V11.0
             </span>
+        </div>
+        
+        <!-- Theme Visibility Panel moved here -->
+        <div class="theme-visibility-panel">
+            <div class="tvp-header">
+                <span class="tvp-title">VISIBLE THEMES</span>
+                <span id="tvp-count" class="tvp-count">0 / 0</span>
+            </div>
+            <div id="tvp-list" class="tvp-list">
+                <!-- JS will populate checkboxes here -->
+            </div>
         </div>
     </footer>
 

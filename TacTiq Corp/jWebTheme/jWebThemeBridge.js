@@ -20,8 +20,8 @@
         style.zIndex = '99999';
         style.cursor = 'pointer';
         style.padding = '10px';
-        style.background = '#111';
-        style.border = '1px solid #FF9933';
+        style.background = 'var(--sidebar-ui-bg, #111)';
+        style.border = '1px solid var(--primary-accent, #FF9933)';
         style.borderRadius = '50%';
         style.display = 'flex';
         style.alignItems = 'center';
@@ -43,8 +43,8 @@
         menu.style.cssText = `
             position: fixed;
             z-index: 99998;
-            background: #111;
-            border: 1px solid #333;
+            background: var(--sidebar-ui-bg, #111);
+            border: 1px solid rgba(255,255,255,0.1);
             border-radius: 12px;
             width: 200px;
             padding: 15px;
@@ -72,7 +72,7 @@
 
     function renderThemes(container) {
         const themes = JSON.parse(localStorage.getItem(SYNC_KEY_THEMES) || '[]');
-        container.innerHTML = `<div style="font-size: 0.6rem; color: #888; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px;">Atmosphere Select</div>`;
+        container.innerHTML = `<div style="font-size: 0.6rem; color: var(--primary-font, #fff); opacity: 0.6; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 5px;">Atmosphere Select</div>`;
 
         // Add Default Option
         const defaultBtn = document.createElement('button');
@@ -84,7 +84,7 @@
         };
         container.appendChild(defaultBtn);
 
-        themes.filter(t => t.active).forEach(theme => {
+        themes.filter(t => t.active && t.visible !== false).forEach(theme => {
             const btn = document.createElement('button');
             btn.innerText = theme.name;
             btn.style.cssText = styleBtn(true);
@@ -98,9 +98,9 @@
 
     function styleBtn(isCustom) {
         return `
-            background: ${isCustom ? '#222' : '#333'};
-            color: #ccc;
-            border: 1px solid #444;
+            background: ${isCustom ? 'var(--card-tile-bg, #222)' : '#333'};
+            color: var(--primary-font, #ccc);
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 8px 12px;
             border-radius: 4px;
             font-size: 0.7rem;
@@ -141,8 +141,12 @@
 
     function applyActiveTheme() {
         const themes = JSON.parse(localStorage.getItem(SYNC_KEY_THEMES) || '[]');
-        const activeTheme = themes.find(t => t.active);
-        if (activeTheme) applyTheme(activeTheme.name);
+        const activeTheme = themes.find(t => t.active && t.visible !== false);
+        if (activeTheme) {
+            applyTheme(activeTheme.name);
+        } else {
+            clearTheme();
+        }
     }
 
     // Auto-update if data changes in other tabs

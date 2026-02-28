@@ -4,97 +4,386 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TicTaq Story 1 | Under Construction</title>
+    <title>TacTiq Experiences | Credentials Story</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --accent: #FF9933;
-            --text: #ffffff;
-            --highlight-gold: #FFD700;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .container {
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            max-width: 500px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 10px;
-            letter-spacing: -0.02em;
-        }
-
-        p {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.6;
-        }
-
-        .status {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 8px 16px;
-            background: rgba(255, 153, 51, 0.15);
-            color: var(--accent);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            border: 1px solid var(--accent);
-        }
-
-        .back-btn {
-            margin-top: 30px;
-            display: inline-block;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
-        }
-
-        .back-btn:hover {
-            opacity: 1;
-            color: var(--highlight-gold);
-        }
-    </style>
 </head>
 
 <body>
-    <div class="container">
-        <div style="font-size: 3rem; margin-bottom: 20px;">🚧</div>
-        <h1>TicTaq Story 1</h1>
-        <p>This experience is currently being curated with precision.</p>
-        <div class="status">Under Construction • Publishing Soon</div>
-        <br>
-        <a href="../PDF%20Stories/index.html" class="back-btn">← Return to Main Credentials</a>
+    <button id="menu-toggle">
+        <span></span><span></span><span></span>
+    </button>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar">
+            <div class="logo-box">
+                <img src="images/logo.png" alt="TacTiq" style="max-width: 90%; max-height: 80%;">
+            </div>
+
+            <div class="nav-menu" id="nav-menu">
+                <!-- Sections populated here -->
+            </div>
+
+            <div class="timeline-container"
+                style="padding: 10px 25px; border-top: 1px solid rgba(255,255,255,0.1); text-align: center;">
+                <div id="year-filter"
+                    style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin-top: 10px;">
+                    <!-- Years populated here -->
+                </div>
+            </div>
+
+            <div
+                style="padding: 10px 25px; font-size: 0.55rem; color: var(--text); opacity: 0.2; letter-spacing: 0.05em; text-align: center; margin-top: auto;">
+                © 2026 TACTIQ • DIGITAL CLONE
+            </div>
+        </aside>
+
+        <!-- Main Viewer Content -->
+        <main>
+            <header class="slim-header">
+                <div class="header-nav">
+                    <button class="btn-slim" id="prev-section-btn" title="Previous Section">«</button>
+                    <div class="header-title" id="header-title">TacTiq Credentials</div>
+                    <button class="btn-slim" id="next-section-btn" title="Next Section">»</button>
+                </div>
+
+                <div style="margin-left:auto; display:flex; align-items:center;">
+                    <button id="palette-btn"
+                        style="background: var(--side-bg); border: 1px solid var(--accent); color: white; border-radius: 6px; font-size: 1.2rem; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; margin-right: 15px;">🎨</button>
+                    <div id="theme-popup-menu"
+                        style="display:none; position:absolute; top:45px; right:60px; width:180px; background:var(--side-bg); border:1px solid var(--accent); border-radius:8px; z-index:2000;">
+                    </div>
+                    <button class="btn btn-slim" id="fs-btn">FULLSCREEN</button>
+                </div>
+            </header>
+
+            <div class="viewer-container" id="viewer-container" style="position: relative;">
+                <div id="slide-viewport">
+                    <div id="slide-text-container" class="text-slide-container">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy Grid Overlay with Transitions -->
+            <div id="strategy-grid-overlay"
+                style="display:none; flex:1; overflow-y:auto; background:var(--bg); border-top:1px solid rgba(255,255,255,0.05); position: absolute; z-index: 500; top: var(--header-h); bottom: var(--footer-h); left: 0; right: 0;">
+                <style>
+                    #grid-content {
+                        transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+                        transform: translateY(100px);
+                        opacity: 0;
+                    }
+
+                    #grid-content.active {
+                        transform: translateY(0);
+                        opacity: 1;
+                    }
+
+                    .strategy-tile {
+                        animation: tileFadeUp 0.6s ease forwards;
+                    }
+
+                    @keyframes tileFadeUp {
+                        from {
+                            opacity: 0;
+                            transform: translateY(20px);
+                        }
+
+                        to {
+                            opacity: 1;
+                            transform: translateY(0);
+                        }
+                    }
+                </style>
+                <div id="hero-row"
+                    style="padding: 25px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.1); border-bottom: 1px solid rgba(255,255,255,0.05); min-height: 250px;">
+                    <div id="hero-image-container"
+                        style="width: 100%; max-width: 600px; padding: 40px; border-radius: 6px; overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; background: var(--bg);">
+                        <h1 class="ocean-wave-text" style="font-size: 2.5rem; text-align: center; margin: 0;">WORK
+                            SHOWCASE</h1>
+                    </div>
+                </div>
+
+                <!-- Bottom Row: Vertical Year Tiles -->
+                <div style="padding:20px 20px 60px 20px; flex: 1; min-height: 0;">
+                    <div style="margin:0 auto;">
+                        <div id="grid-content"
+                            style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:20px;">
+                            <!-- Tiles populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="slim-footer" style="position: relative;">
+                <button class="btn btn-slim" id="prev-btn" aria-label="Previous Page">PREVIOUS</button>
+                <div class="page-info" id="page-info">0 / 0</div>
+                <div id="video-playing-now"
+                    style="display: none; color: var(--accent); font-size: 0.7rem; font-weight: 800;">▶ VIDEO DETECTED
+                </div>
+                <button class="btn btn-slim" id="next-btn" aria-label="Next Page">NEXT</button>
+                <div class="demo-disclaimer">
+                    Concept Demo Presentation Only | © 2026 TacTiq Corp
+                </div>
+            </footer>
+        </main>
     </div>
-    <div style="position:fixed; bottom:10px; right:10px; font-size:0.45rem; color:white; opacity:0.3; text-transform:uppercase; letter-spacing:0.05em; pointer-events:none;">
-        Demo Presentation Only • © 2026 TacTiq Corp
-    </div>
+
+    <script src="metadata.js"></script>
+    <script>
+        let currentIndex = 0;
+
+        const themes = [
+            { key: 'default', name: 'Default Teal', colors: null },
+            { key: 'midnight', name: 'Midnight Blue', colors: ['#0a192f', '#020c1b', '#020c1b', '#112240', '#64ffda', null, '#ccd6f6', '#64ffda'] },
+            { key: 'royal', name: 'Royal Purple', colors: ['#2d1b4e', '#1a0f2e', '#1a0f2e', '#3f2b6b', '#a855f7', null, '#f3e8ff', '#d8b4fe'] },
+            { key: 'lava', name: 'Lava Rock', colors: ['#1a1a1a', '#0d0d0d', '#0d0d0d', '#333333', '#ff4d4d', null, '#ffffff', '#ff9999'] }
+        ];
+
+        function setTheme(key, name, colors = null) {
+            const body = document.body;
+            ['--bg', '--side-bg', '--header-bg', '--btn-bg', '--text', '--accent', '--highlight-gold'].forEach(p => body.style.removeProperty(p));
+
+            if (colors && colors.length >= 7) {
+                body.style.setProperty('--bg', colors[0]);
+                body.style.setProperty('--side-bg', colors[1]);
+                body.style.setProperty('--header-bg', colors[2]);
+                body.style.setProperty('--btn-bg', colors[3]);
+                body.style.setProperty('--accent', colors[4]);
+                body.style.setProperty('--text', colors[6] || '#ffffff');
+                body.style.setProperty('--highlight-gold', colors[7] || '#FFD700');
+            }
+
+            localStorage.setItem('tactiq-theme-key', key);
+            localStorage.setItem('tactiq-theme-name', name);
+            renderThemeMenu();
+        }
+
+        function renderThemeMenu() {
+            const menu = document.getElementById('theme-popup-menu');
+            if (!menu) return;
+            menu.innerHTML = '';
+            const currentKey = localStorage.getItem('tactiq-theme-key') || 'default';
+
+            themes.forEach(t => {
+                const opt = document.createElement('div');
+                opt.style.cssText = "padding:12px; font-size:0.75rem; cursor:pointer; color: var(--text); border-bottom:1px solid rgba(255,255,255,0.05); transition: background 0.2s;";
+                if (t.key === currentKey) {
+                    opt.style.color = 'var(--highlight-gold)';
+                    opt.style.fontWeight = 'bold';
+                    opt.style.borderLeft = '3px solid var(--accent)';
+                }
+                opt.onmouseover = () => opt.style.background = 'rgba(255,255,255,0.1)';
+                opt.onmouseout = () => opt.style.background = 'transparent';
+                opt.textContent = t.name;
+                opt.onclick = (e) => {
+                    e.stopPropagation();
+                    setTheme(t.key, t.name, t.colors);
+                    menu.style.display = 'none';
+                };
+                menu.appendChild(opt);
+            });
+        }
+
+        document.getElementById('palette-btn').onclick = (e) => {
+            const menu = document.getElementById('theme-popup-menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            e.stopPropagation();
+        };
+
+        document.addEventListener('click', () => {
+            const menu = document.getElementById('theme-popup-menu');
+            if (menu) menu.style.display = 'none';
+        });
+
+        function init() {
+            const savedKey = localStorage.getItem('tactiq-theme-key') || 'default';
+            const savedTheme = themes.find(t => t.key === savedKey) || themes[0];
+            setTheme(savedTheme.key, savedTheme.name, savedTheme.colors);
+
+            buildUI();
+            loadSlide(0);
+
+            document.getElementById('prev-btn').onclick = () => changeSlide(-1);
+            document.getElementById('next-btn').onclick = () => changeSlide(1);
+            document.getElementById('menu-toggle').onclick = () => document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('prev-section-btn').onclick = () => changeSlide(-1);
+            document.getElementById('next-section-btn').onclick = () => changeSlide(1);
+
+            document.getElementById('fs-btn').onclick = () => {
+                if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+                else document.exitFullscreen();
+            };
+
+            window.addEventListener('keydown', e => {
+                if (document.getElementById('strategy-grid-overlay').style.display === 'block') return;
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') changeSlide(-1);
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+            });
+        }
+
+        function buildUI() {
+            const menu = document.getElementById('nav-menu');
+            const yearBox = document.getElementById('year-filter');
+
+            let lastSection = "";
+            let years = new Set();
+
+            metadata.forEach((page, idx) => {
+                if (page.section && page.section !== lastSection) {
+                    const item = document.createElement('div');
+                    item.className = 'nav-item';
+                    let displayText = page.section;
+                    if (page.title && !page.title.includes("62%")) displayText += `: ${page.title.substring(0, 15)}...`;
+                    item.textContent = displayText;
+                    item.id = \`nav-item-\${idx}\`;
+                    item.onclick = () => {
+                        loadSlide(idx);
+                        document.getElementById('sidebar').classList.remove('open');
+                    };
+                    if (menu) menu.appendChild(item);
+                    lastSection = page.section;
+                }
+                if (page.year) years.add(page.year);
+            });
+
+            Array.from(years).sort().forEach(year => {
+                const pill = document.createElement('button');
+                pill.style.cssText = "background: rgba(0,0,0,0.3); border: 1px solid var(--accent); color: var(--text); padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s;";
+                pill.textContent = year;
+                pill.dataset.year = year;
+                pill.onclick = () => {
+                    buildStrategyGrid(year);
+                };
+                if (yearBox) yearBox.appendChild(pill);
+            });
+            
+            const overviewBtn = document.createElement('button');
+            overviewBtn.style.cssText = "background: rgba(0,0,0,0.3); border: 1px solid var(--accent); color: var(--text); padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s;";
+            overviewBtn.textContent = 'All Work';
+            overviewBtn.onclick = () => buildStrategyGrid(null);
+            if (yearBox) yearBox.appendChild(overviewBtn);
+        }
+
+        function buildStrategyGrid(targetYear = null) {
+            const grid = document.getElementById('grid-content');
+            const gridCont = document.getElementById('grid-content');
+            const gridOverlay = document.getElementById('strategy-grid-overlay');
+
+            if (grid) grid.innerHTML = '';
+            if (gridCont) gridCont.classList.remove('active');
+            
+            document.getElementById('slide-viewport').style.display = 'none';
+            if (gridOverlay) gridOverlay.style.display = 'block';
+
+            setTimeout(() => {
+                if (gridCont) gridCont.classList.add('active');
+            }, 10);
+
+            document.querySelectorAll('[data-year]').forEach(btn => {
+                const isActive = btn.dataset.year === targetYear;
+                btn.style.borderColor = "var(--accent)";
+                btn.style.color = isActive ? "var(--accent)" : "var(--text)";
+                btn.style.opacity = isActive ? "1" : "0.5";
+            });
+
+            let itemsToDisplay = targetYear 
+                ? metadata.map((page, idx) => ({page, idx})).filter(x => x.page.year === targetYear)
+                : metadata.map((page, idx) => ({page, idx})).filter(x => x.page.year);
+
+            itemsToDisplay.forEach(item => {
+                const tile = document.createElement('div');
+                tile.className = 'strategy-tile';
+                tile.style.cssText = "background:var(--side-bg); border:1px solid var(--border); opacity:0.9; border-radius:10px; cursor:pointer; transition:all 0.3s; padding: 25px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height: 180px;";
+                tile.innerHTML = \`
+                    <h3 style="font-size: 0.85rem; color: var(--text); opacity: 0.7; margin-bottom: 15px; text-transform:uppercase;">\${item.page.section || 'Event'}</h3>
+                    <h4 style="font-size: 1.2rem; color: var(--highlight-gold); margin: 0; line-height:1.4;">\${item.page.title ? item.page.title : 'Details'}</h4>
+                    <div style="margin-top:20px; color:var(--accent); font-size:0.9rem; font-weight:bold; border:1px solid var(--accent); padding:4px 12px; border-radius:15px;">\${item.page.year || 'Showcase'}</div>
+                \`;
+                tile.onmouseover = () => { tile.style.transform = "scale(1.05)"; tile.style.borderColor = "var(--highlight-gold)"; };
+                tile.onmouseout = () => { tile.style.transform = "scale(1.0)"; tile.style.borderColor = "var(--border)"; };
+                tile.onclick = () => loadSlide(item.idx);
+                grid.appendChild(tile);
+            });
+        }
+
+        function loadSlide(index) {
+            if (index < 0 || index >= metadata.length) return;
+            currentIndex = index;
+            const page = metadata[index];
+
+            const gridOverlay = document.getElementById('strategy-grid-overlay');
+            if (gridOverlay) gridOverlay.style.display = 'none';
+            document.getElementById('slide-viewport').style.display = 'flex';
+
+            const info = document.getElementById('page-info');
+            if (info) info.textContent = \`Page \${page.number} of \${metadata.length}\`;
+
+            const textContainer = document.getElementById('slide-text-container');
+            if (textContainer) {
+                // Formatting Text Dynamically
+                let htmlContent = '';
+                if (page.section) {
+                    htmlContent += \`<h2 class="slide-subtitle">\${page.section}</h2>\`;
+                }
+                
+                // Using exact title text from user request (text grouped by events)
+                htmlContent += \`<h1 class="ocean-wave-text">\${page.title || "Experience Event"}</h1>\`;
+                
+                if (page.year) {
+                    htmlContent += \`<div class="slide-year">\${page.year}</div>\`;
+                }
+
+                if (page.links && page.links.length > 0) {
+                    htmlContent += \`<div style="margin-top: 40px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">\`;
+                    page.links.forEach(link => {
+                        htmlContent += \`<a href="\${link.url}" target="_blank" class="btn-slim" style="text-decoration:none; padding: 12px 25px; font-size: 1rem; border-radius:30px; border:2px solid var(--accent);">\${link.is_video ? '▶ Watch Media' : '🔗 Explore Now'}</a>\`;
+                    });
+                    htmlContent += \`</div>\`;
+                }
+
+                textContainer.innerHTML = htmlContent;
+                
+                // Entrance animation
+                textContainer.style.opacity = 0;
+                textContainer.style.transform = 'translateY(15px)';
+                setTimeout(() => {
+                    textContainer.style.transition = 'all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    textContainer.style.opacity = 1;
+                    textContainer.style.transform = 'translateY(0)';
+                }, 10);
+            }
+
+            const videoAlert = document.getElementById('video-playing-now');
+            if (videoAlert) videoAlert.style.display = (page.links && page.links.some(l => l.is_video)) ? 'block' : 'none';
+
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            let activeIdx = -1;
+            for (let i = 0; i <= index; i++) {
+                if (document.getElementById(\`nav-item-\${i}\`)) activeIdx = i;
+            }
+            if (activeIdx !== -1) {
+                const activeItem = document.getElementById(\`nav-item-\${activeIdx}\`);
+                if (activeItem) activeItem.classList.add('active');
+                const title = document.getElementById('header-title');
+                if (title) title.textContent = metadata[activeIdx].section || "TacTiq Credentials";
+            }
+
+            document.querySelectorAll('[data-year]').forEach(el => {
+                const isActive = el.dataset.year === page.year;
+                el.style.borderColor = isActive ? "var(--highlight-gold)" : "var(--accent)";
+                el.style.color = isActive ? "var(--highlight-gold)" : "var(--text)";
+                el.style.opacity = isActive ? "1" : "0.5";
+            });
+        }
+
+        function changeSlide(dir) {
+            loadSlide(currentIndex + dir);
+        }
+
+        init();
+    </script>
 </body>
 
 </html>
