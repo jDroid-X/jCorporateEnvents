@@ -1,0 +1,13 @@
+{
+  "name": "jdroidx-satellite-bridge",
+  "version": "11.5.0",
+  "description": "Zero-Touch Automation Bridge for Jdroid-X Theme Designer",
+  "main": "jSystemWebPayload.js",
+  "scripts": {
+    "start": "node jSystemWebPayload.js",
+    "install-bridge": "npm install playwright"
+  },
+  "dependencies": {
+    "playwright": "^1.58.2"
+  }
+}

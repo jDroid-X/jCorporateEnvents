@@ -37,8 +37,8 @@ document.addEventListener('DOMContentLoaded', () => {
             themes = themeData.themes;
             themeIdx = themeData.themeIdx;
         } else {
-            const savedElements = localStorage.getItem('jdroid-x-matrix-elements');
-            const savedThemes = localStorage.getItem('jdroid-x-matrix-themes');
+            const savedElements = localStorage.getItem('tactiq-matrix-elements');
+            const savedThemes = localStorage.getItem('tactiq-matrix-themes');
 
             if (savedElements && savedThemes) {
                 elements = JSON.parse(savedElements);
@@ -67,12 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             dropdown.onchange = (e) => {
                 const idx = parseInt(e.target.value);
-                const savedElements = JSON.parse(localStorage.getItem('jdroid-x-matrix-elements'));
-                const savedThemes = JSON.parse(localStorage.getItem('jdroid-x-matrix-themes'));
+                const savedElements = JSON.parse(localStorage.getItem('tactiq-matrix-elements'));
+                const savedThemes = JSON.parse(localStorage.getItem('tactiq-matrix-themes'));
 
                 // Update active status in storage
                 savedThemes.forEach((t, i) => t.active = (i === idx));
-                localStorage.setItem('jdroid-x-matrix-themes', JSON.stringify(savedThemes));
+                localStorage.setItem('tactiq-matrix-themes', JSON.stringify(savedThemes));
 
                 syncTheme({ elements: savedElements, themes: savedThemes, themeIdx: idx });
             };
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial sync and listen for storage changes
     syncTheme();
     window.addEventListener('storage', (e) => {
-        if (e.key === 'jdroid-x-matrix-elements' || e.key === 'jdroid-x-matrix-themes') {
+        if (e.key === 'tactiq-matrix-elements' || e.key === 'tactiq-matrix-themes') {
             syncTheme();
         }
     });
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let palettePath = localStorage.getItem('jdroid-x-designer-path');
 
         if (!palettePath) {
-            palettePath = '../jWebTheme/jWebThemePalette.html';
+            palettePath = '../jWebTheme/index.html';
             const depth = (window.location.pathname.split('Jungle Safari/')[1] || '').split('/').length - 1;
             if (depth > 0) {
                 palettePath = '../'.repeat(depth + 1) + 'jWebTheme/jWebThemePalette.html';

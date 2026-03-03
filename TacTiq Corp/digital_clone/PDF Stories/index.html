@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TacTiq Experiences | Digital Credentials Clone</title>
+    <!-- Enterprise Core Assets (Relative Paths for Portability) -->
+    <link rel="stylesheet" href="../../core/css/main.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <button id="menu-toggle" title="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar">
+            <div class="logo-box">
+                <img src="pages/logo.png" alt="TacTiq" style="width: 100%;">
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <!-- Populated via app.js -->
+            </div>
+            <div class="timeline-container">
+                <div id="year-filter">
+                    <!-- Populated via app.js -->
+                </div>
+            </div>
+            <div class="sidebar-footer">
+                © 2026 TACTIQ • DIGITAL CLONE
+            </div>
+        </aside>
+
+        <!-- Main Viewer Content -->
+        <main>
+            <header class="slim-header">
+                <div class="header-nav">
+                    <button class="btn-slim" id="prev-section-btn" title="Previous Section">«</button>
+                    <div class="header-title" id="header-title">TacTiq Credentials</div>
+                    <button class="btn-slim" id="next-section-btn" title="Next Section">»</button>
+                </div>
+                <button class="btn-slim" id="fs-btn">FULLSCREEN</button>
+            </header>
+
+            <div id="error-log"></div>
+
+            <div class="viewer-container" id="viewer-container">
+                <div id="slide-viewport">
+                    <img id="slide-image" src="" alt="PDF Page">
+                    <!-- Overlay Design for final page -->
+                    <div id="last-page-overlay">
+                        <div class="overlay-grid">
+                            <!-- Scalable Vector Graphic Logos -->
+                            <img src="logo/logo_25.png" alt="Logo">
+                            <img src="logo/logo_3.png" alt="Logo">
+                            <img src="logo/logo_8.png" alt="Logo">
+                            <img src="logo/logo_6.png" alt="Logo">
+                            <img src="logo/logo_17.png" alt="Logo">
+                            <img src="logo/logo_19.png" alt="Logo">
+                            <img src="logo/logo_10.png" alt="Logo">
+                            <img src="logo/logo_18.png" alt="Logo">
+                            <img src="logo/logo_20.png" alt="Logo">
+                            <img src="logo/logo_16.png" class="logo-span-3" alt="Logo Profile">
+                        </div>
+                    </div>
+                    <div id="interaction-layer" class="interaction-layer"></div>
+                </div>
+            </div>
+
+            <!-- Strategy Grid Overlay -->
+            <div id="strategy-grid-overlay">
+                <div class="hero-intro">
+                    <div class="hero-img-box">
+                        <img id="hero-intro-image" src="" class="full-obj-fit" alt="Introduction Story Hero"
+                            title="Introduction Story Hero">
+                    </div>
+                </div>
+                <div class="grid-wrapper">
+                    <div id="grid-content">
+                        <!-- Populated via app.js -->
+                    </div>
+                </div>
+            </div>
+
+            <footer class="slim-footer">
+                <button class="btn-slim" id="prev-btn">PREVIOUS</button>
+                <div class="page-info" id="page-info">0 / 0</div>
+                <div id="video-playing-now">▶ VIDEO DETECTED</div>
+                <button class="btn-slim" id="next-btn">NEXT</button>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Central & Project Specific Scripts -->
+    <script src="../../core/js/ThemeManager.js"></script>
+    <script src="js/metadata.js"></script>
+    <script src="js/app.js"></script>
+
+    <div class="demo-disclaimer">
+        Concept Demo Presentation Only | © 2026 TacTiq Corp | All respective logos & content are property of their
+        owners
+    </div>
+</body>
+
+</html>

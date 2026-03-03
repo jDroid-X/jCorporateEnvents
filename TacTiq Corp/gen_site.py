@@ -1,8 +1,9 @@
 import os
 
-content_path = "extracted_content/content.txt"
-images_dir = "extracted_content/images"
-output_html = "index.html"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+content_path = os.path.join(script_dir, "extracted_content", "content.txt")
+images_dir = os.path.join(script_dir, "extracted_content", "images")
+output_html = os.path.join(script_dir, "index.html")
 
 with open(content_path, "r", encoding="utf-8") as f:
     raw_content = f.read()
@@ -69,20 +70,112 @@ html_template = """
             opacity: 1;
             pointer-events: auto;
         }}
+        /* Dropdown Styling */
+        .dropdown {{
+            position: relative;
+            display: inline-block;
+        }}
+        .dropdown-content {{
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+            z-index: 1002;
+            border-radius: 8px;
+            overflow: hidden;
+            top: 100%;
+        }}
+        .dropdown-content a {{
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.85rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s;
+        }}
+        .dropdown-content a:hover {{ background-color: #f9f9f9; color: var(--accent); }}
+        .dropdown:hover .dropdown-content {{ display: block; }}
+        .dropbtn {{ cursor: pointer; }}
+
+        /* Hamburger Menu */
+        .menu-toggle {{
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1003;
+        }}
+        .menu-toggle span {{
+            width: 25px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: 0.3s;
+        }}
+
+        @media (max-width: 768px) {{
+            .menu-toggle {{ display: flex; }}
+            .nav-links {{
+                display: none; /* Hidden by default on mobile */
+                position: fixed;
+                top: 0;
+                right: 0;
+                height: 100vh;
+                width: 250px;
+                background: #fff;
+                flex-direction: column !important;
+                padding: 100px 20px !important;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+                z-index: 1002;
+                gap: 20px !important;
+                transition: transform 0.3s ease-in-out;
+            }}
+            .nav-links.active {{
+                display: flex !important;
+            }}
+            .dropdown-content {{
+                position: static;
+                box-shadow: none;
+                padding-left: 20px;
+                border: none;
+            }}
+            .dropdown:hover .dropdown-content {{ display: block; }}
+        }}
     </style>
 </head>
-<body>
+<body data-theme-init="default">
+    <script src="core/js/ThemeManager.js"></script>
     <header>
-        <div class="container mobile-nav" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="container"
+            style="display: flex; justify-content: space-between; align-items: center; padding: 10px 40px;">
             <a href="#" class="logo">
-                <img src="logo/logo_5.png" alt="TacTiq" style="height: 50px; width: auto; object-fit: contain;">
+                <img src="logo/logo_5.png" alt="TacTiq" style="height: 48px; width: auto; object-fit: contain;">
             </a>
-            <ul class="nav-links">
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="nav-list" style="display: flex; list-style: none; gap: 30px; align-items: center;">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#expertise">Services</a></li>
                 <li><a href="#snapshots">Credentials</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Stories ▾</a>
+                    <div class="dropdown-content">
+                        <a href="digital_clone/TacTiq Story1/index.html">TacTiq Story 1</a>
+                        <a href="digital_clone/TacTiq Story2/index.html">TacTiq Story 2</a>
+                        <a href="digital_clone/TacTiq Story3/index.html">TacTiq Story 3</a>
+                        <a href="digital_clone/TacTiq Story4/index.html">TacTiq Story 4</a>
+                        <a href="digital_clone/TacTiq Story5/vogue_fashion/index.html">TacTiq Story 5</a>
+                        <a href="digital_clone/PDF Stories/index.html">PDF Stories</a>
+                    </div>
+                </li>
                 <li><a href="#contact">Contact</a></li>
+                <li id="theme-menu-mount"></li>
             </ul>
         </div>
     </header>
@@ -198,6 +291,137 @@ html_template = """
                 btt.classList.remove('visible');
             }}
         }});
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        if (menuToggle) {{
+            menuToggle.addEventListener('click', () => {{
+                navList.classList.toggle('active');
+                menuToggle.classList.toggle('open');
+            }});
+        }}
+        // Close menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {{
+            link.addEventListener('click', () => {{
+                if (navList.classList.contains('active')) {{
+                    navList.classList.remove('active');
+                }}
+            }});
+        }});
+
+        // Theme Manager Integration
+        if (window.ThemeManager) {{
+            window.ThemeManager.initSync();
+            
+            // Populate Theme Menu
+            const mount = document.getElementById('theme-menu-mount');
+            if (mount) {{
+                mount.innerHTML = `
+                    <div class="dropdown">
+                        <a href="javascript:void(0)" class="dropbtn">Palette ▾</a>
+                        <div class="dropdown-content" id="landing-theme-list" style="right: 0;">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                `;
+                
+                function renderLandingThemes() {{
+                    const list = document.getElementById('landing-theme-list');
+                    if (!list) return; // Added check for list existence
+                    list.innerHTML = '';
+                    const savedThemes = JSON.parse(localStorage.getItem('tactiq-matrix-themes') || '[]');
+                    const savedElements = JSON.parse(localStorage.getItem('tactiq-matrix-elements') || '[]');
+                    const currentName = localStorage.getItem('tactiq-theme-name');
+
+                    function addLandingRow(key, name, colors) {{
+                        const a = document.createElement('a');
+                        a.href = "javascript:void(0)";
+                        const isActive = (name === currentName || (!currentName && key === 'default'));
+                        if (isActive) a.style.color = "var(--accent)";
+                        a.textContent = name;
+                        a.onclick = (e) => {{
+                            e.stopPropagation();
+                            if (window.ThemeManager) window.ThemeManager.setTheme(key, name, colors);
+                            renderLandingThemes();
+                        }};
+                        list.appendChild(a);
+                    }}
+
+                    addLandingRow('default', 'Default Theme', null);
+
+                    const activeCustoms = savedThemes.filter(t => t.active && t.name !== 'Default Theme');
+                    activeCustoms.forEach(t => {{
+                        const themeIdx = savedThemes.findIndex(st => st.name === t.name);
+                        const colors = savedElements.map(el => el.colors[themeIdx]);
+                        addLandingRow('custom', t.name, colors);
+                    }});
+                    
+                    // Designer Link
+                    const divider = document.createElement('div');
+                    divider.style.borderTop = "1px solid #f0f0f0";
+                    divider.style.marginTop = "5px";
+                    list.appendChild(divider);
+
+                    const designerLink = document.createElement('a');
+                    designerLink.href = "jWebTheme/index.html";
+                    designerLink.target = "_blank";
+                    designerLink.innerHTML = "<strong>Designer</strong>";
+                    designerLink.style.textAlign = "center"; // Added this line
+                    list.appendChild(designerLink);
+                }}
+                
+                renderLandingThemes();
+                window.onfocus = () => renderLandingThemes();
+
+                // Dropdown Toggles (Touch Friendly)
+                function setupDropdown(btnClass, contentClass) {{
+                    const container = document.querySelector(btnClass).parentElement;
+                    const btn = container.querySelector('.dropbtn');
+                    const content = container.querySelector('.dropdown-content');
+                    
+                    if (btn && content) {{
+                        btn.onclick = (e) => {{
+                            e.stopPropagation();
+                            const isVisible = content.style.display === 'block';
+                            // Close ALL other dropdowns first
+                            document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+                            content.style.display = isVisible ? 'none' : 'block';
+                        }};
+                    }}
+                }}
+
+                setupDropdown('.dropdown #landing-theme-list', '.dropdown-content'); // Palette
+                setupDropdown('.dropdown a[href="javascript:void(0)"]', '.dropdown-content'); // Stories (Generic)
+
+                // Refined for individual triggers
+                const storiesLink = document.querySelector('.nav-links .dropdown .dropbtn');
+                const themeLink = mount.querySelector('.dropbtn');
+                
+                if (storiesLink) {{
+                    storiesLink.onclick = (e) => {{
+                        e.stopPropagation();
+                        const content = storiesLink.nextElementSibling;
+                        const isVisible = content.style.display === 'block';
+                        if (themeLink) themeLink.nextElementSibling.style.display = 'none';
+                        content.style.display = isVisible ? 'none' : 'block';
+                    }};
+                }}
+                if (themeLink) {{
+                    themeLink.onclick = (e) => {{
+                        e.stopPropagation();
+                        const content = themeLink.nextElementSibling;
+                        const isVisible = content.style.display === 'block';
+                        if (storiesLink) storiesLink.nextElementSibling.style.display = 'none';
+                        content.style.display = isVisible ? 'none' : 'block';
+                    }};
+                }}
+
+                document.addEventListener('click', () => {{
+                    document.querySelectorAll('.dropdown-content').forEach(d => d.style.display = 'none');
+                }});
+            }}
+        }}
     </script>
 </body>
 </html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jdroid-X Theme Palette - Universal Atmosphere Synchronization Engine.">
+    <meta name="author" content="jDroid-X AI World">
+    <meta name="theme-color" content="#FF9933">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    <title>Jdroid-X Theme Palette | Design System Architect</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="pro-bg-effects" aria-hidden="true">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+    </div>
+
+    <header class="top-nav">
+        <div class="brand-cluster">
+            <img src="assets/images/logo.png" alt="jDroid-X Logo" class="logo-jdroidx">
+        </div>
+
+        <div class="sync-cluster">
+            <span class="label-sync">Atmosphere Sync:</span>
+            <select id="theme-selector" class="theme-select" title="Select designer theme"
+                onchange="JdroidX.Actions.applyThemeToDesigner(this.value)">
+                <option value="-1">Base Designer Theme</option>
+            </select>
+        </div>
+
+        <div class="action-cluster">
+            <div class="branding-row">
+                <h1>Jdroid-X Theme Palette</h1>
+                <p class="protocol-badge">Atmospheric Designer</p>
+                <div id="caller-context" style="font-size: 0.6rem; color: #666; margin-top: 5px; opacity: 0.8;">
+                    Standalone Mode</div>
+            </div>
+
+            <div class="action-grid">
+                <button class="btn-action btn-premium" onclick="JdroidX.Actions.openThemeDiscovery()">+
+                    Discover</button>
+                <button class="btn-action btn-ui-layer" onclick="JdroidX.Actions.addNewElement()">+ UI Layer</button>
+                <button class="btn-action btn-sync-up" onclick="JdroidX.Actions.syncToWebsite()">↑ Sync Web</button>
+                <button class="btn-action btn-sync-down" onclick="JdroidX.Actions.syncToPalette()">↓ Sync
+                    Palette</button>
+                <div class="vertical-divider"></div>
+                <button class="btn-action btn-reset" onclick="JdroidX.Actions.resetData()">Reset</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-body">
+        <aside class="side-panel">
+            <div class="theme-visibility-panel">
+                <div class="tvp-header">
+                    <span class="tvp-title">VISIBLE THEMES</span>
+                    <span id="tvp-count" class="tvp-count">0 / 0</span>
+                </div>
+                <div id="tvp-list" class="tvp-list">
+                    <!-- JS will populate checkboxes here -->
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div id="status-pill" class="status-pill" role="status">CHANGES SAVED</div>
+            <div class="table-container">
+                <table id="palette-table">
+                    <thead>
+                        <tr id="header-row">
+                            <th class="theme-name">UI Element Layer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <footer class="mini-footer">
+        <div class="mini-footer-info">
+            © 2026 jDroid-X • DESIGN SYSTEM MASTER • ENTERPRISE EDITION • V11.2
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay" onclick="JdroidX.Actions.closeModal()"></div>
+
+    <!-- Theme Discovery Modal -->
+    <div id="suggestion-modal">
+        <div class="modal-header">
+            <h2>Atmosphere Discovery</h2>
+            <div id="disc-theme-name">CYBER OASIS</div>
+        </div>
+
+        <div class="hue-selector-container">
+            <div id="semantic-hue-bar" class="hue-bar">
+                <div id="hue-selector-marker"></div>
+            </div>
+            <div class="hue-preview-cluster">
+                <div id="anchor-color-preview"></div>
+                <span id="anchor-color-name">HUE</span>
+            </div>
+        </div>
+
+        <div class="modal-scroll-area" style="flex-grow: 1; margin-bottom: 15px;">
+            <div class="suggestion-grid" style="margin-top: 0;">
+                <div class="grid-header-sticky">UI Layer</div>
+                <div class="grid-header-sticky">
+                    <input type="radio" name="theme-option" value="1" id="rad-1" checked> <label for="rad-1">Old
+                        School</label>
+                </div>
+                <div class="grid-header-sticky">
+                    <input type="radio" name="theme-option" value="2" id="rad-2"> <label for="rad-2">New School</label>
+                </div>
+                <div class="grid-header-sticky">
+                    <input type="radio" name="theme-option" value="3" id="rad-3"> <label for="rad-3">Ai GenZ</label>
+                </div>
+                <div id="dynamic-grid" style="display: contents;"></div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-action btn-premium" style="flex: 1;" onclick="JdroidX.Actions.applySuggestedTheme()">Add
+                Atmosphere</button>
+            <button class="btn-secondary" onclick="JdroidX.Actions.closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- Sync Modals -->
+    <div id="sync-options-modal" style="display: none;">
+        <!-- Sync options populated by JS -->
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="../core/js/ThemeManager.js"></script>
+    <script src="assets/js/jdroidx-core.js"></script>
+    <script src="assets/js/jdroidx-engine.js"></script>
+    <script src="assets/js/jdroidx-ui.js"></script>
+    <script src="assets/js/jdroidx-actions.js"></script>
+
+    <!-- Runtime Initialization -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.ThemeManager) window.ThemeManager.initSync();
+            JdroidX.Engine.init();
+            JdroidX.Actions.initDiscoveryInteractions();
+        });
+    </script>
+</body>
+
+</html>

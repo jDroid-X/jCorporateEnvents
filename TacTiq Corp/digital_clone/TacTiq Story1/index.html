@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TacTiq Experiences | Credentials Story</title>
+
+    <!-- Enterprise Stylesheet Organization -->
+    <link rel="stylesheet" href="src/css/main.css">
+    <link rel="stylesheet" href="src/css/style.css">
+
+    <!-- External Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Accessibility: Skip to Content (Enterprise Standard) -->
+    <a href="#viewer-container" class="skip-link">Skip to main content</a>
+
+    <button id="menu-toggle" aria-label="Toggle Navigation Menu">
+        <span></span><span></span><span></span>
+    </button>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" aria-label="Main Sidebar">
+            <div class="logo-box">
+                <img src="images/logo.png" alt="TacTiq Logo">
+            </div>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Section Navigation">
+                <!-- Sections populated via JS dynamic rendering -->
+            </nav>
+
+            <div class="timeline-container">
+                <div id="year-filter">
+                    <!-- Year filters & Action buttons populated via JS dynamic rendering -->
+                </div>
+            </div>
+
+            <div class="sidebar-copyright">
+                © 2026 TACTIQ • DIGITAL CLONE
+            </div>
+        </aside>
+
+        <!-- Main Viewer Content -->
+        <main id="main-content">
+            <header class="slim-header" role="banner">
+                <div class="header-nav">
+                    <button class="btn-slim" id="prev-section-btn" title="Previous Section"
+                        aria-label="Previous">«</button>
+                    <div class="header-title" id="header-title">TacTiq Credentials</div>
+                    <button class="btn-slim" id="next-section-btn" title="Next Section" aria-label="Next">»</button>
+                </div>
+
+                <div class="header-actions">
+                    <div id="header-stories-container"></div>
+                    <div id="header-theme-container"></div>
+                    <button class="btn btn-slim" id="fs-btn">FULLSCREEN</button>
+                </div>
+            </header>
+
+            <div class="viewer-container" id="viewer-container">
+                <div id="slide-viewport">
+                    <div id="slide-text-container" class="text-slide-container">
+                        <!-- Populated by JS dynamic rendering -->
+                        <div class="loader-placeholder">Loading Experience...</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy Grid Overlay -->
+            <div id="strategy-grid-overlay">
+                <div id="hero-row">
+                    <div id="hero-image-container">
+                        <h1 class="ocean-wave-text">WORK SHOWCASE</h1>
+                    </div>
+                </div>
+
+                <div class="strategy-grid-body">
+                    <div class="strategy-grid-inner">
+                        <div id="grid-content">
+                            <!-- Tiles populated via JS dynamic rendering -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="slim-footer" role="contentinfo">
+                <button class="btn btn-slim" id="prev-btn" aria-label="Previous Page">PREVIOUS</button>
+                <div class="page-info" id="page-info">0 / 0</div>
+                <div id="video-playing-now" style="display: none;">
+                    ▶ VIDEO DETECTED
+                </div>
+                <button class="btn btn-slim" id="next-btn" aria-label="Next Page">NEXT</button>
+            </footer>
+        </main>
+    </div>
+
+    <div class="demo-disclaimer">
+        Concept Demo Presentation Only | © 2026 TacTiq Corp | All respective logos & content are property of their
+        owners
+    </div>
+
+    <!-- Data Persistence & Logic (Enterprise Split) -->
+    <script src="src/js/data/metadata.js"></script>
+    <script src="../../core/js/ThemeManager.js"></script>
+    <script src="src/js/core/app.js"></script>
+</body>
+
+</html>

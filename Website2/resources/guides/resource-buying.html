@@ -8,23 +8,31 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../../css/desktop.css">
-    <link rel="stylesheet" href="../../css/tablet.css" media="(max-width: 992px)">
-    <link rel="stylesheet" href="../../css/mobile.css" media="(max-width: 768px)">
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="../../index.html" class="logo">CLC.</a>
+            <a href="../../index.html" class="logo"><img src="../../images/logo.png" alt="TacTiq" style="height:120px; max-height:120px; width:auto; vertical-align:middle;"></a>
             <div class="menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
             <div class="nav-links">
-                <a href="../../index.html">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="../../index.html" class="dropdown-trigger">Home <span class="chevron">▾</span></a>
+                    <div class="dropdown-menu" style="min-width: 200px; width: 220px; padding: 25px;">
+                        <ul class="dropdown-list">
+                            <li><a href="../../index.html">Overview</a></li>
+                            <li><a href="../../index.html#narrative">Vision</a></li>
+                            <li><a href="../../index.html#speakers">Speakers</a></li>
+                            <li><a href="../../index.html#agenda">Agenda</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="nav-item dropdown">
                     <a href="#" class="dropdown-trigger">Event Solutions <span class="chevron">▾</span></a>
                     <div class="dropdown-menu">
@@ -143,8 +151,9 @@
                         </div>
                     </div>
                 </div>
-                <a href="../../index.html#narrative">Vision</a>
+
                 <a href="../../index.html#register" class="btn btn-outline">Request Access</a>
+                <div id="tactiq-menus" style="display:flex; align-items:center; gap:10px; margin-left:15px; position:relative;"></div>
             </div>
         </div>
     </nav>
@@ -179,13 +188,12 @@
         </div>
     </footer>
 
-    <!-- Scrolling Disclaimer -->
-    <div class="disclaimer-bar">
-        <div class="disclaimer-text">
-            This is a demo website created for presentation purposes only. All content and images are sample references. No official association or commercial intent is implied. <span>||</span> This is a demo website created for presentation purposes only. All content and images are sample references. No official association or commercial intent is implied.
-        </div>
+    <!-- Demo Disclaimer -->
+    <div class="demo-disclaimer" style="position: fixed; bottom: 8px; left: 50%; transform: translateX(-50%); font-size: 0.7rem; opacity: 0.6; z-index: 3000; text-transform: uppercase; white-space: nowrap; color: var(--text-primary);">
+        Concept Demo Presentation Only | © 2026 TacTiq Corp | All respective logos & content are property of their owners
     </div>
 
+    <script src="../../js/ThemeManager.js"></script>
     <script src="../../js/script.js"></script>
 </body>
 </html>

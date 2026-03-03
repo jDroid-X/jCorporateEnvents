@@ -1,0 +1,78 @@
+/* 
+   File: mobile.css 
+   Media Query: max-width: 768px
+*/
+
+.navbar {
+    position: relative;
+    background: var(--bg-color);
+}
+
+/* .nav-links rule removed (was empty) */
+
+/* Simplified for MVP */
+.hero {
+    height: auto;
+    padding: 100px 0;
+}
+
+.tile-title {
+    font-size: 1.5rem;
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    /* Significantly reduced for mobile */
+    line-height: 1.2;
+}
+
+.section-title {
+    font-size: 1.8rem;
+}
+
+.lead-text {
+    font-size: 1rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+}
+
+/* Mobile Crash Fixes (Android 10 & below) */
+.solution-tile {
+    transform: none !important;
+    backface-visibility: visible !important;
+    transition: none !important;
+    /* Disable hover transitions on touch devices */
+}
+
+.register-card,
+.dropdown-menu {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+    /* Reduce shadow blur radius */
+}
+
+.tracks-grid {
+    grid-template-columns: 1fr;
+}
+
+.register-card {
+    padding: 30px;
+}
+
+.venue-bg {
+    background-attachment: scroll;
+}
+
+.venue {
+    height: auto;
+    min-height: 300px;
+}
+
+.solutions-overview-grid {
+    grid-template-columns: 1fr;
+}
+
+.solution-tile {
+    height: 200px;
+}

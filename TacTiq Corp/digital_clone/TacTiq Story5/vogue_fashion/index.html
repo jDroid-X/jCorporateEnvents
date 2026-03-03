@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TacTiq Experiences | Vogue Fashion Edition</title>
+    <!-- Fonts: High-End Magazine Pairing -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Montserrat:wght@300;400;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Styles: Modular Design System -->
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+
+<body class="vogue-edition">
+
+    <header id="site-header">
+        <div class="top-banner">
+            YOUR ALL-ACCESS PASS TO TACTIQ EXPERIENCES <a href="javascript:void(0)">EXCLUSIVE ACCESS</a>
+        </div>
+
+        <div class="header-main-row">
+            <div class="left">
+                <a href="javascript:void(0)" class="subscribe-btn">SUBSCRIBE</a>
+            </div>
+            <div class="center">
+                <a href="../../../index.html" class="logo-link">
+                    <img src="assets/logo.png" alt="TacTiq Logo">
+                </a>
+            </div>
+            <div class="right header-tools">
+                <span class="nav-tool icon">🔍</span>
+                <span class="nav-tool icon">👤</span>
+                <a href="javascript:void(0)" id="menu-trigger" class="nav-tool">MENU ☰</a>
+            </div>
+        </div>
+
+        <nav class="nav-row" aria-label="Primary Navigation">
+            <ul class="nav-links">
+                <li><a href="#page-2">About</a></li>
+                <li><a href="#page-3">Services</a></li>
+                <li><a href="#page-4">Gallery</a></li>
+                <li><a href="#page-5">Strategy</a></li>
+                <li><a href="#page-6">Expertise</a></li>
+                <li class="nav-item-has-dropdown">
+                    <a href="javascript:void(0)" id="stories-trigger">📖 STORIES ▾</a>
+                    <div class="stories-dropdown" id="stories-dropdown">
+                        <a href="../../TacTiq Story1/index.html">Credentials Hub</a>
+                        <a href="../../TacTiq Story2/index.html">Conclave Experience</a>
+                        <a href="../../TacTiq Story3/index.html">Innovation Drive</a>
+                        <a href="../../TacTiq Story4/index.html">Execution Masterclass</a>
+                        <a href="../../TacTiq Story5/vogue_fashion/index.html" class="active">Vogue Edition</a>
+                        <a href="../../PDF Stories/index.html">Archive Repository</a>
+                    </div>
+                </li>
+                <li class="nav-item-has-dropdown">
+                    <a href="javascript:void(0)" id="palette-trigger">🎨 <span id="active-theme-name">PALETTE</span>
+                        ▾</a>
+                    <div class="stories-dropdown" id="palette-dropdown">
+                        <div id="palette-list-container"></div>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Full Screen Menu Overlay -->
+        <div class="full-menu-overlay" id="full-menu" aria-hidden="true">
+            <div class="close-menu" id="close-menu" aria-label="Close Menu">×</div>
+            <div class="menu-content">
+                <div class="menu-sections">
+                    <div class="menu-column">
+                        <h3>Our Stories</h3>
+                        <a href="../../TacTiq Story1/index.html">The Roots</a>
+                        <a href="../../TacTiq Story2/index.html">The Conclave</a>
+                        <a href="../../TacTiq Story5/vogue_fashion/index.html">Vogue Edition</a>
+                        <a href="../../PDF Stories/index.html">Case Studies</a>
+                    </div>
+                    <div class="menu-column">
+                        <h3>Discover</h3>
+                        <a href="#page-2" class="menu-scroll">The Agency</a>
+                        <a href="#page-3" class="menu-scroll">Strategic Services</a>
+                        <a href="#page-4" class="menu-scroll">Portfolio Gallery</a>
+                        <a href="#page-5" class="menu-scroll">Strategic Strategy</a>
+                        <a href="#page-6" class="menu-scroll">Our Expertise</a>
+                    </div>
+                    <div class="menu-column">
+                        <h3>Innovation</h3>
+                        <a href="../../../jWebTheme/index.html" target="_blank">Theme Designer</a>
+                        <a href="javascript:void(0)" id="menu-palette-sync">Atmosphere Sync</a>
+                        <a href="../../../index.html">Global Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Dynamic Magazine Content Injected Here -->
+    </main>
+
+    <footer id="site-footer">
+        <div class="footer-container">
+            <p>© 2026 TACTIQ EXPERIENCES | VOGUE EDITORIAL EDITION</p>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="scripts/core/ThemeManager.js"></script>
+    <script src="scripts/content.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <!-- Professional SVG Filter for White Background Removal -->
+    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+        <filter id="remove-white">
+            <feColorMatrix type="matrix" values="1 0 0 0 0
+                                                 0 1 0 0 0
+                                                 0 0 1 0 0
+                                                 -1.1 -1.1 -1.1 1 3.2" />
+        </filter>
+    </svg>
+</body>
+
+</html>

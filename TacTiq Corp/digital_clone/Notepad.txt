@@ -1,1 +1,27 @@
 https://jdroid-x.github.io/jCorporateEnvents/TacTiq%20Corp/digital_clone/PDF%20Stories/index.html
+
+
+https://jdroid-x.github.io/Shan-Group-Hospitals/ShanGroupWeb/index.html
+
+
+R - Role
+O - Objective
+C - Context or details
+A - Final Output
+S - Style Theme
+
+From - PDF Stories do only these updates
+Sync - Stories Button Menu and its Functions
+Sync - Palette Icon Menu and its Functions
+Add - Copyright statements(same size and style)
+Sync - map and update PDF Stories Theme Structured  (Root and Custom). to all the Theme naming of Website TicToq* to change theme form palette, keeping the layout of  TicToq* as it is.
+
+In the website do the following 
+remove the redundant codes, 
+Re-structure the current in website professional standards.
+Website must work independently if the folder is moved to any location like desktop, any drive, Git etc. do not use Local Host method, run from folder only.
+do not use local host system settings run website from folder only
+Ensure all the pages, images, links, dynamics, are working perfectly after re-structuring.
+Check and confirm This website must work on multi device like Mobiles, Tablets, Laptops fluently.
+Generate report of dry run about pass and fail. if fail then reason and fix for it.
+Fix the fail items. Then generate the report with final status.

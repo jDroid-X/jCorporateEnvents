@@ -1,0 +1,12 @@
+{
+  "name": "tactiq-digital-clone-story1",
+  "version": "1.0.0",
+  "description": "Enterprise restructured digital clone for TacTiq Credentials",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo \"Open index.html in a browser to start.\" && exit 0"
+  },
+  "author": "TacTiq Corp",
+  "license": "UNLICENSED",
+  "private": true
+}
