@@ -136,6 +136,14 @@
 
 <body data-theme-init="default">
     <script src="core/js/ThemeManager.js"></script>
+    <script src="core/js/StoriesManager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.StoriesManager) {
+                window.StoriesManager.renderMenu(document.getElementById('stories-menu-mount'), "");
+            }
+        });
+    </script>
     <header>
         <div class="container"
             style="display: flex; justify-content: space-between; align-items: center; padding: 10px 40px;">
@@ -153,17 +161,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#expertise">Services</a></li>
                 <li><a href="#snapshots">Credentials</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Stories ▾</a>
-                    <div class="dropdown-content">
-                        <a href="digital_clone/TacTiq Story1/index.html">TacTiq Story 1</a>
-                        <a href="digital_clone/TacTiq Story2/index.html">TacTiq Story 2</a>
-                        <a href="digital_clone/TacTiq Story3/index.html">TacTiq Story 3</a>
-                        <a href="digital_clone/TacTiq Story4/index.html">TacTiq Story 4</a>
-                        <a href="digital_clone/TacTiq Story5/vogue_fashion/index.html">TacTiq Story 5</a>
-                        <a href="digital_clone/PDF Stories/index.html">PDF Stories</a>
-                    </div>
-                </li>
+                <li id="stories-menu-mount"></li>
                 <li><a href="#contact">Contact</a></li>
                 <li id="theme-menu-mount"></li>
             </ul>
