@@ -127,45 +127,10 @@ function buildUI() {
         if (yearBox) yearBox.appendChild(pill);
     });
 
-    // Stories Dropdown
-    const storiesBtn = document.createElement('button');
-    storiesBtn.style.cssText = "background: rgba(0,0,0,0.3); border: 1px solid var(--accent); color: var(--text); opacity: 0.6; padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: var(--transition); position: relative;";
-    storiesBtn.textContent = 'Stories';
-
-    const storiesPopup = document.createElement('div');
-    storiesPopup.id = 'stories-popup-menu';
-    storiesPopup.className = 'glass';
-    storiesPopup.style.cssText = "display:none; position:absolute; bottom:45px; left:0; width:190px; border:1px solid var(--accent); opacity:0.95; border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; animation: scrollUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);";
-
-    const stories = [
-        { name: 'TacTiq Story 1', url: '../TacTiq Story1/index.html' },
-        { name: 'TacTiq Story 2', url: '../TacTiq Story2/index.html' },
-        { name: 'TacTiq Story 3', url: '../TacTiq Story3/index.html' },
-        { name: 'TacTiq Story 4', url: '../TacTiq Story4/index.html' },
-        { name: 'TacTiq Story 5', url: '../TacTiq Story5/vogue_fashion/index.html' },
-        { name: 'PDF Stories', url: '../PDF Stories/index.html' }
-    ];
-
-    stories.forEach(story => {
-        const row = document.createElement('div');
-        row.className = 'theme-opt';
-        row.style.cssText = "padding:12px; font-size:0.75rem; color:var(--text); opacity:1; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;";
-        row.textContent = story.name;
-        row.onclick = (e) => {
-            e.stopPropagation();
-            window.location.href = story.url;
-        };
-        storiesPopup.appendChild(row);
-    });
-
-    storiesBtn.appendChild(storiesPopup);
-    storiesBtn.onclick = (e) => {
-        const isVisible = storiesPopup.style.display === 'block';
-        storiesPopup.style.display = isVisible ? 'none' : 'block';
-        e.stopPropagation();
-    };
-    document.addEventListener('click', () => storiesPopup.style.display = 'none');
-    if (yearBox) yearBox.appendChild(storiesBtn);
+    // Unified Stories Menu
+    if (window.StoriesManager && yearBox) {
+        window.StoriesManager.renderMenu(yearBox);
+    }
 
     // Theme Switcher
     const themeBtn = document.createElement('button');

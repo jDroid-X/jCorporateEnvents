@@ -108,6 +108,14 @@
     <!-- Data Persistence & Logic (Enterprise Split) -->
     <script src="src/js/data/metadata.js"></script>
     <script src="../../core/js/ThemeManager.js"></script>
+    <script src="../../core/js/StoriesManager.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.StoriesManager) {
+                window.StoriesManager.renderMenu(document.getElementById('header-stories-container'));
+            }
+        });
+    </script>
     <script src="src/js/core/app.js"></script>
 </body>
 

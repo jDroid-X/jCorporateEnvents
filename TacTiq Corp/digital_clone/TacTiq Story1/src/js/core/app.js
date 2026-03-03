@@ -82,54 +82,7 @@ function buildUI() {
         if (yearBox) yearBox.appendChild(pill);
     });
 
-    // Stories Menu (Header)
-    const headerStories = document.getElementById('header-stories-container');
-    if (headerStories) {
-        const storiesBtn = document.createElement('button');
-        storiesBtn.className = 'stories-btn';
-        storiesBtn.textContent = 'Stories';
-
-        const storiesPopup = document.createElement('div');
-        storiesPopup.id = 'stories-popup-menu';
-        storiesPopup.className = 'glass-popup';
-        storiesPopup.style.right = '0';
-        storiesPopup.style.top = '40px';
-        storiesPopup.style.width = '180px';
-
-        const storiesList = [
-            { name: 'TacTiq Story 1', url: '../TacTiq Story1/index.html' },
-            { name: 'TacTiq Story 2', url: '../TacTiq Story2/index.html' },
-            { name: 'TacTiq Story 3', url: '../TacTiq Story3/index.html' },
-            { name: 'TacTiq Story 4', url: '../TacTiq Story4/index.html' },
-            { name: 'TacTiq Story 5', url: '../TacTiq Story5/vogue_fashion/index.html' },
-            { name: 'PDF Stories', url: '../PDF Stories/index.html' }
-        ];
-
-        storiesList.forEach(story => {
-            const row = document.createElement('div');
-            row.className = 'theme-opt';
-            row.textContent = story.name;
-            row.onclick = (e) => {
-                e.stopPropagation();
-                window.location.href = story.url;
-            };
-            storiesPopup.appendChild(row);
-        });
-
-        storiesBtn.appendChild(storiesPopup);
-        storiesBtn.onclick = (e) => {
-            const isVisible = storiesPopup.style.display === 'block';
-
-            // Close other popups safely
-            const tm = document.getElementById('theme-popup-menu');
-            if (tm) tm.style.display = 'none';
-
-            storiesPopup.style.display = isVisible ? 'none' : 'block';
-            e.stopPropagation();
-        };
-        document.addEventListener('click', () => storiesPopup.style.display = 'none');
-        headerStories.appendChild(storiesBtn);
-    }
+    // Unified Stories Menu handled by StoriesManager in index.html
 
     // Theme Switcher (Header)
     const headerTheme = document.getElementById('header-theme-container');

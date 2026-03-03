@@ -98,44 +98,10 @@ document.addEventListener('DOMContentLoaded', () => {
         betterRoot = href.replace('index.html', '').split('#')[0];
     }
 
-    // 1. Stories Button Menu
-    const storiesBtn = document.createElement('button');
-    storiesBtn.style.cssText = "background: rgba(0,0,0,0.3); border: 1px solid var(--accent-gold); color: var(--text-primary); padding: 8px 14px; border-radius: 4px; font-size: 0.85rem; cursor: pointer; transition: all 0.3s ease; position: relative;";
-    storiesBtn.textContent = 'Stories';
-
-    const storiesPopup = document.createElement('div');
-    storiesPopup.className = 'glass';
-    storiesPopup.style.cssText = "display:none; position:absolute; top:45px; right:40px; width:190px; border:1px solid var(--accent-gold); border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; background: var(--bg-secondary); text-align:left;";
-
-    const stories = [
-        { name: 'STORY 01: TAC-TIQ', url: betterRoot + '../TacTiq Story1/index.html' },
-        { name: 'STORY 02: EVOLVE', url: betterRoot + 'index.html' },
-        { name: 'STORY 03: IMPACT', url: betterRoot + '../TacTiq Story3/index.html' },
-        { name: 'STORY 04: SCALE', url: betterRoot + '../TacTiq Story4/index.html' },
-        { name: 'STORY 05: VOGUE', url: betterRoot + '../TacTiq Story5/vogue_fashion/index.html' },
-        { name: 'STORY 06: PDF STORIES', url: betterRoot + '../PDF Stories/index.html' }
-    ];
-
-    stories.forEach(story => {
-        const row = document.createElement('div');
-        row.style.cssText = "padding:12px; font-size:0.75rem; color:var(--text-primary); border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;";
-        if (story.name === 'STORY 02: EVOLVE') row.style.color = 'var(--accent-gold)';
-        row.textContent = story.name;
-        row.onclick = (e) => {
-            e.stopPropagation();
-            window.location.href = story.url;
-        };
-        storiesPopup.appendChild(row);
-    });
-
-    storiesBtn.appendChild(storiesPopup);
-    storiesBtn.onclick = (e) => {
-        const isVisible = storiesPopup.style.display === 'block';
-        storiesPopup.style.display = isVisible ? 'none' : 'block';
-        if (themePopup) themePopup.style.display = 'none';
-        e.stopPropagation();
-    };
-    tactiqMenus.appendChild(storiesBtn);
+    // Unified Stories Menu
+    if (window.StoriesManager && tactiqMenus) {
+        window.StoriesManager.renderMenu(tactiqMenus);
+    }
 
     // 2. Palette Icon Menu (Theme Switcher)
     const themeBtn = document.getElementById('theme-switch-btn') || document.createElement('button');
