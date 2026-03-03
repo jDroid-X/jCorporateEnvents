@@ -91,27 +91,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const tactiqMenus = document.getElementById('tactiq-menus');
     if (!tactiqMenus) return;
 
-    let betterRoot = '';
-    const homeLink = document.querySelector('.nav-links a[href*="index.html"]');
-    if (homeLink) {
-        const href = homeLink.getAttribute('href');
-        betterRoot = href.replace('index.html', '').split('#')[0];
-    }
-
-    // Unified Stories Menu
-    if (window.StoriesManager && tactiqMenus) {
+    // 1. Unified Stories Menu
+    if (window.StoriesManager) {
         window.StoriesManager.renderMenu(tactiqMenus);
     }
 
     // 2. Palette Icon Menu (Theme Switcher)
-    const themeBtn = document.getElementById('theme-switch-btn') || document.createElement('button');
+    const themeBtn = document.createElement('button');
     themeBtn.id = 'theme-switch-btn';
-    themeBtn.style.cssText = "background: var(--bg-secondary); border: 1px solid var(--accent-gold); color: white; padding: 0; border-radius: 6px; font-size: 1.2rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; position: relative; width: 32px; height: 32px; flex-shrink: 0;";
     themeBtn.innerHTML = '🎨';
 
     const themePopup = document.createElement('div');
     themePopup.className = 'glass';
-    themePopup.style.cssText = "display:none; position:absolute; top:45px; right:0; width:180px; border:1px solid var(--accent-gold); border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; background: var(--bg-secondary); text-align:left;";
+    themePopup.style.display = 'none';
 
     function renderThemeMenu() {
         themePopup.innerHTML = '';
@@ -138,8 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function addMenuRow(key, name, colors, isCustom) {
             const row = document.createElement('div');
+            row.className = 'theme-menu-row';
             const isActive = name === currentName || (!currentName && key === 'default');
-            row.style.cssText = `padding:12px; font-size:0.8rem; color:${isActive ? 'var(--accent-gold)' : 'white'}; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; display:flex; justify-content:space-between; align-items:center;`;
+            if (isActive) row.style.color = 'var(--accent-gold)';
             row.innerHTML = `<span>${name}</span>`;
 
             row.onclick = (e) => {
@@ -151,9 +144,11 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             themePopup.appendChild(row);
         }
+
         // Designer Link
         const designerRow = document.createElement('div');
-        designerRow.style.cssText = "padding:12px; border-top:1px solid rgba(255,255,255,0.1); margin-top:5px; text-align:center; cursor:pointer;";
+        designerRow.className = 'theme-menu-row';
+        designerRow.style.cssText = "border-top:1px solid rgba(255,255,255,0.1); margin-top:5px; text-align:center;";
         designerRow.innerHTML = `<a href="../../jWebTheme/index.html" target="_blank" style="color:var(--accent-gold); font-weight:700; text-decoration:none; font-size:0.8rem;">Designer</a>`;
         designerRow.onclick = (e) => {
             e.stopPropagation();
@@ -166,31 +161,38 @@ document.addEventListener('DOMContentLoaded', () => {
     renderThemeMenu();
     themeBtn.appendChild(themePopup);
 
-    // Palette Interaction: Click to toggle (touch friendly)
+    // Unified Toggle Interaction
     themeBtn.onclick = (e) => {
         e.stopPropagation();
+        const storiesPopup = document.getElementById('stories-popup-menu');
+        if (storiesPopup) storiesPopup.style.display = 'none';
+
         const isVisible = themePopup.style.display === 'block';
-        storiesPopup.style.display = 'none'; // Close other
         themePopup.style.display = isVisible ? 'none' : 'block';
         if (!isVisible) renderThemeMenu();
     };
 
     themeBtn.onmouseenter = () => {
+        const storiesPopup = document.getElementById('stories-popup-menu');
+        if (storiesPopup) storiesPopup.style.display = 'none';
         renderThemeMenu();
         themePopup.style.display = 'block';
     };
+
     themeBtn.onmouseleave = () => {
         setTimeout(() => {
             if (!themePopup.matches(':hover')) themePopup.style.display = 'none';
         }, 300);
     };
+
     themePopup.onmouseleave = () => themePopup.style.display = 'none';
     themePopup.onclick = (e) => e.stopPropagation();
 
     if (!document.getElementById('theme-switch-btn')) tactiqMenus.appendChild(themeBtn);
 
     document.addEventListener('click', () => {
-        storiesPopup.style.display = 'none';
+        const storiesPopup = document.getElementById('stories-popup-menu');
+        if (storiesPopup) storiesPopup.style.display = 'none';
         themePopup.style.display = 'none';
     });
 
