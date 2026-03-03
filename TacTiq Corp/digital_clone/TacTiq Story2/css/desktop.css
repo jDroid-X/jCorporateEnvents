@@ -301,6 +301,20 @@ img {
     overflow: hidden;
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: block !important;
+    /* Always block, use opacity/transform for visibility */
+}
+
+/* Show popup classes */
+#stories-popup-menu.show,
+.glass.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .glass {

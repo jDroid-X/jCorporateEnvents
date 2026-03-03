@@ -165,35 +165,47 @@ document.addEventListener('DOMContentLoaded', () => {
     themeBtn.onclick = (e) => {
         e.stopPropagation();
         const storiesPopup = document.getElementById('stories-popup-menu');
-        if (storiesPopup) storiesPopup.style.display = 'none';
+        if (storiesPopup) storiesPopup.classList.remove('show');
 
-        const isVisible = themePopup.style.display === 'block';
-        themePopup.style.display = isVisible ? 'none' : 'block';
-        if (!isVisible) renderThemeMenu();
+        themePopup.classList.toggle('show');
+        if (themePopup.classList.contains('show')) renderThemeMenu();
     };
 
     themeBtn.onmouseenter = () => {
         const storiesPopup = document.getElementById('stories-popup-menu');
-        if (storiesPopup) storiesPopup.style.display = 'none';
+        if (storiesPopup) storiesPopup.classList.remove('show');
         renderThemeMenu();
-        themePopup.style.display = 'block';
+        themePopup.classList.add('show');
     };
 
     themeBtn.onmouseleave = () => {
         setTimeout(() => {
-            if (!themePopup.matches(':hover')) themePopup.style.display = 'none';
+            if (!themePopup.matches(':hover')) themePopup.classList.remove('show');
         }, 300);
     };
 
-    themePopup.onmouseleave = () => themePopup.style.display = 'none';
+    themePopup.onmouseleave = () => themePopup.classList.remove('show');
     themePopup.onclick = (e) => e.stopPropagation();
+
+    // Intercept Stories Popup Toggle for transitions
+    setTimeout(() => {
+        const storiesBtn = tactiqMenus.querySelector('.stories-manager-btn');
+        const storiesPopup = document.getElementById('stories-popup-menu');
+        if (storiesBtn && storiesPopup) {
+            storiesBtn.onclick = (e) => {
+                e.stopPropagation();
+                themePopup.classList.remove('show');
+                storiesPopup.classList.toggle('show');
+            };
+        }
+    }, 500);
 
     if (!document.getElementById('theme-switch-btn')) tactiqMenus.appendChild(themeBtn);
 
     document.addEventListener('click', () => {
         const storiesPopup = document.getElementById('stories-popup-menu');
-        if (storiesPopup) storiesPopup.style.display = 'none';
-        themePopup.style.display = 'none';
+        if (storiesPopup) storiesPopup.classList.remove('show');
+        themePopup.classList.remove('show');
     });
 
     if (window.ThemeManager) {

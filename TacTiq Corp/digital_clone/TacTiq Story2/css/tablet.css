@@ -152,3 +152,8 @@
     background: none;
     padding: 20px;
 }
+
+#tactiq-menus {
+    justify-content: center;
+    margin: 20px 0;
+}
