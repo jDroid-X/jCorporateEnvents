@@ -216,8 +216,10 @@ aside {
 #year-filter {
     display: flex;
     flex-wrap: wrap;
-    gap: 3px;
-    justify-content: center;
+    gap: 4px;
+    justify-content: flex-start;
+    /* Years stay left, actions push right */
+    align-items: center;
     margin-top: 8px;
 }
 
@@ -749,6 +751,11 @@ main {
 #theme-popup-menu {
     right: 5px;
     /* Tiny inset from border */
+}
+
+.stories-manager-btn {
+    margin-left: auto !important;
+    /* Push stories and theme buttons to the right border */
 }
 
 .stories-btn,

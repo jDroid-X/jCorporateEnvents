@@ -82,11 +82,6 @@ function buildUI() {
         if (yearBox) yearBox.appendChild(pill);
     });
 
-    // Unified Stories Menu
-    if (window.StoriesManager) {
-        window.StoriesManager.renderMenu(yearBox);
-    }
-
     // Theme Switcher (Sidebar Year Filter Area)
     const headerTheme = document.getElementById('year-filter');
     if (headerTheme) {
@@ -172,6 +167,11 @@ function buildUI() {
 
         menuPopup.onclick = (e) => e.stopPropagation();
         document.addEventListener('click', () => menuPopup.style.display = 'none');
+    }
+
+    // Unified Stories Menu
+    if (window.StoriesManager) {
+        window.StoriesManager.renderMenu(yearBox);
     }
 }
 
