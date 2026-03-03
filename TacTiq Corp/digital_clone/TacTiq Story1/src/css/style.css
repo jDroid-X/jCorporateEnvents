@@ -26,7 +26,7 @@ html {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
@@ -34,12 +34,16 @@ body {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    height: 100dvh;
+    /* Dynamic Viewport Height for mobile */
     overflow: hidden;
     background: var(--bg);
     color: var(--text);
     transition: background 0.5s ease, color 0.5s ease;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 *::-webkit-scrollbar {
@@ -137,12 +141,14 @@ aside {
 .slide-image-frame {
     position: relative;
     max-width: 100%;
-    max-height: 94vh;
+    max-height: 85vh;
+    /* Safe height for all viewports */
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
-    animation: tileFadeUp 0.8s ease forwards;
+    animation: tileFadeUp 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     display: flex;
     align-items: center;
     justify-content: center;
+    will-change: transform, opacity;
 }
 
 @keyframes tileFadeUp {
@@ -164,10 +170,12 @@ aside {
 .app-container {
     display: grid;
     grid-template-columns: var(--sidebar-w) 1fr;
-    height: 100vh;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     position: relative;
+    contain: layout size;
+    /* Performance optimization */
 }
 
 aside {
@@ -200,7 +208,7 @@ aside {
 }
 
 .timeline-container {
-    padding: 10px 25px;
+    padding: 8px 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     text-align: center;
 }
@@ -208,9 +216,9 @@ aside {
 #year-filter {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 3px;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .sidebar-copyright {
@@ -304,7 +312,7 @@ main {
     position: relative;
     /* overflow: hidden removed to allow popups */
     flex-shrink: 0;
-    z-index: 2001;
+    z-index: 2000;
 }
 
 .header-actions {
@@ -335,6 +343,9 @@ main {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    width: auto;
+    max-width: 60%;
+    justify-content: center;
 }
 
 #prev-section-btn,
@@ -437,7 +448,7 @@ main {
     background: var(--bg);
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     position: absolute;
-    z-index: 500;
+    z-index: 1500;
     top: var(--header-h);
     bottom: var(--footer-h);
     left: 0;
@@ -522,7 +533,7 @@ main {
     position: fixed;
     top: 15px;
     left: 15px;
-    z-index: 2000;
+    z-index: 5000;
     background: var(--side-bg);
     color: var(--accent);
     border: 1px solid var(--accent);
@@ -556,7 +567,7 @@ main {
         left: -320px;
         top: 0;
         bottom: 0;
-        z-index: 1500;
+        z-index: 4000;
         box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
     }
 
@@ -578,10 +589,31 @@ main {
     }
 
     .header-title {
-        margin-left: 55px;
         font-size: 0.7rem;
-        text-align: left;
-        min-width: auto;
+        text-align: center;
+        min-width: 0;
+        flex: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .header-nav {
+        display: flex;
+        width: 100%;
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+        margin: 0;
+        padding-left: 55px;
+        /* Clear space for burger menu */
+        gap: 10px;
+    }
+
+    .header-actions {
+        display: none;
+        /* Fullscreen not needed in mobile webapp view */
     }
 }
 
@@ -592,7 +624,7 @@ main {
     transform: translateX(-50%);
     font-size: 0.7rem;
     opacity: 0.6;
-    z-index: 3000;
+    z-index: 7000;
     text-transform: uppercase;
     white-space: nowrap;
     color: var(--text);
@@ -608,6 +640,15 @@ main {
 
     .app-container {
         grid-template-columns: 1fr;
+    }
+
+    .strategy-grid-body {
+        padding: 15px 15px 80px 15px;
+    }
+
+    #grid-content {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 12px;
     }
 }
 
@@ -691,9 +732,23 @@ main {
     opacity: 0.95;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    z-index: 3000;
+    z-index: 6000;
     overflow: hidden;
-    animation: scrollDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: scrollUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Standardized Positioning: Bottom-Up, Right-Aligned */
+    bottom: 45px;
+    right: 0;
+    left: auto;
+    top: auto;
+    width: 165px;
+    text-align: left;
+}
+
+#stories-popup-menu,
+#theme-popup-menu {
+    right: 5px;
+    /* Tiny inset from border */
 }
 
 .stories-btn,
@@ -701,27 +756,27 @@ main {
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid var(--accent);
     color: var(--text);
-    padding: 8px 14px;
+    padding: 5px 10px;
     border-radius: 4px;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     cursor: pointer;
     transition: var(--transition);
     position: relative;
 }
 
 .theme-switch-btn {
-    width: 38px;
-    height: 38px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
-    margin-left: 8px;
+    font-size: 1rem;
+    margin-left: 5px;
 }
 
 .theme-opt {
-    padding: 12px;
-    font-size: 0.75rem;
+    padding: 8px 12px;
+    font-size: 0.7rem;
     color: var(--text);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     cursor: pointer;
@@ -766,20 +821,36 @@ main {
 
 @media (max-width: 600px) {
     .ocean-wave-text {
-        font-size: 2.2rem;
+        font-size: 1.8rem;
+        line-height: 1.1;
     }
 
     .nav-item {
-        padding: 12px 15px;
-        font-size: 0.8rem;
+        padding: 14px 20px;
+        font-size: 0.85rem;
     }
 
     .header-title {
         font-size: 0.65rem;
-        margin-left: 45px;
+        margin-left: 0;
+        text-align: center;
+        flex: 1;
     }
 
     .slim-footer {
-        padding: 0 10px;
+        padding: 0 8px;
+        gap: 4px;
+    }
+
+    .slim-footer .btn-slim {
+        padding: 8px 10px;
+        font-size: 0.65rem;
+        min-width: 70px;
+    }
+
+    .page-info {
+        font-size: 0.65rem;
+        text-align: center;
+        white-space: nowrap;
     }
 }

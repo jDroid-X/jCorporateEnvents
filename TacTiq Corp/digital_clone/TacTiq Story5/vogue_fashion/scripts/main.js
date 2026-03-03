@@ -253,41 +253,52 @@ document.addEventListener('DOMContentLoaded', () => {
         window.ThemeManager.initSync();
     }
 
-    // Global Internal Link Handler (Smooth Scroll)
+    // Global Navigation & Overlay Handler
     document.addEventListener('click', (e) => {
         const link = e.target.closest('a');
         if (!link) return;
 
         const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
+        if (!href || href === 'javascript:void(0)') return;
+
+        // 1. Internal Anchors (#)
+        if (href.startsWith('#')) {
             const targetId = href.substring(1);
             if (targetId === '') {
                 e.preventDefault();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                return;
+            } else {
+                const targetEl = document.getElementById(targetId);
+                if (targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
             }
-            const targetEl = document.getElementById(targetId);
-            if (targetEl) {
-                e.preventDefault();
-                // Close overlays if open
-                if (fullMenu) fullMenu.classList.remove('active');
-                if (paletteDropdown) paletteDropdown.classList.remove('active');
-                if (storiesDropdown) storiesDropdown.classList.remove('active');
-                document.body.style.overflow = 'auto';
-
-                targetEl.scrollIntoView({ behavior: 'smooth' });
-            }
+            // Close any open overlays for anchors
+            closeAllOverlays();
+        }
+        // 2. External / Other Stories (../../)
+        else {
+            // Ensure overlays close before navigating to other pages
+            // This prevents the menu from 'staying open' if the browser takes time to load
+            closeAllOverlays();
+            // Normal navigation follows (no preventDefault)
         }
     });
 
-    // Logo Scroll to Top (When clicked while on current story)
+    function closeAllOverlays() {
+        if (fullMenu) fullMenu.classList.remove('active');
+        if (paletteDropdown) paletteDropdown.classList.remove('active');
+        if (storiesDropdown) storiesDropdown.classList.remove('active');
+        document.body.style.overflow = 'auto'; // Restore scroll
+    }
+
+    // Logo Scroll Logic
     const logoLink = document.querySelector('.logo-link');
     if (logoLink) {
         logoLink.addEventListener('click', (e) => {
-            if (window.location.pathname.includes('vogue_fashion/index.html')) {
-                // If we want to stay on page but scroll up
-                // (Currently business logic says logo goes to global home, so we'll let it be unless explicitly requested)
-            }
+            // If already on the main landing or a specific page, we let the href="../../../index.html" handle it
+            closeAllOverlays();
         });
     }
 

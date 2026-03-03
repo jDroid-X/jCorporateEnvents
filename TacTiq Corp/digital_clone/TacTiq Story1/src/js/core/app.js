@@ -82,10 +82,13 @@ function buildUI() {
         if (yearBox) yearBox.appendChild(pill);
     });
 
-    // Unified Stories Menu handled by StoriesManager in index.html
+    // Unified Stories Menu
+    if (window.StoriesManager) {
+        window.StoriesManager.renderMenu(yearBox);
+    }
 
-    // Theme Switcher (Header)
-    const headerTheme = document.getElementById('header-theme-container');
+    // Theme Switcher (Sidebar Year Filter Area)
+    const headerTheme = document.getElementById('year-filter');
     if (headerTheme) {
         const themeBtn = document.createElement('button');
         themeBtn.id = 'theme-switch-btn';
@@ -95,9 +98,7 @@ function buildUI() {
         const menuPopup = document.createElement('div');
         menuPopup.id = 'theme-popup-menu';
         menuPopup.className = 'glass-popup';
-        menuPopup.style.right = '0';
-        menuPopup.style.top = '40px';
-        menuPopup.style.width = '180px';
+        // Positioned via CSS .glass-popup / #theme-popup-menu classes
 
         function renderThemeMenu() {
             menuPopup.innerHTML = '';
@@ -109,7 +110,7 @@ function buildUI() {
             function addMenuRow(key, name, colors, isCustom) {
                 const row = document.createElement('div');
                 const isActive = name === currentName || (!currentName && key === 'default');
-                row.style.cssText = `padding:12px; font-size:0.8rem; color:${isActive ? 'var(--text-gold)' : 'white'}; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; display:flex; justify-content:space-between; align-items:center;`;
+                row.style.cssText = `padding:8px 12px; font-size:0.75rem; color:${isActive ? 'var(--text-gold)' : 'white'}; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; display:flex; justify-content:space-between; align-items:center;`;
                 row.innerHTML = `<span>${name}</span>`;
 
                 row.onclick = (e) => {
@@ -136,8 +137,8 @@ function buildUI() {
 
             // Designer Link
             const designerRow = document.createElement('div');
-            designerRow.style.cssText = "padding:12px; border-top:1px solid rgba(255,255,255,0.1); margin-top:5px; text-align:center; cursor:pointer;";
-            designerRow.innerHTML = `<a href="src/theme/jWebThemePalette.html" target="_blank" style="color:var(--text-gold); font-weight:700; text-decoration:none; font-size:0.8rem;">Designer</a>`;
+            designerRow.style.cssText = "padding:8px; border-top:1px solid rgba(255,255,255,0.1); margin-top:3px; text-align:center; cursor:pointer;";
+            designerRow.innerHTML = `<a href="src/theme/jWebThemePalette.html" target="_blank" style="color:var(--text-gold); font-weight:700; text-decoration:none; font-size:0.75rem;">Designer</a>`;
             designerRow.onclick = (e) => {
                 e.stopPropagation();
                 window.open('src/theme/jWebThemePalette.html', '_blank');
@@ -147,7 +148,11 @@ function buildUI() {
         }
 
         renderThemeMenu();
-        themeBtn.appendChild(menuPopup);
+        const timelineCont = document.querySelector('.timeline-container');
+        if (timelineCont) {
+            timelineCont.style.position = 'relative';
+            timelineCont.appendChild(menuPopup);
+        }
         headerTheme.appendChild(themeBtn);
 
         window.onfocus = () => renderThemeMenu();
@@ -228,6 +233,7 @@ function loadSlide(index) {
 
     const textContainer = document.getElementById('slide-text-container');
     if (textContainer) {
+        textContainer.scrollTop = 0;
         if (viewport) {
             viewport.style.backgroundImage = "url('images/page_1%20background.png')";
             viewport.style.backgroundSize = "cover";

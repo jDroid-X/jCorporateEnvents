@@ -117,22 +117,31 @@ document.addEventListener('DOMContentLoaded', () => {
         storiesBtn.textContent = 'Stories';
 
         const storiesPopup = document.createElement('div');
-        storiesPopup.style.cssText = "display:none; position:absolute; top:45px; right:0; width:190px; border:1px solid var(--text-gold); border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; background: #111; text-align:left; backdrop-filter: blur(10px);";
+        storiesPopup.style.cssText = "display:none; position:absolute; bottom:45px; top:auto; right:0; width:190px; border:1px solid var(--text-gold); border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; background: #111; text-align:left; backdrop-filter: blur(10px);";
 
-        // Detect path prefix for stories (portability)
-        const isSubPage = window.location.pathname.includes('/our-work/') || window.location.pathname.includes('/media-trailer/') || window.location.pathname.includes('/pre-lockdown/');
-        const isOverview = window.location.pathname.includes('our-work.html');
-        let storyRel = '../';
-        if (isSubPage) storyRel = '../../../';
-        else if (isOverview) storyRel = '../../';
+        // UNIFIED PATH STRATEGY (Sync with StoriesManager)
+        const getBasePath = () => {
+            const isWeb = window.location.hostname.includes('github.io');
+            if (isWeb) return 'https://jdroid-x.github.io/jCorporateEnvents/TacTiq%20Corp/digital_clone/';
+
+            const path = decodeURIComponent(window.location.pathname);
+            const parts = path.split(/[\\\/]/).filter(p => p);
+            const dcIndex = parts.lastIndexOf('digital_clone');
+            if (dcIndex === -1) return 'digital_clone/';
+            const segmentsAfterDC = parts.length - dcIndex - 1;
+            const lastIsFile = parts.length > 0 && parts[parts.length - 1].includes('.');
+            const folderDepth = lastIsFile ? segmentsAfterDC - 1 : segmentsAfterDC;
+            return folderDepth <= 0 ? '' : '../'.repeat(folderDepth);
+        };
+        const base = getBasePath();
 
         const stories = [
-            { name: 'STORY 01', url: storyRel + 'TacTiq Story1/index.html' },
-            { name: 'STORY 02', url: storyRel + 'TacTiq Story2/index.html' },
-            { name: 'STORY 03', url: (isSubPage ? '../../' : isOverview ? '../' : '') + 'index.html' },
-            { name: 'STORY 04', url: storyRel + 'TacTiq Story4/index.html' },
-            { name: 'STORY 05', url: storyRel + 'TacTiq Story5/vogue_fashion/index.html' },
-            { name: 'STORY 06', url: storyRel + 'PDF Stories/index.html' }
+            { name: 'TacTiq Story 1', url: base + 'TacTiq Story1/index.html' },
+            { name: 'TacTiq Story 2', url: base + 'TacTiq Story2/index.html' },
+            { name: 'TacTiq Story 3', url: base + 'TacTiq Story3/index.html' },
+            { name: 'TacTiq Story 4', url: base + 'TacTiq Story4/index.html' },
+            { name: 'TacTiq Story 5', url: base + 'TacTiq Story5/vogue_fashion/index.html' },
+            { name: 'PDF Stories', url: base + 'PDF Stories/index.html' }
         ];
 
         stories.forEach(story => {
@@ -160,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         themeBtn.innerHTML = '🎨';
 
         const themePopup = document.createElement('div');
-        themePopup.style.cssText = "display:none; position:absolute; top:45px; right:0; width:180px; border:1px solid var(--text-gold); border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; background: #111; text-align:left; backdrop-filter: blur(10px);";
+        themePopup.style.cssText = "display:none; position:absolute; bottom:45px; top:auto; right:0; width:180px; border:1px solid var(--text-gold); border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; background: #111; text-align:left; backdrop-filter: blur(10px);";
 
         function renderThemeMenu() {
             themePopup.innerHTML = '';

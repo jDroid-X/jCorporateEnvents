@@ -45,13 +45,12 @@ const StoriesManager = {
         const base = this.determinePathBase();
 
         const btn = document.createElement('button');
-        btn.className = 'stories-manager-btn';
-        btn.style.cssText = "background: rgba(0,0,0,0.3); border: 1px solid var(--accent, #d4af37); color: var(--text, white); padding: 8px 14px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; transition: all 0.3s ease; position: relative;";
+        btn.className = 'stories-manager-btn stories-btn'; // Use combined classes
         btn.textContent = 'Stories';
 
         const popup = document.createElement('div');
         popup.id = 'stories-popup-menu';
-        popup.style.cssText = "display:none; position:absolute; bottom:45px; top:auto; left:0; width:190px; border:1px solid var(--accent, #d4af37); border-radius:8px; box-shadow:0 10px 30px rgba(0,0,0,0.5); z-index:2000; overflow:hidden; background: var(--bg, #111); text-align:left; backdrop-filter: blur(10px);";
+        popup.className = 'glass-popup';
 
         const header = document.createElement('div');
         header.style.cssText = "padding: 10px 12px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent, #d4af37); opacity: 0.6; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 800;";
@@ -59,14 +58,12 @@ const StoriesManager = {
         popup.appendChild(header);
 
         if (mountPoint.id === 'year-filter') {
-            btn.style.marginLeft = '8px';
-            popup.style.left = 'auto';
-            popup.style.right = '0';
+            btn.style.marginLeft = '5px';
         }
 
         this.stories.forEach(s => {
             const row = document.createElement('div');
-            row.style.cssText = "padding:12px; font-size:0.75rem; color: #fff; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;";
+            row.style.cssText = "padding:8px 12px; font-size:0.7rem; color: #fff; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;";
             row.textContent = s.name;
             row.onclick = (e) => {
                 e.stopPropagation();
@@ -75,7 +72,15 @@ const StoriesManager = {
             popup.appendChild(row);
         });
 
-        btn.appendChild(popup);
+        // Anchor popup to the container instead of the button for better alignment
+        mountPoint.appendChild(btn);
+
+        const container = mountPoint.parentElement || mountPoint;
+        if (container) {
+            container.style.position = 'relative';
+            container.appendChild(popup);
+        }
+
         btn.onclick = (e) => {
             e.stopPropagation();
 

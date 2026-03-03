@@ -58,6 +58,7 @@ const StoriesManager = {
         header.textContent = 'Archives';
         popup.appendChild(header);
 
+        // Specifically for PDF Stories which has the yearBox as flex container
         if (mountPoint.id === 'year-filter') {
             btn.style.marginLeft = '8px';
             popup.style.left = 'auto';
@@ -79,6 +80,7 @@ const StoriesManager = {
         btn.onclick = (e) => {
             e.stopPropagation();
 
+            // Close other popups
             const themePopup = document.getElementById('theme-popup-menu');
             if (themePopup) themePopup.style.display = 'none';
 
