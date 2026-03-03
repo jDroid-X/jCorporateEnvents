@@ -225,6 +225,104 @@ img {
     white-space: nowrap;
 }
 
+/* Compact Navbar for Smaller Desktops */
+@media screen and (min-width: 993px) and (max-width: 1200px) {
+    .nav-links {
+        margin-left: 10px;
+    }
+
+    .nav-links a {
+        margin-left: 10px;
+        font-size: 0.75rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    #tactiq-menus {
+        gap: 5px;
+        margin-left: 5px;
+    }
+}
+
+/* Tactiq Unified Menus (Stories & Palette) */
+#tactiq-menus {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 15px;
+    position: relative;
+    z-index: 1001;
+}
+
+.stories-manager-btn,
+#theme-switch-btn {
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--accent-gold) !important;
+    color: var(--text-primary) !important;
+    padding: 8px 14px !important;
+    border-radius: 4px !important;
+    font-size: 0.8rem !important;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    white-space: nowrap;
+}
+
+#theme-switch-btn {
+    width: 32px;
+    padding: 0 !important;
+    font-size: 1rem !important;
+}
+
+.stories-manager-btn:hover,
+#theme-switch-btn:hover {
+    box-shadow: 0 0 10px var(--accent-gold);
+    transform: translateY(-1px);
+}
+
+#stories-popup-menu,
+.glass {
+    position: absolute !important;
+    top: 45px !important;
+    right: 0 !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 190px !important;
+    background: var(--bg-secondary) !important;
+    border: 1px solid var(--accent-gold) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6) !important;
+    z-index: 2000 !important;
+    overflow: hidden;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.glass {
+    width: 180px !important;
+}
+
+#stories-popup-menu div,
+.theme-menu-row {
+    padding: 12px;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#stories-popup-menu div:hover,
+.theme-menu-row:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--accent-gold);
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
