@@ -191,7 +191,8 @@ html_template = """<!DOCTYPE html>
         Concept Demo Presentation Only | © 2026 TacTiq Corp | All respective logos & content are property of their owners
     </div>
 
-    <script src="{root}../../core/js/ThemeManager.js"></script>
+    <script src="{root}../../../core/js/ThemeManager.js"></script>
+    <script src="{root}../../../core/js/StoriesManager.js"></script>
     <script src="{root}js/script.js"></script>
 </body>
 </html>

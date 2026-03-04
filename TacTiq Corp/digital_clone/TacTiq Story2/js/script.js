@@ -195,10 +195,28 @@ document.addEventListener('DOMContentLoaded', () => {
         const designerRow = document.createElement('div');
         designerRow.className = 'theme-menu-row';
         designerRow.style.cssText = "border-top:1px solid rgba(255,255,255,0.1); margin-top:5px; text-align:center;";
-        designerRow.innerHTML = `<a href="../../jWebTheme/index.html" target="_blank" style="color:var(--accent-gold); font-weight:700; text-decoration:none; font-size:0.8rem;">Designer</a>`;
+
+        // Depth-aware base calculation
+        const path = decodeURIComponent(window.location.pathname);
+        const parts = path.split(/[\\\/]/).filter(p => p);
+        const dcIndex = parts.lastIndexOf('digital_clone');
+        let designerBase = '../../jWebTheme/index.html'; // Default for root
+
+        if (dcIndex !== -1) {
+            const segmentsAfterDC = parts.length - dcIndex - 1;
+            const lastIsFile = parts.length > 0 && parts[parts.length - 1].includes('.');
+            const folderDepth = lastIsFile ? segmentsAfterDC - 1 : segmentsAfterDC;
+
+            // If depth > 0 (meaning we're inside a folder like event-solutions/), 
+            // go up that many levels PLUS the 2 levels needed from TacTiq Story2 root.
+            const totalUp = folderDepth + 2;
+            designerBase = '../'.repeat(totalUp) + 'jWebTheme/index.html';
+        }
+
+        designerRow.innerHTML = `<a href="${designerBase}" target="_blank" style="color:var(--accent-gold); font-weight:700; text-decoration:none; font-size:0.8rem;">Designer</a>`;
         designerRow.onclick = (e) => {
             e.stopPropagation();
-            window.open('../../jWebTheme/index.html', '_blank');
+            window.open(designerBase, '_blank');
             themePopup.style.display = 'none';
         };
         themePopup.appendChild(designerRow);
