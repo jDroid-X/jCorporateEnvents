@@ -112,7 +112,8 @@ document.addEventListener('DOMContentLoaded', () => {
             a.href = "javascript:void(0)";
             a.className = "theme-opt";
             const isActive = (name === currentName || (!currentName && key === 'default'));
-            a.style.cssText = `display: flex; justify-content: space-between; align-items: center; padding: 10px; font-size: 0.9rem; color: ${isActive ? 'var(--highlight-gold)' : 'var(--text-main)'}; border-bottom: 1px solid var(--border);`;
+            if (isActive) a.style.color = 'var(--accent)';
+
             a.innerHTML = `<span>${name}</span>`;
 
             if (isCustom) {
@@ -138,6 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.ThemeManager.setTheme(key, name, colors);
                     renderPaletteMenu();
                 }
+                if (paletteDropdown) paletteDropdown.classList.remove('active');
+                closeAllOverlays();
             };
             paletteListCont.appendChild(a);
         };
@@ -154,13 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Designer Link
         const designerRow = document.createElement('div');
-        designerRow.style.cssText = "padding:12px; border-top:1px solid rgba(0,0,0,0.1); margin-top:5px; text-align:center; cursor:pointer;";
-        designerRow.innerHTML = `<a href="../../../jWebTheme/index.html" target="_blank" style="color:#000; font-weight:700; text-decoration:none; font-size:0.8rem; display:block;">⚡ Open Designer</a>`;
+        designerRow.className = 'dropdown-designer-link';
+        designerRow.innerHTML = `<a href="../../../jWebTheme/index.html" target="_blank">Designer</a>`;
         designerRow.onclick = (e) => {
-            if (e.target.tagName !== 'A') {
-                window.open('../../../jWebTheme/index.html', '_blank');
-            }
+            e.stopPropagation();
+            window.open('../../../jWebTheme/index.html', '_blank');
             if (paletteDropdown) paletteDropdown.classList.remove('active');
+            closeAllOverlays();
         };
         paletteListCont.appendChild(designerRow);
     }
