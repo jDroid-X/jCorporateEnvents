@@ -61,65 +61,135 @@
 }
 
 /* Mobile Navigation (Tablet & Mobile overlap) */
+.navbar .container {
+    padding: 10px 20px;
+}
+
 .menu-toggle {
-    display: flex;
+    display: flex !important;
+    /* Ensure visibility */
+    margin-left: auto;
+    position: relative;
+    z-index: 2002;
+}
+
+.menu-toggle span {
+    background-color: var(--text-primary, #ffffff) !important;
 }
 
 .nav-links {
-    position: absolute;
-    top: 70px;
-    left: 0;
-    width: 100%;
-    background-color: var(--bg-secondary);
+    position: fixed;
+    top: 0;
+    right: 0;
+    /* Align to right side */
+    left: auto;
+    width: 40%;
+    /* Reduced BY 60% (as requested) */
+    min-width: 250px;
+    /* Safety for very small screens */
+    height: 100vh;
+    background-color: rgba(10, 10, 10, 0.6);
+    /* Transparent side menu */
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    border-bottom: 2px solid var(--border-color);
-    transform: translateY(-150%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 1000;
+    justify-content: flex-start;
+    /* Start from top */
+    align-items: flex-end;
+    /* Right align items */
+    padding: 80px 30px 40px;
+    margin: 0 !important;
+    gap: 8px;
+    /* More compact gap */
+    transform: translateX(101%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2000;
     overflow-y: auto;
-    max-height: 80vh;
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+    /* Sidebar shadow */
+}
+
+/* Stories and Palette menus must open upslide in the side-drawer */
+#tactiq-menus #stories-popup-menu,
+#tactiq-menus .glass {
+    top: auto !important;
+    bottom: 45px !important;
+    right: 0 !important;
+    left: auto !important;
+    width: auto !important;
+    min-width: 150px !important;
+    max-width: calc(100vw - 40px) !important;
+    transform: translateY(-10px) !important;
+}
+
+#tactiq-menus #stories-popup-menu.show,
+#tactiq-menus .glass.show {
+    transform: translateY(0) !important;
+}
+
+/* 90% Hiding / Ghost State */
+.nav-links.ghost {
+    transform: translateX(90%) !important;
+    opacity: 0.1;
+    pointer-events: auto;
+    /* Allow clicking to bring back */
+    filter: grayscale(1) blur(2px);
+}
+
+.nav-links.ghost:hover {
+    transform: translateX(0) !important;
+    opacity: 1;
+    filter: none;
 }
 
 .nav-links.active {
-    transform: translateY(0);
+    transform: translateX(0);
+}
+
+.nav-links a.logo {
+    display: block !important;
+    margin-bottom: 20px !important;
 }
 
 .nav-links a {
-    margin: 15px 0;
-    font-size: 1.1rem;
-    display: block;
-    /* Ensure hit area */
-    text-align: center;
+    margin: 2px 0 !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    width: 100%;
+    text-align: right;
+    padding-right: 15px;
+}
+
+.nav-links .btn-outline {
+    margin: 10px 15px 10px 0 !important;
+    padding: 8px 18px !important;
+    font-size: 0.8rem;
+    align-self: flex-end;
 }
 
 .nav-item.dropdown {
-    margin: 0;
     width: 100%;
-    text-align: center;
+    text-align: right;
 }
 
 .dropdown-trigger {
-    display: block;
-    padding: 15px 0;
-    cursor: pointer;
+    padding: 8px 0 !important;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
 }
 
-/* Transform Mega Menu into Accordion */
+/* Slimmer Mobile Accordions */
 .dropdown-menu {
     position: static;
-    width: 100%;
-    max-width: 100%;
-    transform: none;
-    opacity: 1;
-    visibility: visible;
-    box-shadow: none !important;
-    background-color: rgba(255, 255, 255, 0.02);
-    padding: 0;
     display: none;
-    /* Hidden by default, toggled via JS */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 0;
     border: none;
+    box-shadow: none !important;
 }
 
 .dropdown-menu.active {
@@ -127,33 +197,36 @@
 }
 
 .dropdown-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
+    display: block;
+    padding: 0;
 }
 
 .dropdown-col {
-    padding: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    text-align: left;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.05);
+    text-align: right;
 }
 
 .dropdown-header {
-    font-size: 1.1rem;
-    margin-bottom: 15px;
-    color: var(--accent-gold);
+    font-size: 0.7rem;
+    margin-bottom: 3px;
+    letter-spacing: 1px;
+    opacity: 0.4;
+    text-transform: uppercase;
 }
 
 .dropdown-list a {
-    padding: 8px 0;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 2px 0 !important;
+    opacity: 1;
 }
 
-.featured-col {
-    background: none;
-    padding: 20px;
-}
-
+/* Tactiq Menus: Right Aligned Layout */
 #tactiq-menus {
-    justify-content: center;
-    margin: 20px 0;
+    display: flex;
+    justify-content: flex-end;
+    /* Right align menus */
+    gap: 10px;
+    margin-top: 30px !important;
+    width: 100%;
 }

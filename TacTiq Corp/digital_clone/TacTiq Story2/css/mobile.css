@@ -4,8 +4,12 @@
 */
 
 .navbar {
-    position: relative;
+    position: fixed;
+    /* Keep fixed like desktop/tablet */
     background: var(--bg-color);
+    width: 100%;
+    top: 0;
+    left: 0;
 }
 
 /* .nav-links rule removed (was empty) */
