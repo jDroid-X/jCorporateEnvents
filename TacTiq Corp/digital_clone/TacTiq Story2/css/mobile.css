@@ -1,82 +1,306 @@
 /* 
    File: mobile.css 
    Media Query: max-width: 768px
+   Description: Premium Mobile Experience with High-End UI Features
 */
 
+:root {
+    --menu-bg: rgba(10, 10, 10, 0.95);
+    --menu-blur: 25px;
+    --menu-accent: var(--accent-gold);
+    --nav-height: 70px;
+}
+
+/* Navbar Fixes for Mobile */
 .navbar {
     position: fixed;
-    /* Keep fixed like desktop/tablet */
-    background: var(--bg-color);
-    width: 100%;
     top: 0;
     left: 0;
+    width: 100%;
+    height: var(--nav-height);
+    background: var(--bg-secondary) !important;
+    /* Solid dark background */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--accent-gold);
+    display: flex !important;
+    align-items: center !important;
+    z-index: 9999 !important;
+    /* Ensure it's on top */
+    overflow: visible !important;
 }
 
-/* .nav-links rule removed (was empty) */
+.navbar .container {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 15px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
 
-/* Simplified for MVP */
+.logo {
+    display: flex !important;
+    align-items: center !important;
+    flex: 0 1 auto !important;
+    max-width: 60% !important;
+    /* Cap logo to 60% of header */
+}
+
+.logo img {
+    height: 35px !important;
+    /* Even smaller for mobile */
+    max-width: 100% !important;
+    width: auto !important;
+    object-fit: contain !important;
+}
+
+.logo {
+    max-width: 50% !important;
+}
+
+.logo img {
+    height: 40px !important;
+    max-width: 100% !important;
+    width: auto !important;
+    object-fit: contain !important;
+}
+
+/* Mobile Side Drawer - The "Best Available UI" */
+.nav-links {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    width: 85vw !important;
+    max-width: 380px !important;
+    height: 100vh !important;
+    background: var(--menu-bg) !important;
+    backdrop-filter: blur(var(--menu-blur)) !important;
+    -webkit-backdrop-filter: blur(var(--menu-blur)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 100px 40px 40px !important;
+    gap: 15px !important;
+    transform: translateX(101%) !important;
+    transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1) !important;
+    z-index: 2050 !important;
+    overflow-y: auto !important;
+    border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: -20px 0 50px rgba(0, 0, 0, 0.8) !important;
+}
+
+.nav-links.active {
+    transform: translateX(0) !important;
+}
+
+/* Mobile backdrop */
+.menu-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease;
+    z-index: 2040;
+}
+
+.menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Navigation Items Styling */
+.nav-links a {
+    font-size: 1.1rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 2px !important;
+    text-transform: uppercase !important;
+    color: #fff !important;
+    text-align: right !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 12px 0 !important;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.4s ease;
+}
+
+.nav-links.active a {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered animation for links (applied via JS or CSS child selectors) */
+.nav-links.active a:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.nav-links.active a:nth-child(2) {
+    transition-delay: 0.15s;
+}
+
+.nav-links.active a:nth-child(3) {
+    transition-delay: 0.2s;
+}
+
+.nav-links.active a:nth-child(4) {
+    transition-delay: 0.25s;
+}
+
+.nav-links.active a:nth-child(5) {
+    transition-delay: 0.3s;
+}
+
+.nav-links.active a:nth-child(6) {
+    transition-delay: 0.35s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-gold) !important;
+    transform: translateX(-5px) !important;
+}
+
+/* Button inside nav */
+.nav-links .btn {
+    margin-top: 20px !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+/* Mobile Menu Toggle (Hamburger) */
+.menu-toggle {
+    width: 44px;
+    /* Larger hit area */
+    height: 44px;
+    /* Larger hit area */
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    /* Center spans inside hit area */
+    gap: 5px;
+    cursor: pointer;
+    z-index: 2110;
+    position: relative;
+    transition: all 0.3s ease;
+    flex-shrink: 0 !important;
+    margin-left: 10px !important;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    /* Width of the actual meat lines */
+    height: 2px;
+    background-color: #fff !important;
+    border-radius: 2px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: center;
+    margin: 0 auto;
+    /* Center lines in the 44px box */
+}
+
+
+/* Hero Section Adjustments */
 .hero {
     height: auto;
-    padding: 100px 0;
-}
-
-.tile-title {
-    font-size: 1.5rem;
+    padding: 140px 0 80px;
 }
 
 .hero-title {
     font-size: 2.2rem;
-    /* Significantly reduced for mobile */
     line-height: 1.2;
 }
 
+/* Dropdown Accordion for Mobile */
+.nav-item.dropdown {
+    width: 100%;
+}
+
+.dropdown-trigger {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dropdown-menu {
+    position: static !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.02) !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 0;
+    overflow: hidden;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: height 0.4s ease;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.dropdown-menu.active {
+    height: auto;
+    padding: 10px 0 20px !important;
+}
+
+.dropdown-col {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.dropdown-header {
+    font-size: 0.75rem !important;
+    color: var(--accent-gold) !important;
+    letter-spacing: 1.5px !important;
+    margin-bottom: 8px !important;
+    opacity: 0.6;
+}
+
+.dropdown-list li {
+    margin-bottom: 8px;
+}
+
+.dropdown-list a {
+    font-size: 0.9rem !important;
+    text-transform: none !important;
+    letter-spacing: 0.5px !important;
+    padding: 5px 0 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Featured card in dropdown is hidden or simplified on mobile */
+.featured-col {
+    display: none;
+}
+
+/* Section Title Fixes */
 .section-title {
     font-size: 1.8rem;
 }
 
-.lead-text {
-    font-size: 1rem;
-}
-
-.page-title {
-    font-size: 2.5rem;
-}
-
-/* Mobile Crash Fixes (Android 10 & below) */
-.solution-tile {
-    transform: none !important;
-    backface-visibility: visible !important;
-    transition: none !important;
-    /* Disable hover transitions on touch devices */
-}
-
-.register-card,
-.dropdown-menu {
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
-    /* Reduce shadow blur radius */
-}
-
 .tracks-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+/* Crash Fixes & Polish */
+.solution-tile {
+    transform: none !important;
 }
 
 .register-card {
-    padding: 30px;
+    padding: 30px 20px;
 }
 
-.venue-bg {
-    background-attachment: scroll;
-}
-
-.venue {
-    height: auto;
-    min-height: 300px;
-}
-
-.solutions-overview-grid {
-    grid-template-columns: 1fr;
-}
-
-.solution-tile {
-    height: 200px;
+#tactiq-menus {
+    margin-top: 40px !important;
+    justify-content: flex-end !important;
 }

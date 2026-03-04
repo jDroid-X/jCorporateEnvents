@@ -1,14 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Toggle
+    // Mobile Menu Toggle Components
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+
+    // Create Backdrop if it doesn't exist
+    let backdrop = document.querySelector('.menu-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'menu-backdrop';
+        document.body.appendChild(backdrop);
+    }
 
     const updateHamburger = (isActive) => {
         const spans = menuToggle.querySelectorAll('span');
         if (isActive) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
+            spans[0].style.transform = 'translateY(8px) rotate(45deg)';
             spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
+            spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
         } else {
             spans[0].style.transform = 'none';
             spans[1].style.opacity = '1';
@@ -16,86 +24,80 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Restore Menu State
-    if (localStorage.getItem('mobile-menu-active') === 'true') {
-        navLinks.classList.add('active');
-        updateHamburger(true);
-    }
+    const toggleMenu = (forceState = null) => {
+        const isActive = forceState !== null ? forceState : !navLinks.classList.contains('active');
 
-    if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            const isActive = navLinks.classList.toggle('active');
-            localStorage.setItem('mobile-menu-active', isActive);
-            updateHamburger(isActive);
-        });
-    }
-
-    // Mobile Dropdown Toggle (Accordion) with Persistence
-    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
-    dropdownTriggers.forEach((trigger, index) => {
-        const storageKey = `dropdown-active-${index}`;
-
-        const toggleDropdown = (triggerEl, forceState = null) => {
-            const dropdownMenu = triggerEl.nextElementSibling;
-            if (!dropdownMenu) return;
-
-            const shouldBeActive = forceState !== null ? forceState : !dropdownMenu.classList.contains('active');
-            dropdownMenu.classList.toggle('active', shouldBeActive);
-
-            // Rotate chevron
-            const chevron = triggerEl.querySelector('.chevron');
-            if (chevron) {
-                chevron.style.transform = shouldBeActive ? 'rotate(180deg)' : 'rotate(0)';
-                chevron.style.display = 'inline-block';
-                chevron.style.transition = 'transform 0.3s ease';
-            }
-            localStorage.setItem(storageKey, shouldBeActive);
-        };
-
-        // Restore Dropdown State
-        if (localStorage.getItem(storageKey) === 'true') {
-            toggleDropdown(trigger, true);
+        if (isActive) {
+            navLinks.classList.add('active');
+            backdrop.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scroll
+        } else {
+            navLinks.classList.remove('active');
+            backdrop.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scroll
         }
 
+        updateHamburger(isActive);
+        localStorage.setItem('mobile-menu-active', isActive);
+    };
+
+    // Restore Menu State (Optional - usually menu should start closed on new page)
+    // if (localStorage.getItem('mobile-menu-active') === 'true') {
+    //     toggleMenu(true);
+    // }
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => toggleMenu());
+    }
+
+    if (backdrop) {
+        backdrop.addEventListener('click', () => toggleMenu(false));
+    }
+
+    // Mobile Dropdown Toggle (Accordion)
+    const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+    dropdownTriggers.forEach((trigger) => {
         trigger.addEventListener('click', (e) => {
             if (window.innerWidth <= 992) {
                 e.preventDefault();
-                toggleDropdown(trigger);
+                const dropdownMenu = trigger.nextElementSibling;
+                if (!dropdownMenu) return;
+
+                const isActive = dropdownMenu.classList.toggle('active');
+
+                // Rotate chevron
+                const chevron = trigger.querySelector('.chevron');
+                if (chevron) {
+                    chevron.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0)';
+                    chevron.style.transition = 'transform 0.4s ease';
+                }
             }
         });
     });
 
-    // Close on click and go Ghost mode
+    // Close on link click
     const navLinksList = navLinks.querySelectorAll('a:not(.dropdown-trigger)');
     navLinksList.forEach(link => {
         link.addEventListener('click', () => {
             if (window.innerWidth <= 992) {
-                navLinks.classList.add('ghost');
-                // updateHamburger(false); // Keep toggle as X if user wants to close it? 
-                // Actually, let's just make it a ghost
+                setTimeout(() => toggleMenu(false), 300);
             }
         });
     });
 
-    // Remove ghost on toggle interaction
-    if (menuToggle) {
-        menuToggle.addEventListener('click', () => {
-            if (navLinks.classList.contains('ghost')) {
-                navLinks.classList.remove('ghost');
-                navLinks.classList.remove('active');
-                localStorage.setItem('mobile-menu-active', false);
-                updateHamburger(false);
-            }
-        });
-    }
-
     // Smooth scrolling for navigation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
