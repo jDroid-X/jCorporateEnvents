@@ -233,6 +233,33 @@ img {
 }
 
 
+/* Stories & Theme Switcher Buttons */
+.stories-manager-btn,
+#theme-switch-btn {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-gold) !important;
+    padding: 8px 14px !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap;
+}
+
+.stories-manager-btn:hover,
+#theme-switch-btn:hover {
+    background: var(--text-gold) !important;
+    color: #000 !important;
+}
+
+
 
 /* ───────────────────────────── NAVIGATION ───────────────────────────── */
 .navbar {
@@ -240,7 +267,7 @@ img {
     top: 0;
     width: 100%;
     padding: 1.4rem 0;
-    background: rgba(13, 13, 13, 0.96);
+    background: var(--header-bg, rgba(13, 13, 13, 0.96));
     -webkit-backdrop-filter: blur(12px);
     backdrop-filter: blur(12px);
     z-index: 1000;
@@ -275,11 +302,12 @@ img {
 
 
 .nav-links>a {
-    color: var(--text-muted);
+    color: var(--text, var(--text-muted));
     margin-left: 2rem;
     font-size: 0.88rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 500;
 }
 
 
@@ -321,10 +349,11 @@ img {
 
 .nav-item>a {
     margin-left: 0;
-    color: var(--text-muted);
+    color: var(--text, var(--text-muted));
     font-size: 0.88rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    font-weight: 500;
 }
 
 
@@ -346,7 +375,7 @@ img {
     left: 50%;
     transform: translateX(-50%) translateY(10px);
     width: 820px;
-    background: rgba(17, 20, 23, 0.99);
+    background: var(--side-bg, rgba(17, 20, 23, 0.99));
     border: 1px solid var(--border-subtle);
     -webkit-appearance: none;
     appearance: none;
@@ -356,6 +385,25 @@ img {
     transition: all 0.3s ease;
     z-index: 1100;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Glass Floating Popups (Theme & Stories) */
+.glass,
+.theme-menu-popup,
+#stories-popup-menu,
+.glass-popup {
+    position: absolute;
+    top: calc(100% + 1rem);
+    right: 0;
+    width: 250px;
+    background: var(--side-bg, rgba(15, 15, 15, 0.98)) !important;
+    -webkit-backdrop-filter: blur(25px);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    border-radius: 12px;
+    padding: 15px;
 }
 
 

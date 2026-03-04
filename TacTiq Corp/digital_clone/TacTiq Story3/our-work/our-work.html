@@ -18,21 +18,24 @@
 
 <body>
 
-    <nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
         <div class="container">
             <div class="nav-flex">
                 <a href="../index.html" class="logo">Tactiq<span style="color:var(--text-gold);">.</span></a>
                 <div class="nav-links" id="main-nav-links">
                     <a href="our-work.html" style="color:var(--text-gold);">Our Work</a>
-                    <a href="../index.html#about">About</a>
-                    <a href="../index.html#contact" class="btn btn-gold-outline">Get in Touch</a>
                     <div id="tactiq-menus"
                         style="display:flex; align-items:center; gap:10px; margin-left:15px; position:relative;"></div>
+                    <a href="../index.html#about">About</a>
+                    <a href="../index.html#contact" class="btn btn-gold-outline">Get in Touch</a>
                 </div>
-                <button class="menu-toggle" id="menu-toggle-btn" aria-label="Open menu">
+                <button class="menu-toggle" id="menu-toggle-btn" aria-label="Open menu" aria-expanded="false">
                     <span></span><span></span><span></span>
                 </button>
             </div>
+            <!-- Mobile Sidebar Backdrop -->
+            
         </div>
     </nav>
 
@@ -560,7 +563,8 @@
         </div>
     </footer>
 
-    <script src="../js/vendor/ThemeManager.js"></script>
+    <script src="../../core/js/ThemeManager.js"></script>
+    <script src="../../core/js/StoriesManager.js"></script>
     <script src="../js/script.js"></script>
 </body>
 
