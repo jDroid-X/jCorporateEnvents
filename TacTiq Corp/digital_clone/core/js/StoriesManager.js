@@ -63,7 +63,9 @@ const StoriesManager = {
 
         this.stories.forEach(s => {
             const row = document.createElement('div');
-            row.style.cssText = "padding:8px 12px; font-size:0.7rem; color: #fff; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer;";
+            row.style.cssText = "padding:10px 14px; font-size: 0.85rem; color: #fff; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; opacity: 0.85; transition: opacity 0.2s;";
+            row.onmouseover = () => row.style.opacity = '1';
+            row.onmouseout = () => row.style.opacity = '0.85';
             row.textContent = s.name;
             row.onclick = (e) => {
                 e.stopPropagation();

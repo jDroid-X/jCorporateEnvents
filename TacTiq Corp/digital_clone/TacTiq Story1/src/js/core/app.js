@@ -23,7 +23,30 @@ function init() {
 
     if (prevBtn) prevBtn.onclick = () => changeSlide(-1);
     if (nextBtn) nextBtn.onclick = () => changeSlide(1);
-    if (menuToggle) menuToggle.onclick = () => document.getElementById('sidebar').classList.toggle('open');
+    if (menuToggle) {
+        menuToggle.onclick = () => {
+            const sidebar = document.getElementById('sidebar');
+            const backdrop = document.getElementById('sidebar-backdrop');
+            const isOpen = sidebar.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+            if (backdrop) {
+                if (isOpen) backdrop.classList.add('active');
+                else backdrop.classList.remove('active');
+            }
+        };
+    }
+
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (backdrop) {
+        backdrop.onclick = () => {
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+            if (sidebar) sidebar.classList.remove('open');
+            if (menuToggle) menuToggle.classList.remove('open');
+            backdrop.classList.remove('active');
+        };
+    }
+
     if (prevSectionBtn) prevSectionBtn.onclick = () => changeSlide(-1);
     if (nextSectionBtn) nextSectionBtn.onclick = () => changeSlide(1);
 
@@ -60,7 +83,11 @@ function buildUI() {
             item.onclick = () => {
                 loadSlide(idx);
                 const sidebar = document.getElementById('sidebar');
+                const menuToggle = document.getElementById('menu-toggle');
+                const backdrop = document.getElementById('sidebar-backdrop');
                 if (sidebar) sidebar.classList.remove('open');
+                if (menuToggle) menuToggle.classList.remove('open');
+                if (backdrop) backdrop.classList.remove('active');
             };
             if (menu) menu.appendChild(item);
             lastSection = page.section;
@@ -78,6 +105,14 @@ function buildUI() {
             buildStrategyGrid(year);
             const gridOverlay = document.getElementById('strategy-grid-overlay');
             if (gridOverlay) gridOverlay.style.display = 'block';
+
+            // Auto-hide sidebar drawer on mobile after selection
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+            const backdrop = document.getElementById('sidebar-backdrop');
+            if (sidebar) sidebar.classList.remove('open');
+            if (menuToggle) menuToggle.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('active');
         };
         if (yearBox) yearBox.appendChild(pill);
     });
@@ -105,13 +140,14 @@ function buildUI() {
             function addMenuRow(key, name, colors, isCustom) {
                 const row = document.createElement('div');
                 const isActive = name === currentName || (!currentName && key === 'default');
-                row.style.cssText = `padding:8px 12px; font-size:0.75rem; color:${isActive ? 'var(--text-gold)' : 'white'}; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; display:flex; justify-content:space-between; align-items:center;`;
+                row.style.cssText = `padding:10px 14px; font-size:0.85rem; color:${isActive ? 'var(--accent)' : 'white'}; border-bottom:1px solid rgba(255,255,255,0.05); cursor:pointer; display:flex; justify-content:space-between; align-items:center; opacity: ${isActive ? '1' : '0.8'};`;
                 row.innerHTML = `<span>${name}</span>`;
 
                 row.onclick = (e) => {
                     e.stopPropagation();
                     if (window.ThemeManager) window.ThemeManager.setTheme(key, name, colors);
                     renderThemeMenu();
+                    menuPopup.style.display = 'none'; // Close menu after selection
                 };
                 menuPopup.appendChild(row);
             }
@@ -211,7 +247,16 @@ function buildStrategyGrid(targetYear = null) {
             <h4>${item.page.title ? item.page.title : 'Details'}</h4>
             <div class="tile-year-badge">${item.page.year || 'Showcase'}</div>
         `;
-        tile.onclick = () => loadSlide(item.idx);
+        tile.onclick = () => {
+            loadSlide(item.idx);
+            // Ensure sidebar is closed when jumping from grid to slide
+            const sidebar = document.getElementById('sidebar');
+            const menuToggle = document.getElementById('menu-toggle');
+            const backdrop = document.getElementById('sidebar-backdrop');
+            if (sidebar) sidebar.classList.remove('open');
+            if (menuToggle) menuToggle.classList.remove('open');
+            if (backdrop) backdrop.classList.remove('active');
+        };
         grid.appendChild(tile);
     });
 }
