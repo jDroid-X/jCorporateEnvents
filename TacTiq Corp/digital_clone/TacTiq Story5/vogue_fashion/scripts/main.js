@@ -193,48 +193,25 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // Full Menu Logic
-    const menuTrigger = document.getElementById('menu-trigger');
-    const fullMenu = document.getElementById('full-menu');
-    const closeMenu = document.getElementById('close-menu');
+    // Mobile Menu Logic
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const navList = document.getElementById('nav-list');
+    const menuOverlay = document.getElementById('menu-overlay');
 
-    if (menuTrigger && fullMenu && closeMenu) {
-        menuTrigger.onclick = (e) => {
-            e.preventDefault();
-            fullMenu.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+    if (mobileToggle) {
+        mobileToggle.onclick = () => {
+            navList.classList.toggle('active');
+            mobileToggle.classList.toggle('active');
+            if (menuOverlay) menuOverlay.classList.toggle('active');
         };
+    }
 
-        closeMenu.onclick = () => {
-            fullMenu.classList.remove('active');
-            document.body.style.overflow = 'auto';
+    if (menuOverlay) {
+        menuOverlay.onclick = () => {
+            navList.classList.remove('active');
+            mobileToggle.classList.remove('active');
+            menuOverlay.classList.remove('active');
         };
-
-        // Handle menu links that are local anchors
-        fullMenu.querySelectorAll('.menu-scroll').forEach(link => {
-            link.onclick = (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetEl = document.getElementById(targetId);
-                fullMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                if (targetEl) {
-                    targetEl.scrollIntoView({ behavior: 'smooth' });
-                }
-            };
-        });
-
-        // Palette Sync from Full Menu
-        const paletteSync = document.getElementById('menu-palette-sync');
-        if (paletteSync) {
-            paletteSync.onclick = () => {
-                fullMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-                setTimeout(() => {
-                    if (paletteTrigger) paletteTrigger.click();
-                }, 300);
-            };
-        }
     }
 
     document.addEventListener('click', (e) => {
@@ -287,7 +264,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function closeAllOverlays() {
-        if (fullMenu) fullMenu.classList.remove('active');
+        const mobileToggle = document.getElementById('mobile-menu-toggle');
+        const navList = document.getElementById('nav-list');
+        const menuOverlay = document.getElementById('menu-overlay');
+
+        if (navList) navList.classList.remove('active');
+        if (mobileToggle) mobileToggle.classList.remove('active');
+        if (menuOverlay) menuOverlay.classList.remove('active');
+
         if (paletteDropdown) paletteDropdown.classList.remove('active');
         if (storiesDropdown) storiesDropdown.classList.remove('active');
         document.body.style.overflow = 'auto'; // Restore scroll
