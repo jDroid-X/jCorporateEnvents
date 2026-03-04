@@ -3,14 +3,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Mobile Menu Toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const backdrop = document.querySelector('.sidebar-backdrop');
+
+    const toggleMenu = (forceState = null) => {
+        const isActive = forceState !== null ? forceState : !navLinks.classList.contains('active');
+        navLinks.classList.toggle('active', isActive);
+        menuToggle.classList.toggle('active', isActive);
+        if (backdrop) backdrop.classList.toggle('active', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
+    };
+
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
+        menuToggle.addEventListener('click', () => toggleMenu());
     }
 
-    // 2. Smooth Scroll for Anchor Links
+    if (backdrop) {
+        backdrop.addEventListener('click', () => toggleMenu(false));
+    }
+
+    // 2. Smooth Scroll & Close Menu
+    document.querySelectorAll('.nav-links a:not(.dropdown-trigger)').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) toggleMenu(false);
+        });
+    });
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetId = this.getAttribute('href');
@@ -18,8 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const el = document.querySelector(targetId);
             if (el) {
                 e.preventDefault();
-                if (navLinks) navLinks.classList.remove('active');
-                if (menuToggle) menuToggle.classList.remove('active');
+                toggleMenu(false);
                 el.scrollIntoView({ behavior: 'smooth' });
             }
         });
