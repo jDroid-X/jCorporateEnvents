@@ -72,15 +72,16 @@
     position: fixed !important;
     top: 0 !important;
     right: 0 !important;
-    width: 85vw !important;
-    max-width: 380px !important;
+    width: 42.5vw !important;
+    max-width: 190px !important;
     height: 100vh !important;
     background: var(--menu-bg) !important;
     backdrop-filter: blur(var(--menu-blur)) !important;
     -webkit-backdrop-filter: blur(var(--menu-blur)) !important;
     display: flex !important;
     flex-direction: column !important;
-    padding: 100px 40px 40px !important;
+    padding: 100px 20px 40px !important;
+    /* Reduced padding for narrow menu */
     gap: 15px !important;
     transform: translateX(101%) !important;
     transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1) !important;
@@ -117,15 +118,18 @@
 
 /* Navigation Items Styling */
 .nav-links a {
-    font-size: 1.1rem !important;
+    font-size: 0.85rem !important;
+    /* Smaller font */
     font-weight: 500 !important;
-    letter-spacing: 2px !important;
+    letter-spacing: 1px !important;
+    /* Tighter letter spacing */
     text-transform: uppercase !important;
     color: #fff !important;
     text-align: right !important;
     width: 100% !important;
     margin: 0 !important;
-    padding: 12px 0 !important;
+    padding: 10px 0 !important;
+    /* Tighter padding */
     opacity: 0;
     transform: translateX(20px);
     transition: all 0.4s ease;
@@ -168,9 +172,21 @@
 
 /* Button inside nav */
 .nav-links .btn {
-    margin-top: 20px !important;
+    margin-top: 25px !important;
     width: 100% !important;
     text-align: center !important;
+    padding: 10px 15px !important;
+    /* More compact button */
+    font-size: 0.8rem !important;
+    /* Smaller font for button */
+}
+
+/* Also ensure stories/palette menu buttons fit */
+.nav-links #tactiq-menus .stories-manager-btn,
+.nav-links #tactiq-menus #theme-switch-btn {
+    padding: 6px 10px !important;
+    font-size: 0.75rem !important;
+    height: 30px !important;
 }
 
 /* Mobile Menu Toggle (Hamburger) */

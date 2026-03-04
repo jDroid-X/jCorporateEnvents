@@ -422,9 +422,13 @@ def build_page(out_path, category, year, title, tag, description, extra_blocks, 
                 <a href="{rel}index.html#contact" class="btn btn-gold-outline">Get in Touch</a>
                 <div id="tactiq-menus" style="display:flex; align-items:center; gap:10px; margin-left:15px; position:relative;"></div>
             </div>
+            <button class="menu-toggle" id="menu-toggle-btn" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </div>
 </nav>
+
 
 <main class="case-study-layout">
     <!-- Sidebar (30%) -->
